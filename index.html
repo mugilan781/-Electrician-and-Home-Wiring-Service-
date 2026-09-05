@@ -265,22 +265,34 @@
     </div>
 
     <!-- ═══════════ STATS ═══════════ -->
-    <section class="section section--navy" aria-label="Key statistics">
+    <section class="section" aria-label="Key statistics" style="background:var(--bg);">
       <div class="container">
         <div class="grid grid-4 gap-32">
-          <div class="stat-item reveal">
+          <div class="stat-card reveal">
+            <div class="stat-card__icon" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
             <div class="stat-number" data-counter="15000" data-suffix="+" data-duration="2000">0</div>
             <div class="stat-label">Projects Completed</div>
           </div>
-          <div class="stat-item reveal reveal-delay-1">
+          <div class="stat-card reveal reveal-delay-1">
+            <div class="stat-card__icon" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+            </div>
             <div class="stat-number" data-counter="15" data-suffix="+" data-duration="1500">0</div>
             <div class="stat-label">Years of Expertise</div>
           </div>
-          <div class="stat-item reveal reveal-delay-2">
+          <div class="stat-card reveal reveal-delay-2">
+            <div class="stat-card__icon" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
             <div class="stat-number" data-counter="4.9" data-suffix="/5" data-duration="1800" data-decimals="1">0</div>
             <div class="stat-label">Customer Rating</div>
           </div>
-          <div class="stat-item reveal reveal-delay-3">
+          <div class="stat-card reveal reveal-delay-3">
+            <div class="stat-card__icon" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
             <div class="stat-number" data-counter="60" data-suffix="min" data-duration="1200">0</div>
             <div class="stat-label">Emergency Response</div>
           </div>
@@ -346,53 +358,6 @@
             </div>
           </article>
 
-          <article class="service-card reveal">
-            <div class="service-card__accent" aria-hidden="true"></div>
-            <img src="assets/images/fan-install.jpg" alt="Ceiling fan installation" class="service-card__img" loading="lazy">
-            <div class="service-card__body">
-              <div class="service-card__icon" aria-hidden="true">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" color="#E6A23C"><circle cx="12" cy="12" r="3"/><path d="M12 9V3M12 15v6M9 12H3M15 12h6"/></svg>
-              </div>
-              <h3 class="service-card__title">Fan Installation</h3>
-              <p class="service-card__desc">Professional ceiling fan installation for optimal comfort. We handle all wiring, mounting, and balancing for smooth, quiet operation.</p>
-              <a href="services.html" class="service-card__link">
-                Learn More
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              </a>
-            </div>
-          </article>
-
-          <article class="service-card reveal reveal-delay-1">
-            <div class="service-card__accent" aria-hidden="true"></div>
-            <img src="assets/images/electrician-panel.jpg" alt="Electrical panel upgrade" class="service-card__img" loading="lazy">
-            <div class="service-card__body">
-              <div class="service-card__icon" aria-hidden="true">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" color="#E6A23C"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18" stroke-width="3" stroke-linecap="round"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/></svg>
-              </div>
-              <h3 class="service-card__title">Electrical Panel Upgrades</h3>
-              <p class="service-card__desc">Modernize your electrical panel to handle today's power demands. Safe, code-compliant upgrades from 100A to 400A service.</p>
-              <a href="services.html" class="service-card__link">
-                Learn More
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              </a>
-            </div>
-          </article>
-
-          <article class="service-card reveal reveal-delay-2">
-            <div class="service-card__accent" aria-hidden="true"></div>
-            <img src="assets/images/switchboard-repair.jpg" alt="Switchboard repair" class="service-card__img" loading="lazy">
-            <div class="service-card__body">
-              <div class="service-card__icon" aria-hidden="true">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" color="#E6A23C"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-              </div>
-              <h3 class="service-card__title">Switchboard Repair</h3>
-              <p class="service-card__desc">Expert diagnosis and repair of faulty switchboards. We restore safe, reliable electrical distribution for your entire home.</p>
-              <a href="services.html" class="service-card__link">
-                Learn More
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              </a>
-            </div>
-          </article>
         </div>
 
         <div style="text-align:center;margin-top:48px;">
@@ -502,37 +467,37 @@
       <div class="container">
         <div class="section-header" style="margin-bottom:48px;">
           <div class="section-label reveal" aria-hidden="true">Trust & Safety</div>
-          <h2 class="section-title reveal" id="cert-heading" style="color:var(--soft-white);">Licensed, Certified & Insured</h2>
+          <h2 class="section-title reveal" id="cert-heading">Licensed, Certified & Insured</h2>
         </div>
         <div class="cert-grid reveal">
-          <div class="cert-card" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.1);">
+          <div class="cert-card">
             <div class="cert-card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
-            <div class="cert-card__title" style="color:var(--soft-white);">Master License</div>
+            <div class="cert-card__title">Master License</div>
             <div class="cert-card__subtitle">State-Certified</div>
           </div>
-          <div class="cert-card" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.1);">
+          <div class="cert-card">
             <div class="cert-card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-            <div class="cert-card__title" style="color:var(--soft-white);">$5M Liability</div>
+            <div class="cert-card__title">$5M Liability</div>
             <div class="cert-card__subtitle">Fully Insured</div>
           </div>
-          <div class="cert-card" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.1);">
+          <div class="cert-card">
             <div class="cert-card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
-            <div class="cert-card__title" style="color:var(--soft-white);">NECA Member</div>
+            <div class="cert-card__title">NECA Member</div>
             <div class="cert-card__subtitle">National Electrical</div>
           </div>
-          <div class="cert-card" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.1);">
+          <div class="cert-card">
             <div class="cert-card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
-            <div class="cert-card__title" style="color:var(--soft-white);">OSHA Certified</div>
+            <div class="cert-card__title">OSHA Certified</div>
             <div class="cert-card__subtitle">Safety First</div>
           </div>
-          <div class="cert-card" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.1);">
+          <div class="cert-card">
             <div class="cert-card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-            <div class="cert-card__title" style="color:var(--soft-white);">BBB A+ Rating</div>
+            <div class="cert-card__title">BBB A+ Rating</div>
             <div class="cert-card__subtitle">Better Business</div>
           </div>
-          <div class="cert-card" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.1);">
+          <div class="cert-card">
             <div class="cert-card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
-            <div class="cert-card__title" style="color:var(--soft-white);">5-Year Warranty</div>
+            <div class="cert-card__title">5-Year Warranty</div>
             <div class="cert-card__subtitle">Workmanship</div>
           </div>
         </div>
@@ -558,7 +523,7 @@
             </div>
             <p class="testimonial-card__text">"ElectraPro rewired our entire 1950s home and the results are outstanding. The team was professional, clean, and finished ahead of schedule. Our home passed inspection on the first try!"</p>
             <div class="testimonial-card__author">
-              <div class="testimonial-card__avatar-placeholder" aria-hidden="true">MJ</div>
+              <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Margaret Johnson" class="testimonial-card__avatar" loading="lazy" width="48" height="48">
               <div>
                 <div class="testimonial-card__name">Margaret Johnson</div>
                 <div class="testimonial-card__role">Homeowner, Oak Park</div>
@@ -575,7 +540,7 @@
             </div>
             <p class="testimonial-card__text">"Had a panel emergency at 2am on a Sunday. Called ElectraPro and they had a tech at my door within 45 minutes. Absolutely incredible service. I won't call anyone else ever again."</p>
             <div class="testimonial-card__author">
-              <div class="testimonial-card__avatar-placeholder" aria-hidden="true">DR</div>
+              <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="David Rivera" class="testimonial-card__avatar" loading="lazy" width="48" height="48">
               <div>
                 <div class="testimonial-card__name">David Rivera</div>
                 <div class="testimonial-card__role">Homeowner, Riverside</div>
@@ -592,16 +557,13 @@
             </div>
             <p class="testimonial-card__text">"The smart home installation exceeded our expectations. Every switch, outlet, and lighting zone was expertly planned and installed. The team's knowledge of home automation is unmatched."</p>
             <div class="testimonial-card__author">
-              <div class="testimonial-card__avatar-placeholder" aria-hidden="true">SC</div>
+              <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Sarah Chen" class="testimonial-card__avatar" loading="lazy" width="48" height="48">
               <div>
                 <div class="testimonial-card__name">Sarah Chen</div>
                 <div class="testimonial-card__role">Property Developer</div>
               </div>
             </div>
           </div>
-        </div>
-        <div style="text-align:center;margin-top:40px;">
-          <a href="about.html#reviews" class="btn btn-outline reveal">See All 2,400+ Reviews</a>
         </div>
       </div>
     </section>
@@ -693,45 +655,6 @@
         </div>
         <div style="text-align:center;margin-top:40px;">
           <a href="contact.html" class="btn btn-primary reveal">Ask Us Anything</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════ SERVICE AREAS ═══════════ -->
-    <section class="section" aria-labelledby="areas-heading">
-      <div class="container">
-        <div class="coverage-grid">
-          <div>
-            <div class="section-label reveal" aria-hidden="true">Where We Serve</div>
-            <h2 class="section-title reveal" id="areas-heading">Service Areas</h2>
-            <p class="reveal" style="color:var(--text-muted);line-height:1.8;margin-bottom:32px;">We serve the greater metro area including 40+ neighborhoods and surrounding suburbs. Emergency service available across our full coverage zone.</p>
-            <div class="service-areas-grid reveal">
-              <div class="area-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Downtown</div>
-              <div class="area-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Oak Park</div>
-              <div class="area-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Riverside</div>
-              <div class="area-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Northside</div>
-              <div class="area-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Westview</div>
-              <div class="area-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Lakewood</div>
-              <div class="area-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Elmhurst</div>
-              <div class="area-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Lincoln Park</div>
-              <div class="area-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Hyde Park</div>
-              <div class="area-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Glen Ellyn</div>
-              <div class="area-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Naperville</div>
-              <div class="area-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>+30 More</div>
-            </div>
-          </div>
-          <div class="map-section reveal-right">
-            <div class="map-embed" aria-label="Service area map">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387193.3059353029!2d-74.25986882919358!3d40.69714941680757!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1699888888888!5m2!1sen!2sus"
-                allowfullscreen=""
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-                title="ElectraPro service coverage map"
-                aria-label="Google Maps showing service area"
-              ></iframe>
-            </div>
-          </div>
         </div>
       </div>
     </section>
