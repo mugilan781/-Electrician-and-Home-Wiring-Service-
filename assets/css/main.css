@@ -857,15 +857,16 @@ select.form-control { cursor: pointer; }
   margin-top: 4px;
 }
 
-/* Hero Slider Dots */
+/* Hero Slider Dots — centered */
 .hero-slider-dots {
   position: absolute;
-  bottom: 40px;
+  bottom: 32px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
   display: flex;
   gap: 10px;
+  justify-content: center;
 }
 .hero-dot {
   width: 8px; height: 8px;
