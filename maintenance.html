@@ -28,7 +28,17 @@
       font-family: var(--font-body);
       color: var(--white);
       position: relative;
-      overflow: hidden;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 24px 0 16px;
+    }
+    /* Ensure main can scroll and stays centered */
+    main {
+      flex-shrink: 0;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     /* Animated grid background */
@@ -68,7 +78,7 @@
       position: relative;
       z-index: 1;
       text-align: center;
-      padding: 40px 24px;
+      padding: 16px 24px 12px;
       max-width: 640px;
       width: 100%;
     }
@@ -203,7 +213,8 @@
     .status-dot.gray { background: rgba(255,255,255,.25); }
 
     footer {
-      margin-top: 40px;
+      margin-top: 12px;
+      padding-bottom: 4px;
       font-size: 0.8125rem;
       color: rgba(255,255,255,.3);
     }
@@ -223,7 +234,6 @@
         </div>
         <div class="page-loader__brand">
           <span class="page-loader__name">ElectraPro</span>
-          <span class="page-loader__sub">Electrical Services</span>
         </div>
       </div>
       <div class="page-loader__bar" aria-hidden="true"><div class="page-loader__bar-fill"></div></div>
@@ -234,20 +244,20 @@
   <div class="orb orb-2" aria-hidden="true"></div>
 
   <main>
-    <!-- Brand -->
-    <div class="brand" aria-label="ElectraPro">
-      <div class="brand-icon" aria-hidden="true">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2">
-          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-        </svg>
+    <!-- Brand + Badge — properly centered -->
+    <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; margin-bottom:28px;">
+      <div class="brand" aria-label="ElectraPro" style="margin-bottom:0;">
+        <div class="brand-icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          </svg>
+        </div>
+        <span class="brand-text">Electra<span style="color:var(--amber)">Pro</span></span>
       </div>
-      <span class="brand-text">Electra<span style="color:var(--amber)">Pro</span></span>
-    </div>
-
-    <!-- Badge -->
-    <div class="maintenance-badge">
-      <span style="width:8px;height:8px;border-radius:50%;background:var(--amber);animation:pulse 1.5s infinite;" aria-hidden="true"></span>
-      Scheduled Maintenance
+      <div class="maintenance-badge" style="margin-bottom:0;">
+        <span style="width:8px;height:8px;border-radius:50%;background:var(--amber);animation:pulse 1.5s infinite;" aria-hidden="true"></span>
+        Scheduled Maintenance
+      </div>
     </div>
 
     <!-- Title -->
