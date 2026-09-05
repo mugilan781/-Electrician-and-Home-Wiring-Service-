@@ -396,24 +396,91 @@ function initStickyNavbar() {
   document.documentElement.style.setProperty('--nav-height', navHeight + 'px');
 }
 
-/* ── ██ SMOOTH PAGE TRANSITIONS ── */
-function initPageTransitions() {
-  const overlay = document.createElement('div');
-  overlay.className = 'page-transition';
-  document.body.appendChild(overlay);
+/* ── ██ PAGE LOADER (Brand Loading Animation) ── */
+// Create loader immediately (synchronous) so it covers page on first paint
+(function createPageLoaderSync() {
+  if (typeof document === 'undefined') return;
+  const inject = () => {
+    if (document.getElementById('page-loader')) return;
+    const loader = document.createElement('div');
+    loader.id = 'page-loader';
+    loader.className = 'page-loader';
+    loader.setAttribute('aria-label', 'Loading');
+    loader.setAttribute('aria-live', 'polite');
+    loader.innerHTML = `
+      <div class="page-loader__inner">
+        <div class="page-loader__logo">
+          <div class="page-loader__icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#101C2C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+          </div>
+          <div class="page-loader__brand">
+            <span class="page-loader__name">ElectraPro</span>
+            <span class="page-loader__sub">Electrical Services</span>
+          </div>
+        </div>
+        <div class="page-loader__bar" aria-hidden="true"><div class="page-loader__bar-fill"></div></div>
+      </div>
+    `;
+    (document.body || document.documentElement).appendChild(loader);
+  };
+  if (document.body) inject();
+  else document.addEventListener('DOMContentLoaded', inject, { once: true });
+})();
 
-  document.querySelectorAll('a[href]').forEach(link => {
-    const href = link.getAttribute('href');
-    if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('http')) return;
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      overlay.classList.add('entering');
-      setTimeout(() => { window.location.href = href; }, 350);
-    });
+function initPageLoader() {
+  const loader = document.getElementById('page-loader');
+  if (!loader) return;
+
+  const startTime = performance.now();
+  const minDisplay = 750;
+
+  const hideLoader = () => {
+    const elapsed = performance.now() - startTime;
+    const remaining = Math.max(0, minDisplay - elapsed);
+    setTimeout(() => {
+      loader.classList.add('hidden');
+    }, remaining);
+  };
+
+  if (document.readyState === 'complete') {
+    hideLoader();
+  } else {
+    window.addEventListener('load', hideLoader, { once: true });
+    // Fallback — ensure loader hides even if load event stalls
+    setTimeout(() => {
+      if (!loader.classList.contains('hidden')) hideLoader();
+    }, 2200);
+  }
+
+  window.addEventListener('pageshow', (e) => {
+    if (e.persisted) loader.classList.add('hidden');
   });
 
-  // Fade out on load
-  setTimeout(() => { overlay.classList.add('leaving'); setTimeout(() => overlay.classList.remove('entering', 'leaving'), 500); }, 50);
+  // Intercept internal page navigation to show loader
+  document.querySelectorAll('a[href]').forEach(link => {
+    const href = link.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('http://') || href.startsWith('https://') || href.startsWith('//') || href.startsWith('javascript:')) return;
+    if (link.target === '_blank' || link.hasAttribute('download')) return;
+    // Skip same-page anchor links (handled by smooth scroll)
+    if (href.includes('#')) {
+      const base = href.split('#')[0];
+      const current = location.pathname.split('/').pop() || 'index.html';
+      if (!base || base === current || base === '') return;
+    }
+    link.addEventListener('click', (e) => {
+      if (e.defaultPrevented) return;
+      if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey || e.button !== 0) return;
+      e.preventDefault();
+      loader.classList.remove('hidden');
+      // Close mobile nav if open
+      document.getElementById('mobile-nav')?.classList.remove('open');
+      document.getElementById('hamburger')?.classList.remove('active');
+      document.body.style.overflow = '';
+      setTimeout(() => { window.location.href = href; }, 620);
+    });
+  });
 }
 
 /* ── ██ IMAGE LAZY LOADING ── */
@@ -533,6 +600,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initLazyImages();
   initCopyButtons();
   initSmoothAnchors();
-  // Page transitions last
-  setTimeout(initPageTransitions, 100);
+  initPageLoader();
 });
