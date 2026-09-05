@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us — ElectraPro Electrical Services</title>
+  <meta name="description" content="Contact ElectraPro for all your electrical service needs. Book an appointment, get a free quote, or call our 24/7 emergency line at 1-800-555-0199.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <style>
+    .service-type-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 20px; }
+    @media(max-width:600px){ .service-type-grid { grid-template-columns: repeat(2,1fr); } }
+    .service-radio { display: none; }
+    .service-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: var(--transition);
+      background: var(--bg-card);
+    }
+    .service-label:hover { border-color: var(--amber); color: var(--amber); }
+    .service-radio:checked + .service-label { border-color: var(--amber); color: var(--amber); background: rgba(230,162,60,.08); }
+    .service-label .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); transition: var(--transition); flex-shrink: 0; }
+    .service-radio:checked + .service-label .dot { background: var(--amber); }
+
+    .urgency-options { display: flex; gap: 12px; flex-wrap: wrap; }
+    .urgency-btn {
+      padding: 10px 18px;
+      border-radius: 100px;
+      border: 1.5px solid var(--border);
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: var(--bg-card);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .urgency-btn:hover, .urgency-btn.active { border-color: var(--amber); color: var(--amber); background: rgba(230,162,60,.08); }
+    .urgency-btn.emergency-btn:hover, .urgency-btn.emergency-btn.active { border-color: #DC2626; color: #DC2626; background: rgba(220,38,38,.08); }
+
+    .form-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media(max-width:600px){ .form-cols { grid-template-columns: 1fr; } }
+
+    .step-indicator { display: flex; align-items: center; gap: 0; margin-bottom: 36px; }
+    .step { display: flex; align-items: center; gap: 10px; }
+    .step__num { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.875rem; font-weight: 700; flex-shrink: 0; transition: var(--transition); }
+    .step.active .step__num, .step.done .step__num { background: var(--amber); color: var(--navy); }
+    .step:not(.active):not(.done) .step__num { background: var(--border); color: var(--text-muted); }
+    .step__label { font-size: 0.8125rem; font-weight: 600; white-space: nowrap; }
+    .step.active .step__label { color: var(--amber); }
+    .step:not(.active) .step__label { color: var(--text-muted); }
+    .step-line { flex: 1; height: 2px; background: var(--border); min-width: 20px; }
+    .step-line.done { background: var(--amber); }
+    @media(max-width:500px){ .step__label { display: none; } }
+  </style>
+</head>
+<body>
+  <div id="nav-mount"></div>
+  <main id="main-content">
+
+    <!-- ═══════════ PAGE HERO ═══════════ -->
+    <div class="page-hero">
+      <div class="container">
+        <div class="page-hero-content">
+          <nav class="page-hero-breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">Home</a>
+            <span>›</span>
+            <span class="current">Contact</span>
+          </nav>
+          <h1 class="page-hero-title">Get in <span class="text-amber">Touch</span></h1>
+          <p class="page-hero-desc">Whether you need a quote, want to book a service, or have an emergency — we're ready to help. Our team responds within the hour during business hours.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════ CONTACT SECTION ═══════════ -->
+    <section class="section" aria-labelledby="contact-heading">
+      <div class="container">
+        <div class="contact-grid">
+          <!-- Info Cards -->
+          <div>
+            <h2 id="contact-heading" class="section-title reveal" style="margin-bottom:32px;">Contact <span class="text-amber">Information</span></h2>
+
+            <div class="contact-info reveal">
+              <div class="contact-info-card">
+                <div class="contact-info-card__icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72.84.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.91A16 16 0 0 0 14 15l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.5 16l.42.92z"/></svg>
+                </div>
+                <div>
+                  <div class="contact-info-card__label">Main Line</div>
+                  <div class="contact-info-card__value"><a href="tel:+18005550199">1-800-555-0199</a></div>
+                </div>
+              </div>
+              <div class="contact-info-card" style="border-color:#DC2626;background:rgba(220,38,38,.04);">
+                <div class="contact-info-card__icon" style="background:rgba(220,38,38,.15);color:#DC2626;">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                </div>
+                <div>
+                  <div class="contact-info-card__label" style="color:#DC2626;">24/7 Emergency Line</div>
+                  <div class="contact-info-card__value"><a href="tel:+18005550199" style="color:#DC2626;">1-800-555-0199</a></div>
+                </div>
+              </div>
+              <div class="contact-info-card">
+                <div class="contact-info-card__icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <div>
+                  <div class="contact-info-card__label">Email</div>
+                  <div class="contact-info-card__value"><a href="mailto:info@electrapro.com">info@electrapro.com</a></div>
+                </div>
+              </div>
+              <div class="contact-info-card">
+                <div class="contact-info-card__icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                </div>
+                <div>
+                  <div class="contact-info-card__label">Office</div>
+                  <div class="contact-info-card__value">123 Volt Avenue, Suite 400<br>Metro City, MC 10001</div>
+                </div>
+              </div>
+              <div class="contact-info-card">
+                <div class="contact-info-card__icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <div>
+                  <div class="contact-info-card__label">Business Hours</div>
+                  <div class="contact-info-card__value">Mon–Fri: 7am – 7pm<br>Sat–Sun: 8am – 5pm<br><span style="color:#DC2626;font-weight:700;">Emergency: 24/7</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Map -->
+            <div class="map-embed reveal" style="margin-top:32px;">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387193.3059353029!2d-74.25986882919358!3d40.69714941680757!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1699888888888!5m2!1sen!2sus"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="ElectraPro office location map"
+              ></iframe>
+            </div>
+          </div>
+
+          <!-- Booking Form -->
+          <div class="reveal-right">
+            <div class="booking-card">
+              <h2 style="font-size:1.5rem;font-weight:700;margin-bottom:8px;">Book a Service</h2>
+              <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:28px;">Complete the form below and our team will confirm your appointment within one hour.</p>
+
+              <!-- Step Indicator -->
+              <div class="step-indicator" aria-label="Booking progress">
+                <div class="step active">
+                  <div class="step__num">1</div>
+                  <span class="step__label">Service</span>
+                </div>
+                <div class="step-line"></div>
+                <div class="step">
+                  <div class="step__num">2</div>
+                  <span class="step__label">Details</span>
+                </div>
+                <div class="step-line"></div>
+                <div class="step">
+                  <div class="step__num">3</div>
+                  <span class="step__label">Confirm</span>
+                </div>
+              </div>
+
+              <form id="booking-form" class="needs-validation" aria-label="Service booking form" novalidate>
+                <!-- Service Type -->
+                <div class="form-group">
+                  <label class="form-label">Select Service Type <span style="color:var(--error)">*</span></label>
+                  <div class="service-type-grid">
+                    <label>
+                      <input type="radio" name="service" value="home-wiring" class="service-radio">
+                      <span class="service-label"><span class="dot" aria-hidden="true"></span>Home Wiring</span>
+                    </label>
+                    <label>
+                      <input type="radio" name="service" value="circuit-breaker" class="service-radio">
+                      <span class="service-label"><span class="dot" aria-hidden="true"></span>Circuit Breaker</span>
+                    </label>
+                    <label>
+                      <input type="radio" name="service" value="lighting" class="service-radio">
+                      <span class="service-label"><span class="dot" aria-hidden="true"></span>Lighting</span>
+                    </label>
+                    <label>
+                      <input type="radio" name="service" value="fan-install" class="service-radio">
+                      <span class="service-label"><span class="dot" aria-hidden="true"></span>Fan Install</span>
+                    </label>
+                    <label>
+                      <input type="radio" name="service" value="panel-upgrade" class="service-radio">
+                      <span class="service-label"><span class="dot" aria-hidden="true"></span>Panel Upgrade</span>
+                    </label>
+                    <label>
+                      <input type="radio" name="service" value="other" class="service-radio">
+                      <span class="service-label"><span class="dot" aria-hidden="true"></span>Other</span>
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Urgency -->
+                <div class="form-group">
+                  <label class="form-label">How Urgent?</label>
+                  <div class="urgency-options">
+                    <button type="button" class="urgency-btn active" data-urgency="flexible">Flexible</button>
+                    <button type="button" class="urgency-btn" data-urgency="this-week">This Week</button>
+                    <button type="button" class="urgency-btn" data-urgency="today">Today</button>
+                    <button type="button" class="urgency-btn emergency-btn" data-urgency="emergency"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="vertical-align:middle;margin-right:4px;" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Emergency</button>
+                  </div>
+                </div>
+
+                <!-- Name + Phone -->
+                <div class="form-cols">
+                  <div class="form-group">
+                    <label class="form-label" for="contact-name">Full Name <span style="color:var(--error)">*</span></label>
+                    <input type="text" id="contact-name" class="form-control" data-validate="required" placeholder="John Smith" autocomplete="name">
+                    <div class="form-error"></div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="contact-phone">Phone Number <span style="color:var(--error)">*</span></label>
+                    <input type="tel" id="contact-phone" class="form-control" data-validate="required,phone" placeholder="+1 (555) 000-0000" autocomplete="tel">
+                    <div class="form-error"></div>
+                  </div>
+                </div>
+
+                <!-- Email + Address -->
+                <div class="form-group">
+                  <label class="form-label" for="contact-email">Email Address <span style="color:var(--error)">*</span></label>
+                  <input type="email" id="contact-email" class="form-control" data-validate="required,email" placeholder="john@example.com" autocomplete="email">
+                  <div class="form-error"></div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="contact-address">Service Address <span style="color:var(--error)">*</span></label>
+                  <input type="text" id="contact-address" class="form-control" data-validate="required" placeholder="123 Main St, City, State" autocomplete="street-address">
+                  <div class="form-error"></div>
+                </div>
+
+                <!-- Preferred Date -->
+                <div class="form-cols">
+                  <div class="form-group">
+                    <label class="form-label" for="contact-date">Preferred Date</label>
+                    <input type="date" id="contact-date" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="contact-time">Preferred Time</label>
+                    <select id="contact-time" class="form-control">
+                      <option value="">Select Window</option>
+                      <option>7am – 10am</option>
+                      <option>10am – 12pm</option>
+                      <option>12pm – 3pm</option>
+                      <option>3pm – 6pm</option>
+                      <option>6pm – 8pm</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Message -->
+                <div class="form-group">
+                  <label class="form-label" for="contact-message">Describe Your Issue <span style="color:var(--error)">*</span></label>
+                  <textarea id="contact-message" class="form-control" data-validate="required,minlength" placeholder="Please describe the electrical issue or service you need, including any relevant details about your home..." rows="5"></textarea>
+                  <div class="form-error"></div>
+                </div>
+
+                <!-- How did you hear -->
+                <div class="form-group">
+                  <label class="form-label" for="contact-source">How did you hear about us?</label>
+                  <select id="contact-source" class="form-control">
+                    <option value="">Select an option</option>
+                    <option>Google Search</option>
+                    <option>Referral from friend or neighbor</option>
+                    <option>Social media</option>
+                    <option>Home Advisor / Angi</option>
+                    <option>Yelp</option>
+                    <option>Door hanger or flyer</option>
+                    <option>Previous customer</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-lg" style="width:100%;justify-content:center;" data-original="Book My Service Appointment">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  Book My Service Appointment
+                </button>
+
+                <p style="font-size:0.8125rem;color:var(--text-muted);text-align:center;margin-top:16px;">
+                  By submitting, you agree to our <a href="privacy.html" style="color:var(--amber);">Privacy Policy</a> and <a href="terms.html" style="color:var(--amber);">Terms</a>.
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ EMERGENCY SECTION ═══════════ -->
+    <section class="emergency-cta">
+      <div class="container">
+        <div class="emergency-cta-inner">
+          <div class="emergency-cta__content">
+            <p class="emergency-cta__eyebrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="vertical-align:middle;margin-right:6px;display:inline-block;" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Urgent Electrical Problem?</p>
+            <h2 class="emergency-cta__title">Don't Wait — Call Our Emergency Line</h2>
+            <p class="emergency-cta__desc">For urgent electrical emergencies — sparking outlets, burning smell, power outages — call immediately. We respond within 60 minutes.</p>
+          </div>
+          <div class="emergency-cta__actions">
+            <a href="tel:+18005550199" class="emergency-phone">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72.84.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.91A16 16 0 0 0 14 15l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.5 16l.42.92z"/></svg>
+              1-800-555-0199
+            </a>
+            <a href="emergency.html" class="btn btn-white">Emergency Service Page</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ FAQ ═══════════ -->
+    <section class="section section--alt" aria-labelledby="contact-faq">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label reveal">Questions</div>
+          <h2 id="contact-faq" class="section-title reveal">Booking FAQs</h2>
+        </div>
+        <div class="accordion reveal" style="max-width:800px;margin:0 auto;">
+          <div class="accordion-item active">
+            <div class="accordion-header"><span class="accordion-question">How quickly will you respond to my booking request?</span><div class="accordion-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div>
+            <div class="accordion-body"><div class="accordion-content">We confirm all online booking requests within 1 hour during business hours. For emergency requests, we dispatch immediately and call you back within 10 minutes.</div></div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header"><span class="accordion-question">Do I need to be home for the assessment?</span><div class="accordion-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div>
+            <div class="accordion-body"><div class="accordion-content">Yes. A responsible adult must be present for both the initial assessment and the actual work. This ensures we can properly assess the electrical system and that all decisions are made with your knowledge and approval.</div></div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header"><span class="accordion-question">Can I get a quote online without a home visit?</span><div class="accordion-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div>
+            <div class="accordion-body"><div class="accordion-content">For standard services like outlet installation, fan installation, and simple repairs, we can often provide a ballpark estimate over the phone or via email photos. For larger projects, we strongly recommend an in-home assessment for an accurate quote.</div></div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header"><span class="accordion-question">What areas do you service?</span><div class="accordion-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div>
+            <div class="accordion-body"><div class="accordion-content">We serve 40+ neighborhoods in the greater metro area. If you're unsure whether we cover your area, call our main line or submit the booking form with your address — we'll confirm coverage within the hour.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <div id="footer-mount"></div>
+  <script src="assets/js/components.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Urgency buttons
+      document.querySelectorAll('.urgency-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.urgency-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          if (btn.dataset.urgency === 'emergency') {
+            showToast('For emergencies, please also call 1-800-555-0199 immediately!', 'info', 5000);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

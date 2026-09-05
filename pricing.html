@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing Guide — ElectraPro Electrical Services</title>
+  <meta name="description" content="Transparent, upfront pricing for all ElectraPro electrical services. Compare plans, view service rate tables, and get a custom quote for your project.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <style>
+    .pricing-toggle-wrap {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      justify-content: center;
+      margin-bottom: 48px;
+    }
+    .pricing-toggle-label {
+      font-family: var(--font-primary);
+      font-size: 0.9375rem;
+      font-weight: 600;
+    }
+    .toggle-switch {
+      position: relative;
+      width: 52px;
+      height: 28px;
+    }
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .toggle-slider {
+      position: absolute;
+      inset: 0;
+      background: var(--border);
+      border-radius: 100px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .toggle-slider::before {
+      content: '';
+      position: absolute;
+      left: 3px;
+      top: 3px;
+      width: 22px;
+      height: 22px;
+      background: var(--white);
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+    input:checked + .toggle-slider { background: var(--amber); }
+    input:checked + .toggle-slider::before { transform: translateX(24px); }
+
+    .pricing-plans-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
+    @media(max-width:1024px){.pricing-plans-grid{grid-template-columns:1fr;max-width:480px;margin:0 auto;}}
+
+    .rate-table-wrap { overflow-x: auto; border-radius: var(--radius-md); border: 1px solid var(--border); }
+    .rate-table { width: 100%; border-collapse: collapse; min-width: 600px; }
+    .rate-table th { background: var(--navy); color: var(--white); padding: 16px 24px; text-align: left; font-family: var(--font-primary); font-weight: 600; font-size: 0.875rem; }
+    .rate-table td { padding: 14px 24px; border-bottom: 1px solid var(--border); background: var(--bg-card); color: var(--text-muted); font-size: 0.9rem; }
+    .rate-table tr:last-child td { border-bottom: none; }
+    .rate-table tr:hover td { background: rgba(230,162,60,.03); }
+    .rate-col { color: var(--amber); font-weight: 700; }
+    .rate-badge { background: rgba(56,161,105,.1); color: var(--success); font-size: 0.75rem; font-weight: 600; padding: 2px 8px; border-radius: 100px; }
+
+    .guarantee-cards { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+    @media(max-width:900px){.guarantee-cards{grid-template-columns:repeat(2,1fr);}}
+    @media(max-width:480px){.guarantee-cards{grid-template-columns:1fr;}}
+    .guarantee-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 28px 20px; text-align: center; transition: var(--transition); }
+    .guarantee-card__icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-sm);
+      background: rgba(230,162,60,0.12);
+      color: var(--amber);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      transition: var(--transition);
+    }
+    .guarantee-card:hover .guarantee-card__icon {
+      background: var(--amber);
+      color: var(--navy);
+      transform: translateY(-2px);
+    }
+    .guarantee-card__title { font-size: 0.9375rem; font-weight: 700; margin-bottom: 8px; }
+    .guarantee-card__desc { font-size: 0.8125rem; color: var(--text-muted); line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <div id="nav-mount"></div>
+  <main id="main-content">
+
+    <!-- ═══════════ PAGE HERO ═══════════ -->
+    <div class="page-hero">
+      <div class="container">
+        <div class="page-hero-content">
+          <nav class="page-hero-breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">Home</a>
+            <span>›</span>
+            <span class="current">Pricing Guide</span>
+          </nav>
+          <h1 class="page-hero-title">Transparent <span class="text-amber">Pricing Guide</span></h1>
+          <p class="page-hero-desc">Upfront flat-rate pricing — no surprises, no hidden fees. See what you pay before any work begins, guaranteed.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════ PRICING PLANS ═══════════ -->
+    <section class="section" aria-labelledby="plans-heading">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label reveal">Service Plans</div>
+          <h2 id="plans-heading" class="section-title reveal">Choose Your Service Plan</h2>
+          <p class="section-desc reveal">Select the plan that best fits your home's electrical needs. All plans include our 5-year workmanship warranty.</p>
+        </div>
+
+        <!-- Toggle -->
+        <div class="pricing-toggle-wrap reveal">
+          <span class="pricing-toggle-label">Monthly</span>
+          <label class="toggle-switch" aria-label="Toggle annual pricing">
+            <input type="checkbox" id="pricing-toggle" role="switch" aria-checked="false">
+            <span class="toggle-slider"></span>
+          </label>
+          <span class="pricing-toggle-label">Annual <span class="badge badge-green">Save 20%</span></span>
+        </div>
+
+        <div class="pricing-plans-grid reveal">
+          <!-- Essential -->
+          <div class="pricing-card">
+            <div class="pricing-card__header">
+              <div class="pricing-plan">Essential</div>
+              <h3>Home Care</h3>
+              <p class="pricing-desc">Perfect for homeowners wanting proactive electrical maintenance.</p>
+              <div class="pricing-price">
+                <span class="pricing-currency">$</span>
+                <span class="pricing-amount" data-monthly="49" data-annual="39">49</span>
+                <span class="pricing-period">/month</span>
+              </div>
+            </div>
+            <div class="pricing-card__body">
+              <ul class="pricing-features">
+                <li class="pricing-feature included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Annual electrical safety inspection</li>
+                <li class="pricing-feature included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>10% discount on all repairs</li>
+                <li class="pricing-feature included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Priority scheduling</li>
+                <li class="pricing-feature included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>24/7 phone support</li>
+                <li class="pricing-feature excluded"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Emergency service discount</li>
+                <li class="pricing-feature excluded"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Smart home consultation</li>
+              </ul>
+              <a href="contact.html" class="btn btn-outline" style="width:100%;justify-content:center;">Get Started</a>
+            </div>
+          </div>
+
+          <!-- Pro (Featured) -->
+          <div class="pricing-card featured">
+            <div class="pricing-card__badge">Most Popular</div>
+            <div class="pricing-card__header">
+              <div class="pricing-plan">Professional</div>
+              <h3 style="color:var(--white);">Home Pro</h3>
+              <p class="pricing-desc" style="color:rgba(255,255,255,.65);">Our most popular plan for complete home electrical care.</p>
+              <div class="pricing-price">
+                <span class="pricing-currency">$</span>
+                <span class="pricing-amount" data-monthly="99" data-annual="79">99</span>
+                <span class="pricing-period" style="color:rgba(255,255,255,.5);">/month</span>
+              </div>
+            </div>
+            <div class="pricing-card__body">
+              <ul class="pricing-features">
+                <li class="pricing-feature included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Bi-annual electrical inspections</li>
+                <li class="pricing-feature included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>20% discount on all repairs</li>
+                <li class="pricing-feature included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Same-day priority service</li>
+                <li class="pricing-feature included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>24/7 emergency support</li>
+                <li class="pricing-feature included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>15% emergency service discount</li>
+                <li class="pricing-feature excluded"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Smart home consultation</li>
+              </ul>
+              <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center;">Get Started</a>
+            </div>
+          </div>
+
+          <!-- Elite -->
+          <div class="pricing-card">
+            <div class="pricing-card__header">
+              <div class="pricing-plan">Elite</div>
+              <h3>Smart Home Pro</h3>
+              <p class="pricing-desc">Complete care with smart home integration and maximum savings.</p>
+              <div class="pricing-price">
+                <span class="pricing-currency">$</span>
+                <span class="pricing-amount" data-monthly="179" data-annual="149">179</span>
+                <span class="pricing-period">/month</span>
+              </div>
+            </div>
+            <div class="pricing-card__body">
+              <ul class="pricing-features">
+                <li class="pricing-feature included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Quarterly comprehensive inspections</li>
+                <li class="pricing-feature included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>30% discount on all services</li>
+                <li class="pricing-feature included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Guaranteed 60-min response</li>
+                <li class="pricing-feature included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>24/7 VIP emergency line</li>
+                <li class="pricing-feature included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Free emergency call-outs</li>
+                <li class="pricing-feature included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Annual smart home consultation</li>
+              </ul>
+              <a href="contact.html" class="btn btn-navy" style="width:100%;justify-content:center;border:1px solid var(--border);">Get Started</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ RATE TABLE ═══════════ -->
+    <section class="section section--alt" aria-labelledby="rates-heading">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label reveal">Service Rates</div>
+          <h2 id="rates-heading" class="section-title reveal">Standard Service Rate Guide</h2>
+          <p class="section-desc reveal">Indicative pricing for common electrical services. Exact quotes provided after free in-home assessment.</p>
+        </div>
+        <div class="rate-table-wrap reveal">
+          <table class="rate-table" aria-label="Electrical service pricing table">
+            <thead>
+              <tr>
+                <th>Service</th>
+                <th>Description</th>
+                <th>Estimated Cost</th>
+                <th>Duration</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Outlet Installation</strong></td>
+                <td>New standard outlet, GFCI, or USB combo outlet</td>
+                <td class="rate-col">$149 – $299</td>
+                <td>1–2 hrs</td>
+              </tr>
+              <tr>
+                <td><strong>Circuit Breaker Replacement</strong></td>
+                <td>Single breaker swap, same amperage</td>
+                <td class="rate-col">$199 – $349</td>
+                <td>1–3 hrs</td>
+              </tr>
+              <tr>
+                <td><strong>Panel Upgrade (100A→200A)</strong></td>
+                <td>Full panel replacement with permit</td>
+                <td class="rate-col">$1,899 – $2,800</td>
+                <td>1 day</td>
+              </tr>
+              <tr>
+                <td><strong>Lighting Installation</strong></td>
+                <td>Per fixture — recessed, pendant, or track</td>
+                <td class="rate-col">$149 – $399</td>
+                <td>1–4 hrs</td>
+              </tr>
+              <tr>
+                <td><strong>Ceiling Fan Installation</strong></td>
+                <td>Including wiring, mounting, and remote</td>
+                <td class="rate-col">$179 – $349</td>
+                <td>2–4 hrs</td>
+              </tr>
+              <tr>
+                <td><strong>Whole-Home Rewiring</strong></td>
+                <td>Per square foot, copper wiring, full permit</td>
+                <td class="rate-col">$4.00 – $8.00/sqft</td>
+                <td>3–7 days</td>
+              </tr>
+              <tr>
+                <td><strong>Switchboard Repair</strong></td>
+                <td>Diagnostic + repair of faults</td>
+                <td class="rate-col">$349 – $899</td>
+                <td>2–6 hrs</td>
+              </tr>
+              <tr>
+                <td><strong>EV Charger Installation</strong></td>
+                <td>Level 2 charger (240V), hardwired</td>
+                <td class="rate-col">$699 – $1,299</td>
+                <td>3–5 hrs</td>
+              </tr>
+              <tr>
+                <td><strong>Surge Protection</strong></td>
+                <td>Whole-home SPD at panel</td>
+                <td class="rate-col">$299 – $499</td>
+                <td>2–3 hrs</td>
+              </tr>
+              <tr>
+                <td><strong>Emergency Service Call</strong></td>
+                <td>After-hours + emergency premium (plus parts)</td>
+                <td class="rate-col">$299 call-out fee</td>
+                <td>Varies</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="reveal" style="font-size:0.875rem;color:var(--text-muted);margin-top:16px;text-align:center;">* All prices are estimates. Exact pricing depends on home configuration, local code requirements, and materials. Free in-home assessments available.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════ GUARANTEES ═══════════ -->
+    <section class="section" aria-labelledby="guarantees-heading">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label reveal">Our Promise</div>
+          <h2 id="guarantees-heading" class="section-title reveal">The ElectraPro Price Guarantee</h2>
+        </div>
+        <div class="guarantee-cards">
+          <div class="guarantee-card reveal">
+            <div class="guarantee-card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+            <div class="guarantee-card__title">Price Lock Guarantee</div>
+            <div class="guarantee-card__desc">Once quoted, your price is locked. No increases after work begins, even if it takes longer than expected.</div>
+          </div>
+          <div class="guarantee-card reveal reveal-delay-1">
+            <div class="guarantee-card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg></div>
+            <div class="guarantee-card__title">Best Price Guarantee</div>
+            <div class="guarantee-card__desc">Show us a lower written quote from a licensed competitor and we'll match it, plus give you 5% off.</div>
+          </div>
+          <div class="guarantee-card reveal reveal-delay-2">
+            <div class="guarantee-card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><path d="m9 14 2 2 4-4"/></svg></div>
+            <div class="guarantee-card__title">Free Detailed Quotes</div>
+            <div class="guarantee-card__desc">Every estimate is free, detailed, itemized, and provided before any work starts. No obligation required.</div>
+          </div>
+          <div class="guarantee-card reveal reveal-delay-3">
+            <div class="guarantee-card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+            <div class="guarantee-card__title">Satisfaction Guarantee</div>
+            <div class="guarantee-card__desc">If you're not 100% satisfied with our work, we'll make it right or refund the service charge. No questions asked.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ FAQ — PRICING ═══════════ -->
+    <section class="section section--alt" aria-labelledby="pricing-faq">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label reveal">Questions</div>
+          <h2 id="pricing-faq" class="section-title reveal">Pricing FAQs</h2>
+        </div>
+        <div class="accordion reveal" style="max-width:800px;margin:0 auto;">
+          <div class="accordion-item active">
+            <div class="accordion-header">
+              <span class="accordion-question">How are your prices determined?</span>
+              <div class="accordion-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+            </div>
+            <div class="accordion-body">
+              <div class="accordion-content">Our prices are flat-rate, based on the specific job type, complexity, materials required, and local permit fees. We assess your home and provide a detailed itemized quote before beginning any work. You always know the total cost before we start.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span class="accordion-question">Do you charge for travel or fuel?</span>
+              <div class="accordion-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+            </div>
+            <div class="accordion-body">
+              <div class="accordion-content">No. There are no separate travel charges within our service area. The quoted price is the total price, including everything. Emergency call-outs have a standard call-out fee that covers emergency dispatch and travel.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span class="accordion-question">Are permits included in the price?</span>
+              <div class="accordion-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+            </div>
+            <div class="accordion-body">
+              <div class="accordion-content">Permit costs are included in our quoted price for jobs that require permits (such as panel upgrades and whole-home rewiring). We handle all permit applications and final inspections on your behalf.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span class="accordion-question">What payment methods do you accept?</span>
+              <div class="accordion-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+            </div>
+            <div class="accordion-body">
+              <div class="accordion-content">We accept all major credit cards, check, and bank transfer. We also offer 0% financing for qualifying projects over $1,000 through our partnership with GreenSky Finance. Ask about our financing options when you receive your quote.</div>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center;margin-top:40px;">
+          <a href="contact.html" class="btn btn-primary reveal">Get a Free Quote</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <div id="footer-mount"></div>
+  <script src="assets/js/components.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

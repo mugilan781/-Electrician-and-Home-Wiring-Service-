@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Electrical Blog — ElectraPro</title>
+  <meta name="description" content="Expert electrical tips, home wiring guides, safety advice, and industry insights from ElectraPro's licensed master electricians.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <style>
+    .blog-layout { display: grid; grid-template-columns: 1fr 340px; gap: 48px; align-items: start; }
+    @media(max-width:1024px){ .blog-layout { grid-template-columns: 1fr; } .sidebar { order: -1; } }
+
+    .featured-post {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      transition: var(--transition);
+    }
+    .featured-post:hover { box-shadow: var(--shadow-lg); }
+    .featured-post__img-wrap { overflow: hidden; min-height: 360px; }
+    .featured-post__img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition-slow); display: block; }
+    .featured-post:hover .featured-post__img { transform: scale(1.05); }
+    .featured-post__body { padding: 48px; display: flex; flex-direction: column; justify-content: center; }
+    @media(max-width:768px){ .featured-post { grid-template-columns: 1fr; } .featured-post__img-wrap { min-height: 260px; } .featured-post__body { padding: 28px; } }
+
+    .sidebar-widget { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 28px; margin-bottom: 24px; }
+    .sidebar-widget__title { font-family: var(--font-primary); font-size: 0.875rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text); margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid rgba(230,162,60,.2); }
+    .recent-post-item { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+    .recent-post-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .recent-post-thumb { width: 64px; height: 64px; object-fit: cover; border-radius: var(--radius-sm); flex-shrink: 0; }
+    .recent-post-title { font-size: 0.875rem; font-weight: 600; line-height: 1.4; margin-bottom: 4px; }
+    .recent-post-title a { transition: var(--transition); }
+    .recent-post-title a:hover { color: var(--amber); }
+    .recent-post-date { font-size: 0.75rem; color: var(--text-muted); }
+    .tag-cloud { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag { padding: 6px 14px; border-radius: 100px; background: var(--bg); border: 1px solid var(--border); font-size: 0.8125rem; font-weight: 500; color: var(--text-muted); transition: var(--transition); cursor: pointer; }
+    .tag:hover { border-color: var(--amber); color: var(--amber); background: rgba(230,162,60,.06); }
+    .categories-list { display: flex; flex-direction: column; gap: 0; }
+    .cat-link { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; color: var(--text-muted); transition: var(--transition); }
+    .cat-link:last-child { border-bottom: none; }
+    .cat-link:hover { color: var(--amber); }
+    .cat-link .cat-count { background: rgba(230,162,60,.1); color: var(--amber); font-size: 0.75rem; font-weight: 700; padding: 2px 8px; border-radius: 100px; }
+
+    .blog-search { display: flex; gap: 8px; }
+    .blog-search input { flex: 1; }
+    .blog-search .btn { flex-shrink: 0; }
+
+    .posts-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 24px; margin-top: 40px; }
+    @media(max-width:768px){ .posts-grid { grid-template-columns: 1fr; } }
+
+    .pagination { display: flex; gap: 8px; justify-content: center; margin-top: 48px; flex-wrap: wrap; }
+    .page-link { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-sm); border: 1px solid var(--border); font-size: 0.9rem; font-weight: 600; color: var(--text-muted); transition: var(--transition); }
+    .page-link:hover, .page-link.active { border-color: var(--amber); color: var(--amber); background: rgba(230,162,60,.08); }
+  </style>
+</head>
+<body>
+  <div id="nav-mount"></div>
+  <main id="main-content">
+
+    <!-- ═══════════ PAGE HERO ═══════════ -->
+    <div class="page-hero">
+      <div class="container">
+        <div class="page-hero-content">
+          <nav class="page-hero-breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">Home</a>
+            <span>›</span>
+            <span class="current">Blog</span>
+          </nav>
+          <h1 class="page-hero-title">Electrical <span class="text-amber">Insights</span></h1>
+          <p class="page-hero-desc">Expert tips, safety guides, and industry insights from our team of licensed master electricians.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════ FEATURED POST ═══════════ -->
+    <section class="section" aria-labelledby="blog-heading">
+      <div class="container">
+        <div class="section-label reveal" style="margin-bottom:24px;">Featured Article</div>
+        <article class="featured-post reveal" aria-labelledby="featured-post-title">
+          <div class="featured-post__img-wrap">
+            <img src="assets/images/electrician-panel.jpg" alt="Everything you need to know about electrical panel upgrades" class="featured-post__img" loading="lazy">
+          </div>
+          <div class="featured-post__body">
+            <div class="flex gap-12 mb-16" style="flex-wrap:wrap;">
+              <span class="badge badge-amber">Panel Upgrades</span>
+              <span style="font-size:0.8125rem;color:var(--text-muted);">August 28, 2026</span>
+              <span style="font-size:0.8125rem;color:var(--text-muted);">9 min read</span>
+            </div>
+            <h2 id="featured-post-title" style="font-size:1.5rem;font-weight:700;margin-bottom:16px;line-height:1.35;">The Complete Guide to Electrical Panel Upgrades: Signs, Costs & What to Expect</h2>
+            <p style="color:var(--text-muted);line-height:1.8;margin-bottom:28px;">Is your home's electrical panel keeping up with modern demands? Learn the warning signs of an overloaded panel, what an upgrade involves, how long it takes, and what you'll realistically pay — with expert insight from our master electricians.</p>
+            <div class="flex gap-16" style="align-items:center;margin-bottom:28px;flex-wrap:wrap;">
+              <div class="testimonial-card__author">
+                <div class="testimonial-card__avatar-placeholder" aria-hidden="true">JH</div>
+                <div>
+                  <div class="testimonial-card__name">James Hartwell</div>
+                  <div class="testimonial-card__role">Master Electrician</div>
+                </div>
+              </div>
+            </div>
+            <a href="blog-details.html" class="btn btn-primary">Read Full Article
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Blog Layout -->
+        <div class="blog-layout mt-48">
+          <!-- Posts -->
+          <div>
+            <h2 id="blog-heading" class="section-title reveal" style="margin-bottom:32px;">Latest Articles</h2>
+            <div class="posts-grid">
+              <article class="blog-card reveal" aria-labelledby="post-1-title">
+                <div class="blog-card__img-wrap">
+                  <img src="assets/images/home-wiring.jpg" alt="Home wiring safety tips" class="blog-card__img" loading="lazy">
+                </div>
+                <div class="blog-card__body">
+                  <div class="blog-card__meta">
+                    <span class="blog-card__cat">Safety</span>
+                    <span class="blog-card__date">Sep 1, 2026</span>
+                  </div>
+                  <h3 id="post-1-title" class="blog-card__title"><a href="blog-details.html">10 Electrical Safety Tips Every Homeowner Must Know</a></h3>
+                  <p class="blog-card__excerpt">Protect your family with these essential electrical safety practices that licensed electricians recommend for every household.</p>
+                  <div class="blog-card__footer">
+                    <div class="blog-card__author">
+                      <div class="blog-card__author-avatar" aria-hidden="true">MS</div>
+                      <span class="blog-card__author-name">Maria Santos</span>
+                    </div>
+                    <span class="blog-card__read">6 min read</span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="blog-card reveal reveal-delay-1" aria-labelledby="post-2-title">
+                <div class="blog-card__img-wrap">
+                  <img src="assets/images/circuit-breaker.jpg" alt="Circuit breaker guide" class="blog-card__img" loading="lazy">
+                </div>
+                <div class="blog-card__body">
+                  <div class="blog-card__meta">
+                    <span class="blog-card__cat">Guides</span>
+                    <span class="blog-card__date">Aug 22, 2026</span>
+                  </div>
+                  <h3 id="post-2-title" class="blog-card__title"><a href="blog-details.html">AFCI vs GFCI Breakers: What's the Difference and Do You Need Both?</a></h3>
+                  <p class="blog-card__excerpt">Understanding the difference between arc-fault and ground-fault protection can save your life and your home from electrical fires.</p>
+                  <div class="blog-card__footer">
+                    <div class="blog-card__author">
+                      <div class="blog-card__author-avatar" aria-hidden="true">DC</div>
+                      <span class="blog-card__author-name">David Chen</span>
+                    </div>
+                    <span class="blog-card__read">7 min read</span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="blog-card reveal" aria-labelledby="post-3-title">
+                <div class="blog-card__img-wrap">
+                  <img src="assets/images/smart-home.jpg" alt="Smart home electrical guide" class="blog-card__img" loading="lazy">
+                </div>
+                <div class="blog-card__body">
+                  <div class="blog-card__meta">
+                    <span class="blog-card__cat">Smart Home</span>
+                    <span class="blog-card__date">Aug 15, 2026</span>
+                  </div>
+                  <h3 id="post-3-title" class="blog-card__title"><a href="blog-details.html">How to Plan Your Smart Home Electrical System from Scratch</a></h3>
+                  <p class="blog-card__excerpt">Planning a smart home requires careful electrical infrastructure design. Here's how our experts plan smart home systems that scale with technology.</p>
+                  <div class="blog-card__footer">
+                    <div class="blog-card__author">
+                      <div class="blog-card__author-avatar" aria-hidden="true">DC</div>
+                      <span class="blog-card__author-name">David Chen</span>
+                    </div>
+                    <span class="blog-card__read">11 min read</span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="blog-card reveal reveal-delay-1" aria-labelledby="post-4-title">
+                <div class="blog-card__img-wrap">
+                  <img src="assets/images/lighting-install.jpg" alt="LED lighting guide" class="blog-card__img" loading="lazy">
+                </div>
+                <div class="blog-card__body">
+                  <div class="blog-card__meta">
+                    <span class="blog-card__cat">Lighting</span>
+                    <span class="blog-card__date">Aug 8, 2026</span>
+                  </div>
+                  <h3 id="post-4-title" class="blog-card__title"><a href="blog-details.html">LED Recessed Lighting: Everything You Need Before Installation</a></h3>
+                  <p class="blog-card__excerpt">From choosing the right trim and kelvin temperature to planning your layout and dimmer compatibility — the complete pre-installation guide.</p>
+                  <div class="blog-card__footer">
+                    <div class="blog-card__author">
+                      <div class="blog-card__author-avatar" aria-hidden="true">SK</div>
+                      <span class="blog-card__author-name">Sarah Kim</span>
+                    </div>
+                    <span class="blog-card__read">8 min read</span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="blog-card reveal" aria-labelledby="post-5-title">
+                <div class="blog-card__img-wrap">
+                  <img src="assets/images/electrical-tools.jpg" alt="DIY electrical vs professional" class="blog-card__img" loading="lazy">
+                </div>
+                <div class="blog-card__body">
+                  <div class="blog-card__meta">
+                    <span class="blog-card__cat">DIY vs Pro</span>
+                    <span class="blog-card__date">Jul 28, 2026</span>
+                  </div>
+                  <h3 id="post-5-title" class="blog-card__title"><a href="blog-details.html">DIY Electrical Work: What's Legal, What's Safe, and What to Leave to the Pros</a></h3>
+                  <p class="blog-card__excerpt">Some electrical tasks are safe for homeowners — others are dangerous and illegal without a license. Know the difference before you pick up a screwdriver.</p>
+                  <div class="blog-card__footer">
+                    <div class="blog-card__author">
+                      <div class="blog-card__author-avatar" aria-hidden="true">JH</div>
+                      <span class="blog-card__author-name">James Hartwell</span>
+                    </div>
+                    <span class="blog-card__read">10 min read</span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="blog-card reveal reveal-delay-1" aria-labelledby="post-6-title">
+                <div class="blog-card__img-wrap">
+                  <img src="assets/images/emergency-service.jpg" alt="Electrical emergency guide" class="blog-card__img" loading="lazy">
+                </div>
+                <div class="blog-card__body">
+                  <div class="blog-card__meta">
+                    <span class="blog-card__cat">Emergency</span>
+                    <span class="blog-card__date">Jul 18, 2026</span>
+                  </div>
+                  <h3 id="post-6-title" class="blog-card__title"><a href="blog-details.html">What to Do During an Electrical Emergency: A Step-by-Step Guide</a></h3>
+                  <p class="blog-card__excerpt">Sparking outlets, burning smell, power outage — knowing how to respond to electrical emergencies correctly can save lives. Here's what to do.</p>
+                  <div class="blog-card__footer">
+                    <div class="blog-card__author">
+                      <div class="blog-card__author-avatar" aria-hidden="true">MS</div>
+                      <span class="blog-card__author-name">Maria Santos</span>
+                    </div>
+                    <span class="blog-card__read">5 min read</span>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <!-- Pagination -->
+            <nav class="pagination reveal" aria-label="Blog pagination">
+              <a href="#" class="page-link active" aria-current="page">1</a>
+              <a href="#" class="page-link">2</a>
+              <a href="#" class="page-link">3</a>
+              <a href="#" class="page-link">4</a>
+              <a href="#" class="page-link" style="width:auto;padding:0 16px;">Next →</a>
+            </nav>
+          </div>
+
+          <!-- Sidebar -->
+          <aside class="sidebar reveal-right">
+            <!-- Search -->
+            <div class="sidebar-widget">
+              <h3 class="sidebar-widget__title">Search Articles</h3>
+              <div class="blog-search">
+                <input type="search" class="form-control" placeholder="Search..." aria-label="Search blog posts">
+                <button class="btn btn-primary btn-sm" aria-label="Search">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Categories -->
+            <div class="sidebar-widget">
+              <h3 class="sidebar-widget__title">Categories</h3>
+              <nav class="categories-list" aria-label="Blog categories">
+                <a href="#" class="cat-link">Safety Tips <span class="cat-count">14</span></a>
+                <a href="#" class="cat-link">Guides & How-To <span class="cat-count">22</span></a>
+                <a href="#" class="cat-link">Smart Home <span class="cat-count">9</span></a>
+                <a href="#" class="cat-link">Lighting <span class="cat-count">11</span></a>
+                <a href="#" class="cat-link">Emergency Tips <span class="cat-count">7</span></a>
+                <a href="#" class="cat-link">Panel & Breakers <span class="cat-count">15</span></a>
+                <a href="#" class="cat-link">Cost & Pricing <span class="cat-count">8</span></a>
+              </nav>
+            </div>
+
+            <!-- Recent Posts -->
+            <div class="sidebar-widget">
+              <h3 class="sidebar-widget__title">Recent Posts</h3>
+              <div>
+                <div class="recent-post-item">
+                  <img src="assets/images/circuit-breaker.jpg" alt="" class="recent-post-thumb" loading="lazy" aria-hidden="true">
+                  <div>
+                    <div class="recent-post-title"><a href="blog-details.html">AFCI vs GFCI: Know the Difference</a></div>
+                    <div class="recent-post-date">Aug 22, 2026</div>
+                  </div>
+                </div>
+                <div class="recent-post-item">
+                  <img src="assets/images/fan-install.jpg" alt="" class="recent-post-thumb" loading="lazy" aria-hidden="true">
+                  <div>
+                    <div class="recent-post-title"><a href="blog-details.html">Ceiling Fan Buying Guide 2026</a></div>
+                    <div class="recent-post-date">Aug 5, 2026</div>
+                  </div>
+                </div>
+                <div class="recent-post-item">
+                  <img src="assets/images/switchboard-repair.jpg" alt="" class="recent-post-thumb" loading="lazy" aria-hidden="true">
+                  <div>
+                    <div class="recent-post-title"><a href="blog-details.html">Signs Your Switchboard Needs Repair</a></div>
+                    <div class="recent-post-date">Jul 30, 2026</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tags -->
+            <div class="sidebar-widget">
+              <h3 class="sidebar-widget__title">Popular Tags</h3>
+              <div class="tag-cloud">
+                <span class="tag">Electrical Safety</span>
+                <span class="tag">Home Wiring</span>
+                <span class="tag">LED Lighting</span>
+                <span class="tag">Circuit Breaker</span>
+                <span class="tag">Smart Home</span>
+                <span class="tag">Panel Upgrade</span>
+                <span class="tag">Emergency</span>
+                <span class="tag">EV Charging</span>
+                <span class="tag">Solar</span>
+                <span class="tag">Ceiling Fan</span>
+              </div>
+            </div>
+
+            <!-- Emergency CTA Widget -->
+            <div class="sidebar-widget" style="background:linear-gradient(135deg,#B91C1C,#DC2626);border-color:transparent;text-align:center;">
+              <div style="width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;color:#fff;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </div>
+              <h3 style="color:var(--white);font-size:1.125rem;margin-bottom:8px;">Electrical Emergency?</h3>
+              <p style="color:rgba(255,255,255,.8);font-size:0.875rem;margin-bottom:16px;">Call us now — 24/7 response within 60 minutes.</p>
+              <a href="tel:+18005550199" class="btn btn-white btn-sm" style="width:100%;justify-content:center;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px;" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72.84.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.91A16 16 0 0 0 14 15l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.5 16l.42.92z"/></svg>1-800-555-0199</a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <div id="footer-mount"></div>
+  <script src="assets/js/components.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

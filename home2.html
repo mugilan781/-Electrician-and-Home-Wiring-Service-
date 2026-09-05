@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home 2 — ElectraPro Electrical Services</title>
+  <meta name="description" content="Alternative homepage for ElectraPro showcasing our electrical expertise through bold editorial layouts, interactive features, and comprehensive service overview.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <style>
+    /* Split hero */
+    .hero2 {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero2__left {
+      padding: 140px 60px 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+    }
+    .hero2__right {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero2__right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: .8;
+    }
+    .hero2__right::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, var(--navy) 0%, transparent 30%);
+      z-index: 1;
+    }
+    .hero2__right::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent, rgba(230,162,60,.08));
+      z-index: 1;
+    }
+    .hero2-highlight {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--amber), #F5C876);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    @media (max-width: 900px) {
+      .hero2 { grid-template-columns: 1fr; min-height: auto; }
+      .hero2__right { height: 360px; }
+      .hero2__right::before { background: linear-gradient(to bottom, var(--navy) 0%, transparent 30%); }
+      .hero2__left { padding: 130px 24px 60px; }
+    }
+
+    /* Floating skill cards */
+    .skill-bar-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .skill-bar-label {
+      min-width: 180px;
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+    .skill-bar-wrap {
+      flex: 1;
+      background: var(--border);
+      border-radius: 100px;
+      height: 8px;
+      overflow: hidden;
+    }
+    .skill-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--amber), var(--amber-light));
+      border-radius: 100px;
+      width: 0;
+      transition: width 1.5s ease;
+    }
+    .skill-bar-pct { font-size: 0.8125rem; font-weight: 700; color: var(--amber); min-width: 36px; text-align: right; }
+
+    /* Team cards */
+    .team-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: var(--transition);
+      text-align: center;
+    }
+    .team-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .team-card__img-wrap { height: 260px; overflow: hidden; position: relative; }
+    .team-card__img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: var(--transition-slow); }
+    .team-card:hover .team-card__img { transform: scale(1.06); }
+    .team-card__overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(16,28,44,.7), transparent 50%); }
+    .team-card__body { padding: 24px; }
+    .team-card__name { font-size: 1.125rem; font-weight: 700; margin-bottom: 4px; }
+    .team-card__role { font-size: 0.875rem; color: var(--amber); font-weight: 500; margin-bottom: 12px; }
+    .team-card__certs { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; }
+
+    /* Icon features */
+    .icon-feature {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 24px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      transition: var(--transition);
+    }
+    .icon-feature:hover { border-color: var(--amber); transform: translateX(4px); }
+    .icon-feature__icon { width: 56px; height: 56px; border-radius: 12px; background: rgba(230,162,60,.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .icon-feature__title { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+    .icon-feature__desc { font-size: 0.875rem; color: var(--text-muted); line-height: 1.5; }
+
+    /* Horizontal scroll gallery */
+    .gallery-scroll { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .gallery-item { border-radius: var(--radius-md); overflow: hidden; position: relative; }
+    .gallery-item img { width: 100%; height: 280px; object-fit: cover; display: block; transition: var(--transition-slow); }
+    .gallery-item:hover img { transform: scale(1.05); }
+    .gallery-item__label { position: absolute; bottom: 16px; left: 16px; background: rgba(16,28,44,.85); backdrop-filter: blur(8px); color: var(--white); font-size: 0.875rem; font-weight: 600; padding: 6px 14px; border-radius: 100px; }
+    @media (max-width: 768px) { .gallery-scroll { grid-template-columns: 1fr; } }
+
+    /* Comparison table */
+    .compare-table { width: 100%; border-collapse: collapse; }
+    .compare-table th { padding: 16px 24px; text-align: left; background: var(--navy); color: var(--white); font-family: var(--font-primary); }
+    .compare-table td { padding: 14px 24px; border-bottom: 1px solid var(--border); background: var(--bg-card); }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table .check { color: var(--success); }
+    .compare-table .cross { color: var(--error); }
+    .compare-table .highlight-col { background: rgba(230,162,60,.06); }
+  </style>
+</head>
+<body>
+  <div id="nav-mount"></div>
+  <main id="main-content">
+
+    <!-- ═══════════ SPLIT HERO ═══════════ -->
+    <section class="hero2" aria-label="Hero section">
+      <div class="hero2__left">
+        <div class="hero-eyebrow">
+          <span class="dot" aria-hidden="true"></span>
+          Premium Electrical Service
+        </div>
+        <h1 class="hero-title" style="font-size:clamp(2rem,5vw,3.75rem);">
+          Where Electrical<br>Meets <span class="hero2-highlight">Artistry</span>
+        </h1>
+        <p class="hero-desc">We don't just wire homes — we engineer electrical systems that are safe, smart, and beautifully executed. Every circuit, every connection, every detail matters.</p>
+        <div class="hero-actions">
+          <a href="contact.html" class="btn btn-primary btn-lg">Schedule Consultation</a>
+          <a href="services.html" class="btn btn-outline">Our Services</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat__num" data-counter="35" data-suffix="+" data-duration="1500">35+</div>
+            <div class="hero-stat__label">Expert Electricians</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat__num" data-counter="100" data-suffix="%" data-duration="1200">100%</div>
+            <div class="hero-stat__label">Satisfaction Rate</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat__num" data-counter="24" data-suffix="/7" data-duration="800">24/7</div>
+            <div class="hero-stat__label">Emergency Service</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero2__right">
+        <img src="assets/images/electrician-panel.jpg" alt="Professional electrician working on electrical panel" loading="eager">
+      </div>
+    </section>
+
+    <!-- ═══════════ TRUST BAR ═══════════ -->
+    <div class="trust-bar">
+      <div class="container">
+        <div class="trust-bar-inner">
+          <div class="trust-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            NECA Certified
+          </div>
+          <div class="trust-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#E6A23C" stroke="#E6A23C" stroke-width="1" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            Google 4.9 Rating
+          </div>
+          <div class="trust-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            0 Reported Incidents
+          </div>
+          <div class="trust-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+            Eco-Friendly Practices
+          </div>
+          <div class="trust-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            Same-Day Service Available
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════ SKILL BARS ═══════════ -->
+    <section class="section section--alt" aria-labelledby="expertise-heading">
+      <div class="container">
+        <div class="grid grid-2 gap-32" style="align-items:center;">
+          <div class="reveal-left">
+            <div class="section-label">Our Expertise</div>
+            <h2 id="expertise-heading" class="section-title" style="margin-bottom:40px;">Electrical Mastery<br>Across Every Domain</h2>
+            <div class="skill-bar-item">
+              <span class="skill-bar-label">Home Wiring</span>
+              <div class="skill-bar-wrap"><div class="skill-bar-fill" data-width="98"></div></div>
+              <span class="skill-bar-pct">98%</span>
+            </div>
+            <div class="skill-bar-item">
+              <span class="skill-bar-label">Panel Upgrades</span>
+              <div class="skill-bar-wrap"><div class="skill-bar-fill" data-width="95"></div></div>
+              <span class="skill-bar-pct">95%</span>
+            </div>
+            <div class="skill-bar-item">
+              <span class="skill-bar-label">Smart Home Systems</span>
+              <div class="skill-bar-wrap"><div class="skill-bar-fill" data-width="92"></div></div>
+              <span class="skill-bar-pct">92%</span>
+            </div>
+            <div class="skill-bar-item">
+              <span class="skill-bar-label">Emergency Response</span>
+              <div class="skill-bar-wrap"><div class="skill-bar-fill" data-width="100"></div></div>
+              <span class="skill-bar-pct">100%</span>
+            </div>
+            <div class="skill-bar-item">
+              <span class="skill-bar-label">Lighting Design</span>
+              <div class="skill-bar-wrap"><div class="skill-bar-fill" data-width="90"></div></div>
+              <span class="skill-bar-pct">90%</span>
+            </div>
+          </div>
+          <div class="reveal-right">
+            <img src="assets/images/electrical-tools.jpg" alt="Professional electrician tools" style="border-radius:var(--radius-lg);" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ WHY CHOOSE US — ICON FEATURES ═══════════ -->
+    <section class="section" aria-labelledby="why-heading">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label reveal">Why ElectraPro</div>
+          <h2 id="why-heading" class="section-title reveal">The ElectraPro Difference</h2>
+          <p class="section-desc reveal">Six reasons why over 15,000 homeowners trust us with their most important electrical needs.</p>
+        </div>
+        <div class="grid grid-2 gap-20">
+          <div class="icon-feature reveal">
+            <div class="icon-feature__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+            <div><div class="icon-feature__title">Instant Emergency Dispatch</div><div class="icon-feature__desc">Our 24/7 dispatch center connects you with the nearest available electrician within seconds of your call.</div></div>
+          </div>
+          <div class="icon-feature reveal reveal-delay-1">
+            <div class="icon-feature__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <div><div class="icon-feature__title">100% Safety Compliance</div><div class="icon-feature__desc">Every job follows NEC code, local regulations, and OSHA safety standards — no exceptions, no shortcuts.</div></div>
+          </div>
+          <div class="icon-feature reveal reveal-delay-2">
+            <div class="icon-feature__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+            <div><div class="icon-feature__title">Upfront Flat-Rate Pricing</div><div class="icon-feature__desc">See the exact price before work begins. No hourly surprises, no hidden fees — just honest, transparent quotes.</div></div>
+          </div>
+          <div class="icon-feature reveal reveal-delay-3">
+            <div class="icon-feature__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg></div>
+            <div><div class="icon-feature__title">Green Electrical Solutions</div><div class="icon-feature__desc">LED optimization, solar-ready panels, and EV charging infrastructure for a sustainable future.</div></div>
+          </div>
+          <div class="icon-feature reveal">
+            <div class="icon-feature__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div><div class="icon-feature__title">5-Year Workmanship Guarantee</div><div class="icon-feature__desc">We stand behind our work for 5 full years. Any defect in our workmanship is corrected free of charge.</div></div>
+          </div>
+          <div class="icon-feature reveal reveal-delay-1">
+            <div class="icon-feature__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <div><div class="icon-feature__title">Background-Checked Team</div><div class="icon-feature__desc">Every technician passes thorough background checks, drug testing, and continuous professional training.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ WORK GALLERY ═══════════ -->
+    <section class="section section--alt" aria-labelledby="gallery-heading">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label reveal">Our Work</div>
+          <h2 id="gallery-heading" class="section-title reveal">Recent Projects</h2>
+          <p class="section-desc reveal">A glimpse into our premium electrical workmanship across residential projects.</p>
+        </div>
+        <div class="gallery-scroll">
+          <div class="gallery-item reveal">
+            <img src="assets/images/home-wiring.jpg" alt="Complete home wiring project" loading="lazy">
+            <span class="gallery-item__label">Home Rewiring</span>
+          </div>
+          <div class="gallery-item reveal reveal-delay-1">
+            <img src="assets/images/lighting-install.jpg" alt="LED lighting installation" loading="lazy">
+            <span class="gallery-item__label">LED Lighting</span>
+          </div>
+          <div class="gallery-item reveal reveal-delay-2">
+            <img src="assets/images/smart-home.jpg" alt="Smart home system installation" loading="lazy">
+            <span class="gallery-item__label">Smart Home</span>
+          </div>
+          <div class="gallery-item reveal">
+            <img src="assets/images/electrician-panel.jpg" alt="Panel upgrade installation" loading="lazy">
+            <span class="gallery-item__label">Panel Upgrade</span>
+          </div>
+          <div class="gallery-item reveal reveal-delay-1">
+            <img src="assets/images/fan-install.jpg" alt="Ceiling fan installation" loading="lazy">
+            <span class="gallery-item__label">Fan Install</span>
+          </div>
+          <div class="gallery-item reveal reveal-delay-2">
+            <img src="assets/images/switchboard-repair.jpg" alt="Switchboard repair" loading="lazy">
+            <span class="gallery-item__label">Switchboard Repair</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ COMPARISON TABLE ═══════════ -->
+    <section class="section" aria-labelledby="compare-heading">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label reveal">Why We're Different</div>
+          <h2 id="compare-heading" class="section-title reveal">ElectraPro vs. The Competition</h2>
+          <p class="section-desc reveal">See why homeowners consistently choose ElectraPro over other electrical service providers.</p>
+        </div>
+        <div style="overflow-x:auto;border-radius:var(--radius-md);border:1px solid var(--border);" class="reveal">
+          <table class="compare-table" aria-label="Comparison between ElectraPro and typical electricians">
+            <thead>
+              <tr>
+                <th style="border-radius:var(--radius-sm) 0 0 0;">Feature</th>
+                <th style="background:var(--amber);color:var(--navy);"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="vertical-align:middle;margin-right:4px;" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>ElectraPro</th>
+                <th>Typical Electrician</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>24/7 Emergency Availability</td>
+                <td class="check highlight-col"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px;" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>365 days/year</td>
+                <td class="cross"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px;" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Business hours only</td>
+              </tr>
+              <tr>
+                <td>Upfront Flat-Rate Pricing</td>
+                <td class="check highlight-col"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px;" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>No surprises</td>
+                <td class="cross"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px;" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Hourly billing</td>
+              </tr>
+              <tr>
+                <td>Workmanship Warranty</td>
+                <td class="check highlight-col"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px;" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>5-Year Guarantee</td>
+                <td>~ 90 days</td>
+              </tr>
+              <tr>
+                <td>Background-Checked Technicians</td>
+                <td class="check highlight-col"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px;" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Every technician</td>
+                <td class="cross"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px;" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Not always</td>
+              </tr>
+              <tr>
+                <td>Real-Time Job Tracking</td>
+                <td class="check highlight-col"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px;" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Live GPS updates</td>
+                <td class="cross"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px;" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Not available</td>
+              </tr>
+              <tr>
+                <td>Smart Home Expertise</td>
+                <td class="check highlight-col"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px;" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Certified specialists</td>
+                <td class="cross"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px;" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Limited experience</td>
+              </tr>
+              <tr>
+                <td>Post-Service Follow-Up</td>
+                <td class="check highlight-col"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px;" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>48-hour check-in</td>
+                <td class="cross"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px;" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Rarely</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ EMERGENCY CTA ═══════════ -->
+    <section class="emergency-cta">
+      <div class="container">
+        <div class="emergency-cta-inner">
+          <div class="emergency-cta__content">
+            <p class="emergency-cta__eyebrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="vertical-align:middle;margin-right:6px;display:inline-block;" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Don't Wait — Act Now</p>
+            <h2 class="emergency-cta__title">Electrical Emergency? 60-Min Response.</h2>
+            <p class="emergency-cta__desc">Our emergency response team is standing by 24/7. One call connects you to a licensed electrician.</p>
+          </div>
+          <div class="emergency-cta__actions">
+            <a href="tel:+18005550199" class="emergency-phone">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72.84.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.91A16 16 0 0 0 14 15l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.5 16l.42.92z"/></svg>
+              1-800-555-0199
+            </a>
+            <a href="emergency.html" class="btn btn-white">Emergency Page</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ NEWSLETTER + QUICK BOOKING ═══════════ -->
+    <section class="section section--navy" aria-labelledby="newsletter-heading">
+      <div class="container">
+        <div class="grid grid-2 gap-64" style="align-items:center;">
+          <div class="reveal-left">
+            <div class="section-label">Stay Informed</div>
+            <h2 id="newsletter-heading" style="font-size:2rem;font-weight:700;color:var(--soft-white);margin-bottom:16px;">Electrical Safety Tips & Offers</h2>
+            <p style="color:rgba(255,255,255,.65);line-height:1.8;margin-bottom:28px;">Join 8,000+ homeowners receiving our monthly electrical safety newsletter, seasonal maintenance reminders, and exclusive service discounts.</p>
+            <form class="needs-validation" aria-label="Newsletter signup">
+              <div style="display:flex;gap:12px;flex-wrap:wrap;">
+                <input type="email" class="form-control" data-validate="required,email" placeholder="Your email address" aria-label="Email address" style="flex:1;min-width:200px;">
+                <button type="submit" class="btn btn-primary" data-original="Subscribe">Subscribe</button>
+              </div>
+              <div class="form-error"></div>
+              <p style="font-size:0.8125rem;color:rgba(255,255,255,.4);margin-top:12px;">No spam, ever. Unsubscribe anytime.</p>
+            </form>
+          </div>
+          <div class="reveal-right">
+            <div class="booking-card" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1);">
+              <h3 style="font-size:1.375rem;font-weight:700;color:var(--soft-white);margin-bottom:8px;">Quick Service Request</h3>
+              <p style="font-size:0.9rem;color:rgba(255,255,255,.55);margin-bottom:24px;">Fill out this form and we'll call you back within the hour.</p>
+              <form class="needs-validation" aria-label="Quick service request">
+                <div class="form-group">
+                  <input type="text" class="form-control" data-validate="required" placeholder="Your Name" aria-label="Your name">
+                  <div class="form-error"></div>
+                </div>
+                <div class="form-group">
+                  <input type="tel" class="form-control" data-validate="required,phone" placeholder="Phone Number" aria-label="Phone number">
+                  <div class="form-error"></div>
+                </div>
+                <div class="form-group">
+                  <select class="form-control" data-validate="required" aria-label="Service type">
+                    <option value="">Select Service Type</option>
+                    <option>Home Wiring</option>
+                    <option>Circuit Breaker</option>
+                    <option>Lighting Installation</option>
+                    <option>Fan Installation</option>
+                    <option>Panel Upgrade</option>
+                    <option>Emergency Service</option>
+                    <option>Other</option>
+                  </select>
+                  <div class="form-error"></div>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%;" data-original="Request Callback">Request Callback</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <div id="footer-mount"></div>
+  <script src="assets/js/components.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    // Animate skill bars on scroll
+    document.addEventListener('DOMContentLoaded', () => {
+      const bars = document.querySelectorAll('.skill-bar-fill');
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.style.width = e.target.dataset.width + '%';
+            obs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.5 });
+      bars.forEach(b => obs.observe(b));
+    });
+  </script>
+</body>
+</html>
