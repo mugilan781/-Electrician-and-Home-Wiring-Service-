@@ -457,30 +457,6 @@ function initPageLoader() {
   window.addEventListener('pageshow', (e) => {
     if (e.persisted) loader.classList.add('hidden');
   });
-
-  // Intercept internal page navigation to show loader
-  document.querySelectorAll('a[href]').forEach(link => {
-    const href = link.getAttribute('href');
-    if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('http://') || href.startsWith('https://') || href.startsWith('//') || href.startsWith('javascript:')) return;
-    if (link.target === '_blank' || link.hasAttribute('download')) return;
-    // Skip same-page anchor links (handled by smooth scroll)
-    if (href.includes('#')) {
-      const base = href.split('#')[0];
-      const current = location.pathname.split('/').pop() || 'index.html';
-      if (!base || base === current || base === '') return;
-    }
-    link.addEventListener('click', (e) => {
-      if (e.defaultPrevented) return;
-      if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey || e.button !== 0) return;
-      e.preventDefault();
-      loader.classList.remove('hidden');
-      // Close mobile nav if open
-      document.getElementById('mobile-nav')?.classList.remove('open');
-      document.getElementById('hamburger')?.classList.remove('active');
-      document.body.style.overflow = '';
-      setTimeout(() => { window.location.href = href; }, 620);
-    });
-  });
 }
 
 /* ── ██ IMAGE LAZY LOADING ── */
