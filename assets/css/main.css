@@ -589,7 +589,7 @@ select.form-control { cursor: pointer; }
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   flex: 1;
   justify-content: center;
 }
@@ -598,7 +598,7 @@ select.form-control { cursor: pointer; }
   display: flex;
   align-items: center;
   gap: 4px;
-  padding: 8px 14px;
+  padding: 8px 12px;
   font-family: var(--font-primary);
   font-size: 0.875rem;
   font-weight: 500;

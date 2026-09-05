@@ -100,10 +100,16 @@ class Navbar {
     document.body.style.overflow = '';
   }
   setActive() {
-    const path = location.pathname.split('/').pop() || 'index.html';
+    let path = location.pathname.split('/').pop() || 'index.html';
+    if (!path.endsWith('.html')) path = 'index.html';
     $$('.nav-link, .mobile-nav-links a').forEach(a => {
-      const href = a.getAttribute('href');
-      if (href && href.includes(path)) { a.classList.add('active'); }
+      const href = a.getAttribute('href')?.split('?')[0].split('#')[0];
+      if (!href) return;
+      if (href === path || (path === 'blog-details.html' && href === 'blog.html')) {
+        a.classList.add('active');
+      } else {
+        a.classList.remove('active');
+      }
     });
   }
 }

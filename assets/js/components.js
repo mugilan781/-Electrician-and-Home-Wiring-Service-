@@ -27,6 +27,9 @@ const NAV_HTML = `
           <a href="index.html" class="nav-link">Home</a>
         </li>
         <li class="nav-item">
+          <a href="home2.html" class="nav-link">Home 2</a>
+        </li>
+        <li class="nav-item">
           <a href="about.html" class="nav-link">About</a>
         </li>
         <li class="nav-item">
@@ -36,22 +39,10 @@ const NAV_HTML = `
           <a href="pricing.html" class="nav-link">Pricing</a>
         </li>
         <li class="nav-item">
-          <a href="blog.html" class="nav-link">Blog
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </a>
-          <div class="nav-dropdown" role="list">
-            <a href="blog.html">Blog Listing</a>
-            <a href="blog-details.html">Blog Details</a>
-          </div>
+          <a href="blog.html" class="nav-link">Blog</a>
         </li>
         <li class="nav-item">
           <a href="contact.html" class="nav-link">Contact</a>
-        </li>
-        <li class="nav-item">
-          <a href="emergency.html" class="nav-link text-amber" style="font-weight:700;">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-            Emergency
-          </a>
         </li>
       </ul>
 
@@ -59,9 +50,14 @@ const NAV_HTML = `
       <div class="navbar-actions">
         <button class="navbar-toggle-btn" data-theme-toggle aria-label="Toggle theme" title="Toggle dark/light mode"></button>
         <button class="navbar-toggle-btn" data-rtl-toggle aria-label="Toggle RTL" style="font-size:0.6875rem;font-weight:700;letter-spacing:0.05em;">LTR</button>
-        <a href="tel:+18005550199" class="btn btn-primary btn-sm" aria-label="Call us">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.91A16 16 0 0 0 14 15l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.5 16l.42.92z"/></svg>
-          Call Now
+        <a href="contact.html" class="btn btn-primary btn-sm" aria-label="Book a service">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:4px;" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+          Book Now
         </a>
         <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-nav">
           <span></span><span></span><span></span>
@@ -78,20 +74,13 @@ const NAV_HTML = `
     <a href="home2.html">Home 2</a>
     <a href="about.html">About</a>
     <a href="services.html">Services</a>
-    <a href="pricing.html">Pricing Guide</a>
+    <a href="pricing.html">Pricing</a>
     <a href="blog.html">Blog</a>
-    <a href="blog-details.html">Blog Details</a>
     <a href="contact.html">Contact</a>
-    <a href="emergency.html">Emergency Service</a>
-    <a href="privacy.html">Privacy Policy</a>
-    <a href="terms.html">Terms &amp; Conditions</a>
-    <a href="sitemap.html">Sitemap</a>
-    <a href="404.html">404</a>
-    <a href="maintenance.html">Maintenance</a>
   </nav>
   <div class="mobile-nav-actions">
-    <a href="tel:+18005550199" class="btn btn-primary"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72.84.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.91A16 16 0 0 0 14 15l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.5 16l.42.92z"/></svg>Call Now</a>
-    <a href="contact.html" class="btn btn-outline">Book Service</a>
+    <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center;">Book Now</a>
+    <a href="tel:+18005550199" class="btn btn-outline" style="width:100%;justify-content:center;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.91A16 16 0 0 0 14 15l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.5 16l.42.92z"/></svg>Call 1-800-555-0199</a>
   </div>
 </div>
 `;
