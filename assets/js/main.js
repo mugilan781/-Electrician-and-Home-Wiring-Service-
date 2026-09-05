@@ -200,13 +200,17 @@ class HeroSlider {
     if (!this.slider) return;
     this.slides = $$('.hero-slide', this.slider);
     this.dots = $$('.hero-dot', this.slider);
+    this.prevBtn = $('.hero-slider-prev', this.slider);
+    this.nextBtn = $('.hero-slider-next', this.slider);
     this.current = 0;
     this.interval = null;
     this.init();
   }
   init() {
     if (this.slides.length < 2) return;
-    this.dots.forEach((dot, i) => on(dot, 'click', () => this.goTo(i)));
+    this.dots.forEach((dot, i) => on(dot, 'click', () => { this.goTo(i); this.stopAuto(); this.startAuto(); }));
+    on(this.prevBtn, 'click', () => { this.prev(); this.stopAuto(); this.startAuto(); });
+    on(this.nextBtn, 'click', () => { this.next(); this.stopAuto(); this.startAuto(); });
     this.startAuto();
     on(this.slider, 'mouseenter', () => this.stopAuto());
     on(this.slider, 'mouseleave', () => this.startAuto());

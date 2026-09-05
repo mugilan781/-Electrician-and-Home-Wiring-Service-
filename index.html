@@ -14,13 +14,42 @@
   <link rel="stylesheet" href="assets/css/main.css">
   <style>
     /* ── Hero Slider Styles ── */
-    #hero-slider { min-height: 100vh; position: relative; display: flex; align-items: center; background: #101C2C; overflow: hidden; }
-    .hero-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.9s ease; pointer-events: none; display: flex; align-items: center; }
+    #hero-slider { min-height: 100vh; position: relative; display: flex; align-items: center; justify-content: center; background: #101C2C; overflow: hidden; }
+    .hero-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.9s ease; pointer-events: none; display: flex; align-items: center; justify-content: center; text-align: center; }
     .hero-slide.active { opacity: 1; pointer-events: auto; }
     .hero-slide__bg { position: absolute; inset: 0; z-index: 0; }
     .hero-slide__bg img { width: 100%; height: 100%; object-fit: cover; opacity: .32; }
     .hero-slide__overlay { position: absolute; inset: 0; }
-    .hero-slide__content { position: relative; z-index: 2; padding-top: 80px; }
+    .hero-slide__content { position: relative; z-index: 2; padding-top: 80px; max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .hero-slide .container { display: flex; justify-content: center; }
+    .hero-title, .hero-desc { text-align: center; }
+    .hero-desc { margin-left: auto; margin-right: auto; }
+    .hero-actions { justify-content: center; }
+    .hero-eyebrow { justify-content: center; }
+    /* Hero Slider Arrows */
+    .hero-slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.15);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .hero-slider-arrow:hover { background: var(--amber); border-color: var(--amber); color: var(--navy); transform: translateY(-50%) scale(1.05); }
+    .hero-slider-prev { left: 24px; }
+    .hero-slider-next { right: 24px; }
+    @media (max-width: 768px) { .hero-slider-arrow { width: 40px; height: 40px; } .hero-slider-prev { left: 12px; } .hero-slider-next { right: 12px; } }
 
     /* Process line */
     @media (max-width: 1024px) {
@@ -149,10 +178,6 @@
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
               </a>
             </div>
-            <div class="hero-emergency">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-              24/7 Emergency Line: <a href="tel:+18005550199">1-800-555-0199</a>
-            </div>
           </div>
         </div>
       </div>
@@ -204,12 +229,20 @@
             </h1>
             <p class="hero-desc">Upgrade your home with smart electrical systems — automated lighting, EV charging, solar integration, and whole-home control at your fingertips.</p>
             <div class="hero-actions">
-              <a href="contact.html" class="btn btn-primary btn-lg">Get Free Quote</a>
-              <a href="about.html" class="btn btn-outline">Our Story</a>
+              <a href="contact.html" class="btn btn-primary btn-lg" style="min-width:180px;justify-content:center;">Get Free Quote</a>
+              <a href="about.html" class="btn btn-outline btn-lg" style="min-width:180px;justify-content:center;">Our Story</a>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- Slider Arrows -->
+      <button class="hero-slider-arrow hero-slider-prev" aria-label="Previous slide">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="hero-slider-arrow hero-slider-next" aria-label="Next slide">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
 
       <!-- Slider Dots -->
       <div class="hero-slider-dots" role="tablist" aria-label="Slide navigation">

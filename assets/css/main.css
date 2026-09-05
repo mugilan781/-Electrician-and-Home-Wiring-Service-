@@ -879,6 +879,49 @@ select.form-control { cursor: pointer; }
   background: var(--amber);
 }
 
+/* Hero Slider Arrows */
+.hero-slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.15);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.hero-slider-arrow:hover {
+  background: var(--amber);
+  border-color: var(--amber);
+  color: var(--navy);
+  transform: translateY(-50%) scale(1.05);
+}
+.hero-slider-prev { left: 24px; }
+.hero-slider-next { right: 24px; }
+@media (max-width: 768px) {
+  .hero-slider-arrow { width: 40px; height: 40px; }
+  .hero-slider-prev { left: 12px; }
+  .hero-slider-next { right: 12px; }
+}
+
+/* Hero Slider Center Alignment */
+#hero-slider .hero-slide { justify-content: center; text-align: center; }
+#hero-slider .hero-slide .container { display: flex; justify-content: center; }
+#hero-slider .hero-slide__content { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; }
+#hero-slider .hero-title, #hero-slider .hero-desc { text-align: center; }
+#hero-slider .hero-desc { margin-left: auto; margin-right: auto; }
+#hero-slider .hero-actions { justify-content: center; }
+#hero-slider .hero-eyebrow { justify-content: center; }
+
 /* ── ██ TRUST BAR ██ ── */
 .trust-bar {
   background: var(--graphite);
