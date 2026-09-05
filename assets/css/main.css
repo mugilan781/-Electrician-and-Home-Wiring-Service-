@@ -126,7 +126,12 @@ h1,h2,h3,h4,h5,h6 {
 .section--dark h3,
 .section--dark h4 { color: var(--soft-white); }
 .section--alt { background: var(--bg-alt); }
-.section--navy { background: var(--navy); }
+.section--navy {
+  background: #142337;
+  background: radial-gradient(ellipse 70% 60% at 50% 35%, rgba(82, 115, 140, 0.22) 0%, transparent 100%), linear-gradient(180deg, #182A40 0%, #122033 100%);
+  position: relative;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
 .section--concrete { background: var(--concrete); }
 
 /* ── Section Header ── */
@@ -1382,9 +1387,20 @@ select.form-control { cursor: pointer; }
 
 /* ── ██ FOOTER ██ ── */
 .footer {
-  background: var(--navy);
+  background: #080D15;
   color: rgba(255,255,255,.75);
   position: relative;
+  border-top: 1px solid rgba(255,255,255,.1);
+  box-shadow: 0 -8px 32px rgba(0,0,0,.45);
+}
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 5%, var(--amber) 30%, var(--amber-light) 50%, var(--amber) 70%, transparent 95%);
+  opacity: 0.75;
+  pointer-events: none;
 }
 .footer-top { padding: 80px 0 60px; }
 .footer-grid {
@@ -1586,8 +1602,8 @@ select.form-control { cursor: pointer; }
 /* Footer Bottom / Legal */
 .footer-bottom {
   padding: 22px 0;
-  border-top: 1px solid rgba(255,255,255,.08);
-  background: rgba(0,0,0,.15);
+  border-top: 1px solid rgba(255,255,255,.06);
+  background: #05080E;
 }
 .footer-bottom-inner {
   display: flex;
