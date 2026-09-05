@@ -986,12 +986,17 @@ select.form-control { cursor: pointer; }
   line-height: 1.6;
 }
 
-/* ── ██ PAGE HERO (INNER) ██ ── */
+/* ── ██ PAGE HERO (INNER) — Uniform Height & Centered (all pages except home) ── */
 .page-hero {
-  padding: 160px 0 80px;
+  min-height: 480px;
+  padding: 140px 0 80px;
   background: var(--navy);
   position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 .page-hero::before {
   content: '';
@@ -1001,7 +1006,24 @@ select.form-control { cursor: pointer; }
   border-radius: 50%;
   background: radial-gradient(circle, rgba(230,162,60,.08) 0%, transparent 70%);
 }
-.page-hero-content { position: relative; z-index: 2; }
+.page-hero .container { display: flex; justify-content: center; width: 100%; }
+.page-hero-content { position: relative; z-index: 2; text-align: center; max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; }
+.page-hero-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-primary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--amber);
+  background: rgba(230,162,60,.12);
+  border: 1px solid rgba(230,162,60,.25);
+  padding: 7px 16px;
+  border-radius: 100px;
+  margin-bottom: 20px;
+}
 .page-hero-breadcrumb {
   display: flex;
   align-items: center;
@@ -1030,12 +1052,16 @@ select.form-control { cursor: pointer; }
   color: var(--white);
   margin-bottom: 20px;
   letter-spacing: -0.02em;
+  text-align: center;
 }
 .page-hero-desc {
   font-size: 1.0625rem;
   color: rgba(255,255,255,.7);
   max-width: 580px;
   line-height: 1.8;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* ── ██ ABOUT SECTION ██ ── */
