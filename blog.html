@@ -26,6 +26,10 @@
     .featured-post__img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition-slow); display: block; }
     .featured-post:hover .featured-post__img { transform: scale(1.05); }
     .featured-post__body { padding: 48px; display: flex; flex-direction: column; justify-content: center; }
+    .featured-post__meta { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+    .featured-post__date, .featured-post__read { font-size: 0.8125rem; color: var(--text-muted); line-height: 1; display: inline-flex; align-items: center; }
+    .featured-post__dot { color: var(--text-muted); opacity: 0.45; font-size: 0.75rem; line-height: 1; display: inline-flex; align-items: center; }
+    .featured-post__body .btn { align-self: flex-start; width: fit-content; }
     @media(max-width:768px){ .featured-post { grid-template-columns: 1fr; } .featured-post__img-wrap { min-height: 260px; } .featured-post__body { padding: 28px; } }
 
     .sidebar-widget { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 28px; margin-bottom: 24px; }
@@ -39,23 +43,208 @@
     .recent-post-date { font-size: 0.75rem; color: var(--text-muted); }
     .tag-cloud { display: flex; flex-wrap: wrap; gap: 8px; }
     .tag { padding: 6px 14px; border-radius: 100px; background: var(--bg); border: 1px solid var(--border); font-size: 0.8125rem; font-weight: 500; color: var(--text-muted); transition: var(--transition); cursor: pointer; }
-    .tag:hover { border-color: var(--amber); color: var(--amber); background: rgba(230,162,60,.06); }
+    .tag:hover, .tag.active { border-color: var(--amber); color: var(--amber); background: rgba(230,162,60,.08); }
     .categories-list { display: flex; flex-direction: column; gap: 0; }
-    .cat-link { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; color: var(--text-muted); transition: var(--transition); }
+    .cat-link { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; color: var(--text-muted); transition: var(--transition); text-decoration: none; }
     .cat-link:last-child { border-bottom: none; }
-    .cat-link:hover { color: var(--amber); }
+    .cat-link:hover, .cat-link.active { color: var(--amber); }
     .cat-link .cat-count { background: rgba(230,162,60,.1); color: var(--amber); font-size: 0.75rem; font-weight: 700; padding: 2px 8px; border-radius: 100px; }
 
-    .blog-search { display: flex; gap: 8px; }
+    .blog-search { display: flex; gap: 8px; position: relative; }
     .blog-search input { flex: 1; }
     .blog-search .btn { flex-shrink: 0; }
 
-    .posts-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 24px; margin-top: 40px; }
+    .posts-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 24px; margin-top: 32px; }
     @media(max-width:768px){ .posts-grid { grid-template-columns: 1fr; } }
 
-    .pagination { display: flex; gap: 8px; justify-content: center; margin-top: 48px; flex-wrap: wrap; }
-    .page-link { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-sm); border: 1px solid var(--border); font-size: 0.9rem; font-weight: 600; color: var(--text-muted); transition: var(--transition); }
-    .page-link:hover, .page-link.active { border-color: var(--amber); color: var(--amber); background: rgba(230,162,60,.08); }
+    .blog-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      overflow: hidden;
+      transition: var(--transition);
+    }
+    .blog-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+    .blog-card__img-wrap { overflow: hidden; height: 220px; flex-shrink: 0; }
+    .blog-card__img { width: 100%; height: 100%; object-fit: cover; display: block; transition: var(--transition-slow); }
+    .blog-card:hover .blog-card__img { transform: scale(1.04); }
+    .blog-card__body {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .blog-card__meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+    .blog-card__cat {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--amber);
+      background: rgba(230,162,60,.1);
+      padding: 3px 10px;
+      border-radius: 100px;
+      line-height: 1.4;
+      display: inline-flex;
+      align-items: center;
+    }
+    .blog-card__date, .blog-card__read-time {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+    }
+    .blog-card__dot {
+      color: var(--text-muted);
+      opacity: 0.45;
+      font-size: 0.75rem;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+    }
+    .blog-card__title {
+      font-size: 1.125rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      line-height: 1.4;
+      min-height: 3.1em;
+      transition: var(--transition);
+    }
+    .blog-card:hover .blog-card__title { color: var(--amber); }
+    .blog-card__excerpt {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 22px;
+      flex-grow: 1;
+    }
+    .blog-card__footer {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      gap: 12px;
+    }
+    .blog-card__author {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+    .blog-card__author-avatar {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--amber), var(--steel));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+    .blog-card__author-name {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .blog-card__read-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 15px;
+      border-radius: var(--radius-sm);
+      background: rgba(230,162,60,0.1);
+      color: var(--amber);
+      border: 1px solid rgba(230,162,60,0.25);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all var(--transition-fast);
+      flex-shrink: 0;
+    }
+    .blog-card__read-btn:hover {
+      background: var(--amber);
+      color: var(--navy);
+      border-color: var(--amber);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(230,162,60,0.3);
+    }
+    .blog-card__read-btn svg {
+      transition: transform var(--transition-fast);
+    }
+    .blog-card__read-btn:hover svg {
+      transform: translateX(3px);
+    }
+
+    /* Search status banner & filter active */
+    .search-status-bar {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 18px;
+      border-radius: var(--radius-sm);
+      background: rgba(230,162,60,0.08);
+      border: 1px solid rgba(230,162,60,0.25);
+      margin-bottom: 24px;
+    }
+    .search-status-bar__text {
+      font-size: 0.875rem;
+      color: var(--text);
+    }
+    .search-status-bar__reset {
+      background: none;
+      border: none;
+      color: var(--amber);
+      font-weight: 600;
+      font-size: 0.8125rem;
+      cursor: pointer;
+      padding: 0;
+      text-decoration: underline;
+    }
+    .search-status-bar__reset:hover {
+      opacity: 0.8;
+    }
+    .search-empty-state {
+      display: none;
+      text-align: center;
+      padding: 56px 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      margin-top: 24px;
+    }
+    .search-empty-state__icon {
+      margin-bottom: 16px;
+      color: var(--amber);
+      opacity: 0.7;
+    }
+    .search-empty-state__title {
+      font-size: 1.125rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .search-empty-state__desc {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      margin-bottom: 20px;
+    }
   </style>
 </head>
 <body>
@@ -97,13 +286,14 @@
         <div class="section-label reveal" style="margin-bottom:24px;">Featured Article</div>
         <article class="featured-post reveal" aria-labelledby="featured-post-title">
           <div class="featured-post__img-wrap">
-            <img src="assets/images/electrician-panel.jpg" alt="Everything you need to know about electrical panel upgrades" class="featured-post__img" loading="lazy">
+            <img src="assets/images/blog-featured-panel.jpg" alt="Everything you need to know about electrical panel upgrades" class="featured-post__img" loading="lazy">
           </div>
           <div class="featured-post__body">
-            <div class="flex gap-12 mb-16" style="flex-wrap:wrap;">
+            <div class="featured-post__meta">
               <span class="badge badge-amber">Panel Upgrades</span>
-              <span style="font-size:0.8125rem;color:var(--text-muted);">August 28, 2026</span>
-              <span style="font-size:0.8125rem;color:var(--text-muted);">9 min read</span>
+              <span class="featured-post__date">August 28, 2026</span>
+              <span class="featured-post__dot" aria-hidden="true">•</span>
+              <span class="featured-post__read">9 min read</span>
             </div>
             <h2 id="featured-post-title" style="font-size:1.5rem;font-weight:700;margin-bottom:16px;line-height:1.35;">The Complete Guide to Electrical Panel Upgrades: Signs, Costs & What to Expect</h2>
             <p style="color:var(--text-muted);line-height:1.8;margin-bottom:28px;">Is your home's electrical panel keeping up with modern demands? Learn the warning signs of an overloaded panel, what an upgrade involves, how long it takes, and what you'll realistically pay — with expert insight from our master electricians.</p>
@@ -116,7 +306,7 @@
                 </div>
               </div>
             </div>
-            <a href="blog-details.html" class="btn btn-primary">Read Full Article
+            <a href="blog-details.html" class="btn btn-primary featured-post__btn">Read Full Article
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </a>
           </div>
@@ -124,18 +314,27 @@
 
         <!-- Blog Layout -->
         <div class="blog-layout mt-48">
-          <!-- Posts -->
+          <!-- Posts Column -->
           <div>
             <h2 id="blog-heading" class="section-title reveal" style="margin-bottom:32px;">Latest Articles</h2>
-            <div class="posts-grid">
-              <article class="blog-card reveal" aria-labelledby="post-1-title">
+
+            <!-- Active Search Status Bar -->
+            <div id="blog-search-status" class="search-status-bar" role="status" aria-live="polite">
+              <span id="blog-search-status-text" class="search-status-bar__text"></span>
+              <button type="button" id="blog-reset-filter" class="search-status-bar__reset">Clear filter</button>
+            </div>
+
+            <div class="posts-grid" id="posts-grid">
+              <article class="blog-card reveal" aria-labelledby="post-1-title" data-category="safety">
                 <div class="blog-card__img-wrap">
-                  <img src="assets/images/home-wiring.jpg" alt="Home wiring safety tips" class="blog-card__img" loading="lazy">
+                  <img src="assets/images/blog-safety-tips.jpg" alt="Home wiring safety tips" class="blog-card__img" loading="lazy">
                 </div>
                 <div class="blog-card__body">
                   <div class="blog-card__meta">
                     <span class="blog-card__cat">Safety</span>
                     <span class="blog-card__date">Sep 1, 2026</span>
+                    <span class="blog-card__dot" aria-hidden="true">•</span>
+                    <span class="blog-card__read-time">6 min read</span>
                   </div>
                   <h3 id="post-1-title" class="blog-card__title"><a href="blog-details.html">10 Electrical Safety Tips Every Homeowner Must Know</a></h3>
                   <p class="blog-card__excerpt">Protect your family with these essential electrical safety practices that licensed electricians recommend for every household.</p>
@@ -144,19 +343,21 @@
                       <div class="blog-card__author-avatar" aria-hidden="true">MS</div>
                       <span class="blog-card__author-name">Maria Santos</span>
                     </div>
-                    <span class="blog-card__read">6 min read</span>
+                    <a href="blog-details.html" class="blog-card__read-btn" aria-label="Read 10 Electrical Safety Tips Every Homeowner Must Know">Read <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
                   </div>
                 </div>
               </article>
 
-              <article class="blog-card reveal reveal-delay-1" aria-labelledby="post-2-title">
+              <article class="blog-card reveal reveal-delay-1" aria-labelledby="post-2-title" data-category="guides">
                 <div class="blog-card__img-wrap">
-                  <img src="assets/images/circuit-breaker.jpg" alt="Circuit breaker guide" class="blog-card__img" loading="lazy">
+                  <img src="assets/images/blog-afci-gfci.jpg" alt="Circuit breaker guide" class="blog-card__img" loading="lazy">
                 </div>
                 <div class="blog-card__body">
                   <div class="blog-card__meta">
                     <span class="blog-card__cat">Guides</span>
                     <span class="blog-card__date">Aug 22, 2026</span>
+                    <span class="blog-card__dot" aria-hidden="true">•</span>
+                    <span class="blog-card__read-time">7 min read</span>
                   </div>
                   <h3 id="post-2-title" class="blog-card__title"><a href="blog-details.html">AFCI vs GFCI Breakers: What's the Difference and Do You Need Both?</a></h3>
                   <p class="blog-card__excerpt">Understanding the difference between arc-fault and ground-fault protection can save your life and your home from electrical fires.</p>
@@ -165,19 +366,21 @@
                       <div class="blog-card__author-avatar" aria-hidden="true">DC</div>
                       <span class="blog-card__author-name">David Chen</span>
                     </div>
-                    <span class="blog-card__read">7 min read</span>
+                    <a href="blog-details.html" class="blog-card__read-btn" aria-label="Read AFCI vs GFCI Breakers guide">Read <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
                   </div>
                 </div>
               </article>
 
-              <article class="blog-card reveal" aria-labelledby="post-3-title">
+              <article class="blog-card reveal" aria-labelledby="post-3-title" data-category="smart home">
                 <div class="blog-card__img-wrap">
-                  <img src="assets/images/smart-home.jpg" alt="Smart home electrical guide" class="blog-card__img" loading="lazy">
+                  <img src="assets/images/blog-smart-home.jpg" alt="Smart home electrical guide" class="blog-card__img" loading="lazy">
                 </div>
                 <div class="blog-card__body">
                   <div class="blog-card__meta">
                     <span class="blog-card__cat">Smart Home</span>
                     <span class="blog-card__date">Aug 15, 2026</span>
+                    <span class="blog-card__dot" aria-hidden="true">•</span>
+                    <span class="blog-card__read-time">11 min read</span>
                   </div>
                   <h3 id="post-3-title" class="blog-card__title"><a href="blog-details.html">How to Plan Your Smart Home Electrical System from Scratch</a></h3>
                   <p class="blog-card__excerpt">Planning a smart home requires careful electrical infrastructure design. Here's how our experts plan smart home systems that scale with technology.</p>
@@ -186,19 +389,21 @@
                       <div class="blog-card__author-avatar" aria-hidden="true">DC</div>
                       <span class="blog-card__author-name">David Chen</span>
                     </div>
-                    <span class="blog-card__read">11 min read</span>
+                    <a href="blog-details.html" class="blog-card__read-btn" aria-label="Read How to Plan Your Smart Home Electrical System from Scratch">Read <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
                   </div>
                 </div>
               </article>
 
-              <article class="blog-card reveal reveal-delay-1" aria-labelledby="post-4-title">
+              <article class="blog-card reveal reveal-delay-1" aria-labelledby="post-4-title" data-category="lighting">
                 <div class="blog-card__img-wrap">
-                  <img src="assets/images/lighting-install.jpg" alt="LED lighting guide" class="blog-card__img" loading="lazy">
+                  <img src="assets/images/blog-recessed-lighting.jpg" alt="LED lighting guide" class="blog-card__img" loading="lazy">
                 </div>
                 <div class="blog-card__body">
                   <div class="blog-card__meta">
                     <span class="blog-card__cat">Lighting</span>
                     <span class="blog-card__date">Aug 8, 2026</span>
+                    <span class="blog-card__dot" aria-hidden="true">•</span>
+                    <span class="blog-card__read-time">8 min read</span>
                   </div>
                   <h3 id="post-4-title" class="blog-card__title"><a href="blog-details.html">LED Recessed Lighting: Everything You Need Before Installation</a></h3>
                   <p class="blog-card__excerpt">From choosing the right trim and kelvin temperature to planning your layout and dimmer compatibility — the complete pre-installation guide.</p>
@@ -207,19 +412,21 @@
                       <div class="blog-card__author-avatar" aria-hidden="true">SK</div>
                       <span class="blog-card__author-name">Sarah Kim</span>
                     </div>
-                    <span class="blog-card__read">8 min read</span>
+                    <a href="blog-details.html" class="blog-card__read-btn" aria-label="Read LED Recessed Lighting guide">Read <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
                   </div>
                 </div>
               </article>
 
-              <article class="blog-card reveal" aria-labelledby="post-5-title">
+              <article class="blog-card reveal" aria-labelledby="post-5-title" data-category="diy vs pro">
                 <div class="blog-card__img-wrap">
-                  <img src="assets/images/electrical-tools.jpg" alt="DIY electrical vs professional" class="blog-card__img" loading="lazy">
+                  <img src="assets/images/blog-diy-vs-pro.jpg" alt="DIY electrical vs professional" class="blog-card__img" loading="lazy">
                 </div>
                 <div class="blog-card__body">
                   <div class="blog-card__meta">
                     <span class="blog-card__cat">DIY vs Pro</span>
                     <span class="blog-card__date">Jul 28, 2026</span>
+                    <span class="blog-card__dot" aria-hidden="true">•</span>
+                    <span class="blog-card__read-time">10 min read</span>
                   </div>
                   <h3 id="post-5-title" class="blog-card__title"><a href="blog-details.html">DIY Electrical Work: What's Legal, What's Safe, and What to Leave to the Pros</a></h3>
                   <p class="blog-card__excerpt">Some electrical tasks are safe for homeowners — others are dangerous and illegal without a license. Know the difference before you pick up a screwdriver.</p>
@@ -228,19 +435,21 @@
                       <div class="blog-card__author-avatar" aria-hidden="true">JH</div>
                       <span class="blog-card__author-name">James Hartwell</span>
                     </div>
-                    <span class="blog-card__read">10 min read</span>
+                    <a href="blog-details.html" class="blog-card__read-btn" aria-label="Read DIY Electrical Work article">Read <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
                   </div>
                 </div>
               </article>
 
-              <article class="blog-card reveal reveal-delay-1" aria-labelledby="post-6-title">
+              <article class="blog-card reveal reveal-delay-1" aria-labelledby="post-6-title" data-category="emergency">
                 <div class="blog-card__img-wrap">
-                  <img src="assets/images/emergency-service.jpg" alt="Electrical emergency guide" class="blog-card__img" loading="lazy">
+                  <img src="assets/images/blog-emergency-guide.jpg" alt="Electrical emergency guide" class="blog-card__img" loading="lazy">
                 </div>
                 <div class="blog-card__body">
                   <div class="blog-card__meta">
                     <span class="blog-card__cat">Emergency</span>
                     <span class="blog-card__date">Jul 18, 2026</span>
+                    <span class="blog-card__dot" aria-hidden="true">•</span>
+                    <span class="blog-card__read-time">5 min read</span>
                   </div>
                   <h3 id="post-6-title" class="blog-card__title"><a href="blog-details.html">What to Do During an Electrical Emergency: A Step-by-Step Guide</a></h3>
                   <p class="blog-card__excerpt">Sparking outlets, burning smell, power outage — knowing how to respond to electrical emergencies correctly can save lives. Here's what to do.</p>
@@ -249,20 +458,21 @@
                       <div class="blog-card__author-avatar" aria-hidden="true">MS</div>
                       <span class="blog-card__author-name">Maria Santos</span>
                     </div>
-                    <span class="blog-card__read">5 min read</span>
+                    <a href="blog-details.html" class="blog-card__read-btn" aria-label="Read What to Do During an Electrical Emergency">Read <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
                   </div>
                 </div>
               </article>
             </div>
 
-            <!-- Pagination -->
-            <nav class="pagination reveal" aria-label="Blog pagination">
-              <a href="#" class="page-link active" aria-current="page">1</a>
-              <a href="#" class="page-link">2</a>
-              <a href="#" class="page-link">3</a>
-              <a href="#" class="page-link">4</a>
-              <a href="#" class="page-link" style="width:auto;padding:0 16px;">Next →</a>
-            </nav>
+            <!-- Search Empty State -->
+            <div id="blog-no-results" class="search-empty-state">
+              <div class="search-empty-state__icon">
+                <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              </div>
+              <h3 class="search-empty-state__title">No matching articles found</h3>
+              <p class="search-empty-state__desc">We couldn't find any articles matching your search. Try another keyword or browse all topics.</p>
+              <button type="button" id="blog-clear-search-btn" class="btn btn-primary btn-sm">Clear Search</button>
+            </div>
           </div>
 
           <!-- Sidebar -->
@@ -270,12 +480,12 @@
             <!-- Search -->
             <div class="sidebar-widget">
               <h3 class="sidebar-widget__title">Search Articles</h3>
-              <div class="blog-search">
-                <input type="search" class="form-control" placeholder="Search..." aria-label="Search blog posts">
-                <button class="btn btn-primary btn-sm" aria-label="Search">
+              <form id="blog-search-form" class="blog-search" role="search" onsubmit="return false;">
+                <input type="search" id="blog-search-input" class="form-control" placeholder="Search articles..." aria-label="Search blog posts" autocomplete="off">
+                <button type="submit" id="blog-search-btn" class="btn btn-primary btn-sm" aria-label="Search articles">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                 </button>
-              </div>
+              </form>
             </div>
 
             <!-- Categories -->
@@ -355,5 +565,163 @@
   <div id="footer-mount"></div>
   <script src="assets/js/components.js"></script>
   <script src="assets/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('blog-search-input');
+      const searchForm = document.getElementById('blog-search-form');
+      const searchBtn = document.getElementById('blog-search-btn');
+      const statusBar = document.getElementById('blog-search-status');
+      const statusText = document.getElementById('blog-search-status-text');
+      const resetBtn = document.getElementById('blog-reset-filter');
+      const noResults = document.getElementById('blog-no-results');
+      const clearSearchBtn = document.getElementById('blog-clear-search-btn');
+      const featuredArticle = document.querySelector('.featured-post');
+      const featuredSectionLabel = document.querySelector('.section-label');
+      const blogCards = Array.from(document.querySelectorAll('.posts-grid .blog-card'));
+      const catLinks = Array.from(document.querySelectorAll('.cat-link'));
+      const tagLinks = Array.from(document.querySelectorAll('.tag'));
+
+      function performSearch(query) {
+        const q = (query || '').trim().toLowerCase();
+
+        // Clear active class from cats and tags if search input is cleared or typed manually
+        if (!q) {
+          blogCards.forEach(card => {
+            card.style.display = '';
+            card.classList.add('revealed');
+          });
+          if (featuredArticle) featuredArticle.style.display = '';
+          if (featuredSectionLabel) featuredSectionLabel.style.display = '';
+          if (statusBar) statusBar.style.display = 'none';
+          if (noResults) noResults.style.display = 'none';
+          catLinks.forEach(c => c.classList.remove('active'));
+          tagLinks.forEach(t => t.classList.remove('active'));
+          return;
+        }
+
+        let matchCount = 0;
+
+        // Check featured post
+        if (featuredArticle) {
+          const featuredText = (featuredArticle.textContent || '').toLowerCase();
+          if (featuredText.includes(q)) {
+            featuredArticle.style.display = '';
+            featuredArticle.classList.add('revealed');
+            if (featuredSectionLabel) featuredSectionLabel.style.display = '';
+            matchCount++;
+          } else {
+            featuredArticle.style.display = 'none';
+            if (featuredSectionLabel) featuredSectionLabel.style.display = 'none';
+          }
+        }
+
+        // Check latest articles
+        blogCards.forEach(card => {
+          const cardText = (card.textContent || '').toLowerCase();
+          const category = (card.getAttribute('data-category') || '').toLowerCase();
+          if (cardText.includes(q) || category.includes(q)) {
+            card.style.display = '';
+            card.classList.add('revealed');
+            matchCount++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        // Update status bar
+        if (statusBar && statusText) {
+          statusBar.style.display = 'flex';
+          statusText.innerHTML = `Showing results for "<strong>${escapeHtml(query.trim())}</strong>" — <strong>${matchCount}</strong> article${matchCount === 1 ? '' : 's'} found`;
+        }
+
+        // Show/hide no results banner
+        if (noResults) {
+          noResults.style.display = matchCount === 0 ? 'block' : 'none';
+        }
+      }
+
+      function escapeHtml(str) {
+        return str.replace(/[&<>"']/g, m => ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#39;'
+        }[m]));
+      }
+
+      function clearSearch() {
+        if (searchInput) {
+          searchInput.value = '';
+          searchInput.focus();
+        }
+        performSearch('');
+      }
+
+      // Input typing listener
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          performSearch(e.target.value);
+        });
+        searchInput.addEventListener('search', () => {
+          performSearch(searchInput.value);
+        });
+      }
+
+      // Form submission
+      if (searchForm) {
+        searchForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          if (searchInput) performSearch(searchInput.value);
+        });
+      }
+      if (searchBtn) {
+        searchBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (searchInput) performSearch(searchInput.value);
+        });
+      }
+
+      // Reset and Clear buttons
+      if (resetBtn) resetBtn.addEventListener('click', clearSearch);
+      if (clearSearchBtn) clearSearchBtn.addEventListener('click', clearSearch);
+
+      // Categories filter
+      catLinks.forEach(cat => {
+        cat.addEventListener('click', (e) => {
+          e.preventDefault();
+          const catName = (cat.childNodes[0]?.textContent || cat.textContent).replace(/[0-9]/g, '').trim();
+          catLinks.forEach(c => c.classList.remove('active'));
+          cat.classList.add('active');
+          if (searchInput) {
+            searchInput.value = catName;
+            performSearch(catName);
+            const scrollTarget = document.getElementById('blog-heading');
+            if (scrollTarget) {
+              scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }
+        });
+      });
+
+      // Tags filter
+      tagLinks.forEach(tag => {
+        tag.addEventListener('click', (e) => {
+          e.preventDefault();
+          const tagName = tag.textContent.trim();
+          tagLinks.forEach(t => t.classList.remove('active'));
+          tag.classList.add('active');
+          if (searchInput) {
+            searchInput.value = tagName;
+            performSearch(tagName);
+            const scrollTarget = document.getElementById('blog-heading');
+            if (scrollTarget) {
+              scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>
