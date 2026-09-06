@@ -8,16 +8,201 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet" href="assets/css/main.css">
   <style>
-    .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-    @media(max-width:1024px){.team-grid{grid-template-columns:repeat(2,1fr);}}
-    @media(max-width:640px){.team-grid{grid-template-columns:1fr;}}
-    .team-member { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; transition: var(--transition); }
-    .team-member:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--amber); }
-    .team-member__img { width: 100%; height: 240px; object-fit: cover; object-position: top; display: block; }
-    .team-member__body { padding: 20px; }
-    .team-member__name { font-size: 1.0625rem; font-weight: 700; margin-bottom: 4px; }
-    .team-member__role { font-size: 0.8125rem; color: var(--amber); font-weight: 600; margin-bottom: 8px; }
-    .team-member__cert { font-size: 0.8125rem; color: var(--text-muted); }
+    /* ── Leadership Team Cards Redesign ── */
+    .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+    @media(max-width:1120px){.team-grid{grid-template-columns:repeat(2,1fr); gap: 24px;}}
+    @media(max-width:620px){.team-grid{grid-template-columns:1fr; gap: 20px;}}
+
+    .team-member {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+    }
+    .team-member:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px -10px rgba(0,0,0,0.22), 0 0 0 1px rgba(230,162,60,0.35);
+      border-color: var(--amber);
+    }
+    .team-member__media {
+      position: relative;
+      width: 100%;
+      height: 290px;
+      overflow: hidden;
+      background: #0f1a26;
+    }
+    .team-member__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .team-member:hover .team-member__img {
+      transform: scale(1.06);
+    }
+    .team-member__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(16,28,44,0.7) 0%, rgba(16,28,44,0.05) 50%, transparent 100%);
+      pointer-events: none;
+    }
+    .team-member__badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 11px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      border-radius: 999px;
+      background: rgba(16, 28, 44, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(230, 162, 60, 0.4);
+      color: var(--amber-light);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      letter-spacing: 0.02em;
+    }
+    .team-member__body {
+      padding: 22px 22px 20px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .team-member__role-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--amber);
+      background: rgba(230, 162, 60, 0.12);
+      border: 1px solid rgba(230, 162, 60, 0.25);
+      padding: 4px 9px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      align-self: flex-start;
+    }
+    .team-member__name {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text);
+      font-family: var(--font-primary);
+      margin-bottom: 4px;
+      line-height: 1.25;
+    }
+    .team-member__cert {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+    .team-member__cert-icon {
+      color: var(--amber);
+      flex-shrink: 0;
+    }
+    .team-member__desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 16px;
+      flex-grow: 1;
+    }
+    .team-member__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+    .team-member__tag {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      color: var(--text-light);
+      transition: var(--transition);
+    }
+    [data-theme="light"] .team-member__tag {
+      background: rgba(0, 0, 0, 0.03);
+    }
+    .team-member:hover .team-member__tag {
+      border-color: rgba(230, 162, 60, 0.35);
+      color: var(--amber-light);
+    }
+    [data-theme="light"] .team-member:hover .team-member__tag {
+      color: var(--amber-dark);
+    }
+    .team-member__footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      margin-top: auto;
+    }
+    .team-member__socials {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .team-social-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    [data-theme="light"] .team-social-btn {
+      background: rgba(0, 0, 0, 0.04);
+    }
+    .team-social-btn:hover {
+      background: var(--amber);
+      color: var(--navy);
+      border-color: var(--amber);
+      transform: translateY(-3px) scale(1.1);
+      box-shadow: 0 4px 12px rgba(230, 162, 60, 0.35);
+    }
+    .team-connect-btn {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--amber);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: var(--transition);
+    }
+    .team-connect-btn:hover {
+      color: var(--amber-light);
+      transform: translateX(3px);
+    }
+    [dir="rtl"] .team-connect-btn:hover {
+      transform: translateX(-3px);
+    }
+
 
     .values-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
     @media(max-width:900px){.values-grid{grid-template-columns:1fr;}}
@@ -44,22 +229,207 @@
     .value-card__title { font-size: 1.125rem; font-weight: 700; margin-bottom: 12px; }
     .value-card__desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; }
 
-    .timeline { position: relative; padding-left: 32px; }
-    .timeline::before { content:''; position:absolute; left:0; top:8px; bottom:0; width:2px; background:linear-gradient(to bottom, var(--amber), var(--steel)); }
-    .timeline-item { position: relative; margin-bottom: 40px; }
-    .timeline-item::before { content:''; position:absolute; left:-38px; top:6px; width:14px; height:14px; border-radius:50%; background:var(--amber); border:3px solid var(--bg); }
-    .timeline-year { font-size: 0.8125rem; font-weight: 700; color: var(--amber); letter-spacing:0.08em; margin-bottom: 8px; }
-    .timeline-title { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
-    .timeline-desc { font-size: 0.875rem; color: var(--text-muted); line-height: 1.7; }
+    /* ── Centered Company Timeline ── */
+    .timeline-centered {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px 0;
+    }
+    .timeline-centered::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--amber) 0%, rgba(230,162,60,0.6) 75%, transparent 100%);
+      transform: translateX(-50%);
+    }
+    .timeline-centered__item {
+      position: relative;
+      width: 50%;
+      padding: 0 40px;
+      margin-bottom: 44px;
+      box-sizing: border-box;
+    }
+    .timeline-centered__item:last-child {
+      margin-bottom: 0;
+    }
+    .timeline-centered__item--left {
+      left: 0;
+      text-align: right;
+    }
+    .timeline-centered__item--right {
+      left: 50%;
+      text-align: left;
+    }
+    .timeline-centered__node {
+      position: absolute;
+      top: 20px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--amber);
+      border: 4px solid var(--bg-alt);
+      box-shadow: 0 0 0 3px rgba(230,162,60,0.35);
+      z-index: 2;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+    }
+    .timeline-centered__item--left .timeline-centered__node {
+      right: -9px;
+    }
+    .timeline-centered__item--right .timeline-centered__node {
+      left: -9px;
+    }
+    .timeline-centered__item:hover .timeline-centered__node {
+      transform: scale(1.35);
+      box-shadow: 0 0 16px var(--amber);
+    }
+    .timeline-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      display: inline-block;
+      text-align: inherit;
+      width: 100%;
+    }
+    .timeline-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--amber);
+      box-shadow: var(--shadow-md);
+    }
+    .timeline-card__year {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--navy);
+      background: var(--amber);
+      padding: 3px 11px;
+      border-radius: 999px;
+      letter-spacing: 0.06em;
+      margin-bottom: 10px;
+    }
+    .timeline-card__title {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+      font-family: var(--font-primary);
+    }
+    .timeline-card__desc {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin: 0;
+    }
+    @media(max-width: 768px) {
+      .timeline-centered::before {
+        left: 20px;
+        transform: none;
+      }
+      .timeline-centered__item {
+        width: 100%;
+        left: 0 !important;
+        padding-left: 56px;
+        padding-right: 0;
+        text-align: left !important;
+        margin-bottom: 32px;
+      }
+      .timeline-centered__item--left .timeline-centered__node,
+      .timeline-centered__item--right .timeline-centered__node {
+        left: 11px;
+        right: auto;
+      }
+    }
 
-    .awards-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
-    @media(max-width:900px){.awards-grid{grid-template-columns:repeat(2,1fr);}}
-    @media(max-width:480px){.awards-grid{grid-template-columns:1fr;}}
-    .award-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 24px; text-align: center; transition: var(--transition); }
-    .award-item:hover { border-color: var(--amber); }
-    .award-item__year { font-size: 0.75rem; font-weight: 700; color: var(--amber); letter-spacing: 0.1em; }
-    .award-item__name { font-size: 0.9375rem; font-weight: 700; margin: 8px 0 4px; }
-    .award-item__by { font-size: 0.8125rem; color: var(--text-muted); }
+    /* ── Recognition / Awards Grid Redesign ── */
+    .awards-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    @media(max-width: 1100px) {
+      .awards-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    }
+    @media(max-width: 560px) {
+      .awards-grid { grid-template-columns: 1fr; gap: 16px; }
+    }
+    .award-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px 20px 26px;
+      text-align: center;
+      position: relative;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .award-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 18px 36px rgba(0,0,0,0.16), 0 0 0 1px rgba(230,162,60,0.35);
+      border-color: var(--amber);
+    }
+    .award-card__year-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--amber);
+      background: rgba(230,162,60,0.12);
+      border: 1px solid rgba(230,162,60,0.25);
+      padding: 3px 11px;
+      border-radius: 999px;
+      margin-bottom: 18px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .award-card__vector {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(230,162,60,0.18) 0%, rgba(230,162,60,0.04) 70%, transparent 100%);
+      border: 1px solid rgba(230,162,60,0.28);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--amber);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .award-card:hover .award-card__vector {
+      transform: scale(1.12) rotate(4deg);
+      background: rgba(230,162,60,0.22);
+      border-color: var(--amber);
+      box-shadow: 0 8px 24px rgba(230,162,60,0.25);
+    }
+    .award-card__name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      font-family: var(--font-primary);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+    .award-card__by {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-weight: 500;
+    }
+    .award-card__by-icon {
+      color: var(--amber);
+      flex-shrink: 0;
+    }
   </style>
 </head>
 <body>
@@ -179,36 +549,175 @@
           <p class="section-desc reveal">Meet the master electricians who lead our operations with expertise, integrity, and passion for quality.</p>
         </div>
         <div class="team-grid">
+          <!-- Team Member 1: James Hartwell -->
           <div class="team-member reveal">
-            <img src="assets/images/electrician-panel.jpg" alt="James Hartwell - Founder & CEO" class="team-member__img" loading="lazy">
+            <div class="team-member__media">
+              <img src="assets/images/team-james-hartwell.jpg" alt="James Hartwell - Founder & Master Electrician" class="team-member__img" loading="lazy">
+              <div class="team-member__overlay"></div>
+              <div class="team-member__badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                24 Yrs Exp
+              </div>
+            </div>
             <div class="team-member__body">
-              <div class="team-member__name">James Hartwell</div>
-              <div class="team-member__role">Founder & Master Electrician</div>
-              <div class="team-member__cert">License #ME-0042891 • 24 yrs exp.</div>
+              <span class="team-member__role-pill">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                Founder & Master Electrician
+              </span>
+              <h3 class="team-member__name">James Hartwell</h3>
+              <div class="team-member__cert">
+                <svg class="team-member__cert-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                <span>License #ME-0042891 • Master Certified</span>
+              </div>
+              <p class="team-member__desc">Founded ElectraPro in 2009 with a passion for precision electrical engineering. James personally leads major service panel upgrades, architectural wiring overhauls, and master craft apprenticeship.</p>
+              <div class="team-member__tags">
+                <span class="team-member__tag">#MasterElectrician</span>
+                <span class="team-member__tag">#PanelUpgrades</span>
+                <span class="team-member__tag">#CodeCompliance</span>
+              </div>
+              <div class="team-member__footer">
+                <div class="team-member__socials" role="list" aria-label="James Hartwell social profiles">
+                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="team-social-btn" aria-label="James Hartwell on LinkedIn" title="LinkedIn Profile">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45a1.64 1.64 0 0 0-1.64 1.63 1.64 1.64 0 0 0 1.64 1.64 1.64 1.64 0 0 0 1.64-1.64c0-.9-.74-1.63-1.64-1.63Z"/></svg>
+                  </a>
+                  <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="team-social-btn" aria-label="James Hartwell on X" title="X (Twitter) Profile">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                  </a>
+                  <a href="mailto:james.hartwell@electrapro.com" class="team-social-btn" aria-label="Email James Hartwell" title="Send Email">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                  </a>
+                </div>
+                <a href="contact.html" class="team-connect-btn">Connect &rarr;</a>
+              </div>
             </div>
           </div>
+
+          <!-- Team Member 2: Maria Santos -->
           <div class="team-member reveal reveal-delay-1">
-            <img src="assets/images/home-wiring.jpg" alt="Maria Santos - Operations Director" class="team-member__img" loading="lazy">
+            <div class="team-member__media">
+              <img src="assets/images/team-maria-santos.jpg" alt="Maria Santos - Operations Director" class="team-member__img" loading="lazy">
+              <div class="team-member__overlay"></div>
+              <div class="team-member__badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                16 Yrs Exp
+              </div>
+            </div>
             <div class="team-member__body">
-              <div class="team-member__name">Maria Santos</div>
-              <div class="team-member__role">Operations Director</div>
-              <div class="team-member__cert">NECA Certified • 16 yrs exp.</div>
+              <span class="team-member__role-pill">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                Operations Director
+              </span>
+              <h3 class="team-member__name">Maria Santos</h3>
+              <div class="team-member__cert">
+                <svg class="team-member__cert-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                <span>NECA Certified • Project Management</span>
+              </div>
+              <p class="team-member__desc">Directs day-to-day fieldwork logistics, rapid emergency dispatch, and rigorous quality assurance. Maria brings industrial-grade process control and customer-first care to every project.</p>
+              <div class="team-member__tags">
+                <span class="team-member__tag">#FieldOps</span>
+                <span class="team-member__tag">#NECACertified</span>
+                <span class="team-member__tag">#QualityAssurance</span>
+              </div>
+              <div class="team-member__footer">
+                <div class="team-member__socials" role="list" aria-label="Maria Santos social profiles">
+                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="team-social-btn" aria-label="Maria Santos on LinkedIn" title="LinkedIn Profile">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45a1.64 1.64 0 0 0-1.64 1.63 1.64 1.64 0 0 0 1.64 1.64 1.64 1.64 0 0 0 1.64-1.64c0-.9-.74-1.63-1.64-1.63Z"/></svg>
+                  </a>
+                  <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="team-social-btn" aria-label="Maria Santos on X" title="X (Twitter) Profile">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                  </a>
+                  <a href="mailto:maria.santos@electrapro.com" class="team-social-btn" aria-label="Email Maria Santos" title="Send Email">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                  </a>
+                </div>
+                <a href="contact.html" class="team-connect-btn">Connect &rarr;</a>
+              </div>
             </div>
           </div>
+
+          <!-- Team Member 3: David Chen -->
           <div class="team-member reveal reveal-delay-2">
-            <img src="assets/images/lighting-install.jpg" alt="David Chen - Smart Systems Lead" class="team-member__img" loading="lazy">
+            <div class="team-member__media">
+              <img src="assets/images/team-david-chen.jpg" alt="David Chen - Smart Systems Lead" class="team-member__img" loading="lazy">
+              <div class="team-member__overlay"></div>
+              <div class="team-member__badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                12 Yrs Exp
+              </div>
+            </div>
             <div class="team-member__body">
-              <div class="team-member__name">David Chen</div>
-              <div class="team-member__role">Smart Systems Lead</div>
-              <div class="team-member__cert">CEDIA Certified • 12 yrs exp.</div>
+              <span class="team-member__role-pill">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                Smart Systems Lead
+              </span>
+              <h3 class="team-member__name">David Chen</h3>
+              <div class="team-member__cert">
+                <svg class="team-member__cert-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                <span>CEDIA Certified • IoT Specialist</span>
+              </div>
+              <p class="team-member__desc">Pioneers next-generation intelligent living spaces, designing advanced home automation ecosystems, EV charging networks, smart load centers, and architectural ambient illumination.</p>
+              <div class="team-member__tags">
+                <span class="team-member__tag">#SmartHome</span>
+                <span class="team-member__tag">#EVCharging</span>
+                <span class="team-member__tag">#HomeAutomation</span>
+              </div>
+              <div class="team-member__footer">
+                <div class="team-member__socials" role="list" aria-label="David Chen social profiles">
+                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="team-social-btn" aria-label="David Chen on LinkedIn" title="LinkedIn Profile">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45a1.64 1.64 0 0 0-1.64 1.63 1.64 1.64 0 0 0 1.64 1.64 1.64 1.64 0 0 0 1.64-1.64c0-.9-.74-1.63-1.64-1.63Z"/></svg>
+                  </a>
+                  <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="team-social-btn" aria-label="David Chen on X" title="X (Twitter) Profile">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                  </a>
+                  <a href="mailto:david.chen@electrapro.com" class="team-social-btn" aria-label="Email David Chen" title="Send Email">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                  </a>
+                </div>
+                <a href="contact.html" class="team-connect-btn">Connect &rarr;</a>
+              </div>
             </div>
           </div>
+
+          <!-- Team Member 4: Sarah Kim -->
           <div class="team-member reveal reveal-delay-3">
-            <img src="assets/images/circuit-breaker.jpg" alt="Sarah Kim - Safety Manager" class="team-member__img" loading="lazy">
+            <div class="team-member__media">
+              <img src="assets/images/team-sarah-kim.jpg" alt="Sarah Kim - Safety Manager" class="team-member__img" loading="lazy">
+              <div class="team-member__overlay"></div>
+              <div class="team-member__badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                10 Yrs Exp
+              </div>
+            </div>
             <div class="team-member__body">
-              <div class="team-member__name">Sarah Kim</div>
-              <div class="team-member__role">Safety Manager</div>
-              <div class="team-member__cert">OSHA-30 • 10 yrs exp.</div>
+              <span class="team-member__role-pill">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Safety Manager
+              </span>
+              <h3 class="team-member__name">Sarah Kim</h3>
+              <div class="team-member__cert">
+                <svg class="team-member__cert-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                <span>OSHA-30 Certified • Safety Director</span>
+              </div>
+              <p class="team-member__desc">Enforces strict National Electrical Code (NEC) adherence and zero-compromise safety protocols. Sarah conducts weekly site risk audits and directs ongoing high-voltage safety certifications.</p>
+              <div class="team-member__tags">
+                <span class="team-member__tag">#OSHA30</span>
+                <span class="team-member__tag">#SafetyAudits</span>
+                <span class="team-member__tag">#NECCodes</span>
+              </div>
+              <div class="team-member__footer">
+                <div class="team-member__socials" role="list" aria-label="Sarah Kim social profiles">
+                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="team-social-btn" aria-label="Sarah Kim on LinkedIn" title="LinkedIn Profile">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45a1.64 1.64 0 0 0-1.64 1.63 1.64 1.64 0 0 0 1.64 1.64 1.64 1.64 0 0 0 1.64-1.64c0-.9-.74-1.63-1.64-1.63Z"/></svg>
+                  </a>
+                  <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="team-social-btn" aria-label="Sarah Kim on X" title="X (Twitter) Profile">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                  </a>
+                  <a href="mailto:sarah.kim@electrapro.com" class="team-social-btn" aria-label="Email Sarah Kim" title="Send Email">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                  </a>
+                </div>
+                <a href="contact.html" class="team-connect-btn">Connect &rarr;</a>
+              </div>
             </div>
           </div>
         </div>
@@ -218,87 +727,222 @@
     <!-- ═══════════ COMPANY TIMELINE ═══════════ -->
     <section class="section section--alt" aria-labelledby="timeline-heading">
       <div class="container">
-        <div class="grid grid-2 gap-64" style="align-items:start;">
-          <div class="reveal-left">
-            <div class="section-label">Our Journey</div>
-            <h2 id="timeline-heading" class="section-title" style="margin-bottom:48px;">15 Years of<br><span class="text-amber">Powering Homes</span></h2>
-            <div class="timeline">
-              <div class="timeline-item">
-                <div class="timeline-year">2009</div>
-                <div class="timeline-title">ElectraPro Founded</div>
-                <div class="timeline-desc">James Hartwell launches ElectraPro with one van and a mission to bring premium electrical service to residential homeowners.</div>
-              </div>
-              <div class="timeline-item">
-                <div class="timeline-year">2012</div>
-                <div class="timeline-title">Team Expansion to 10</div>
-                <div class="timeline-desc">Growing demand drives rapid expansion. We open our first dedicated operations center and hire 9 additional master electricians.</div>
-              </div>
-              <div class="timeline-item">
-                <div class="timeline-year">2015</div>
-                <div class="timeline-title">BBB A+ Accreditation</div>
-                <div class="timeline-desc">Awarded BBB A+ accreditation and recognized as "Best Electrical Contractor" by the Metro Chamber of Commerce.</div>
-              </div>
-              <div class="timeline-item">
-                <div class="timeline-year">2018</div>
-                <div class="timeline-title">Smart Home Division Launch</div>
-                <div class="timeline-desc">We launch our Smart Home Electrical division, offering home automation, smart panel, and EV charging installation services.</div>
-              </div>
-              <div class="timeline-item">
-                <div class="timeline-year">2021</div>
-                <div class="timeline-title">10,000th Home Powered</div>
-                <div class="timeline-desc">A milestone celebration as we complete our 10,000th residential electrical project, marking over a decade of community service.</div>
-              </div>
-              <div class="timeline-item">
-                <div class="timeline-year">2024</div>
-                <div class="timeline-title">35 Electricians Strong</div>
-                <div class="timeline-desc">Today, our team of 35 expert electricians serves 40+ communities, maintaining our founding commitment to quality and safety.</div>
-              </div>
+        <div class="section-header">
+          <div class="section-label reveal">Our Journey</div>
+          <h2 id="timeline-heading" class="section-title reveal">15 Years of <span class="text-amber">Powering Homes</span></h2>
+          <p class="section-desc reveal">From our humble beginnings with a single service van in 2009 to a team of 35 certified master electricians powering over 15,000 homes across 40+ communities.</p>
+        </div>
+
+        <div class="timeline-centered">
+          <!-- Item 1: 2009 -->
+          <div class="timeline-centered__item timeline-centered__item--left reveal">
+            <div class="timeline-centered__node"></div>
+            <div class="timeline-card">
+              <span class="timeline-card__year">2009</span>
+              <h3 class="timeline-card__title">ElectraPro Founded</h3>
+              <p class="timeline-card__desc">James Hartwell launches ElectraPro with one van and a mission to bring premium electrical craftsmanship to residential homeowners.</p>
             </div>
           </div>
-          <div class="reveal-right">
-            <div class="section-label">Recognition</div>
-            <h3 style="font-size:1.75rem;font-weight:700;margin-bottom:32px;">Awards & <span class="text-amber">Certifications</span></h3>
-            <div class="awards-grid">
-              <div class="award-item">
-                <div class="award-item__year">2024</div>
-                <div class="award-item__name">Best Electrician</div>
-                <div class="award-item__by">Metro Home Awards</div>
-              </div>
-              <div class="award-item">
-                <div class="award-item__year">2023</div>
-                <div class="award-item__name">Excellence Award</div>
-                <div class="award-item__by">NECA National</div>
-              </div>
-              <div class="award-item">
-                <div class="award-item__year">2022</div>
-                <div class="award-item__name">Top 10 Contractors</div>
-                <div class="award-item__by">HomeAdvisor</div>
-              </div>
-              <div class="award-item">
-                <div class="award-item__year">2021</div>
-                <div class="award-item__name">Safety Champion</div>
-                <div class="award-item__by">OSHA Region 5</div>
-              </div>
-              <div class="award-item">
-                <div class="award-item__year">2020</div>
-                <div class="award-item__name">Green Contractor</div>
-                <div class="award-item__by">EPA Partnership</div>
-              </div>
-              <div class="award-item">
-                <div class="award-item__year">2019</div>
-                <div class="award-item__name">Customer Choice</div>
-                <div class="award-item__by">Angie's List</div>
-              </div>
-              <div class="award-item">
-                <div class="award-item__year">2018</div>
-                <div class="award-item__name">Innovation Award</div>
-                <div class="award-item__by">Smart Home Expo</div>
-              </div>
-              <div class="award-item">
-                <div class="award-item__year">Ongoing</div>
-                <div class="award-item__name">A+ Rating</div>
-                <div class="award-item__by">BBB Accredited</div>
-              </div>
+
+          <!-- Item 2: 2012 -->
+          <div class="timeline-centered__item timeline-centered__item--right reveal">
+            <div class="timeline-centered__node"></div>
+            <div class="timeline-card">
+              <span class="timeline-card__year">2012</span>
+              <h3 class="timeline-card__title">Team Expansion to 10</h3>
+              <p class="timeline-card__desc">Surging customer demand drives rapid expansion. We open our first dedicated operations facility and hire 9 additional master electricians.</p>
+            </div>
+          </div>
+
+          <!-- Item 3: 2015 -->
+          <div class="timeline-centered__item timeline-centered__item--left reveal">
+            <div class="timeline-centered__node"></div>
+            <div class="timeline-card">
+              <span class="timeline-card__year">2015</span>
+              <h3 class="timeline-card__title">BBB A+ Accreditation</h3>
+              <p class="timeline-card__desc">Awarded prestigious BBB A+ accreditation and recognized as "Best Electrical Contractor" by the Metro Chamber of Commerce for customer satisfaction.</p>
+            </div>
+          </div>
+
+          <!-- Item 4: 2018 -->
+          <div class="timeline-centered__item timeline-centered__item--right reveal">
+            <div class="timeline-centered__node"></div>
+            <div class="timeline-card">
+              <span class="timeline-card__year">2018</span>
+              <h3 class="timeline-card__title">Smart Home Division Launch</h3>
+              <p class="timeline-card__desc">We pioneer smart electrical systems, offering integrated home automation, intelligent panels, whole-home battery backup, and EV charger hubs.</p>
+            </div>
+          </div>
+
+          <!-- Item 5: 2021 -->
+          <div class="timeline-centered__item timeline-centered__item--left reveal">
+            <div class="timeline-centered__node"></div>
+            <div class="timeline-card">
+              <span class="timeline-card__year">2021</span>
+              <h3 class="timeline-card__title">10,000th Home Powered</h3>
+              <p class="timeline-card__desc">A major company milestone as we complete our 10,000th residential electrical project with an unblemished 100% safety track record.</p>
+            </div>
+          </div>
+
+          <!-- Item 6: 2024 -->
+          <div class="timeline-centered__item timeline-centered__item--right reveal">
+            <div class="timeline-centered__node"></div>
+            <div class="timeline-card">
+              <span class="timeline-card__year">2024</span>
+              <h3 class="timeline-card__title">35 Electricians Strong</h3>
+              <p class="timeline-card__desc">Today, our specialized team of 35 licensed master technicians serves 40+ communities, delivering rapid 24/7 emergency dispatch and high-voltage precision.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ RECOGNITION / AWARDS ═══════════ -->
+    <section class="section" aria-labelledby="recognition-heading">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label reveal">Recognition</div>
+          <h2 id="recognition-heading" class="section-title reveal">Awards & <span class="text-amber">Certifications</span></h2>
+          <p class="section-desc reveal">Honored by industry governing bodies and endorsed by thousands of local homeowners, our dedication to electrical safety and engineering excellence has earned national acclaim.</p>
+        </div>
+
+        <div class="awards-grid">
+          <!-- Award 1: Best Electrician -->
+          <div class="award-card reveal">
+            <span class="award-card__year-badge">2024</span>
+            <div class="award-card__vector">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
+                <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
+                <path d="M4 22h16"/>
+                <path d="M10 14.66V17c0 .55-.45 1-1 1H8v4h8v-4h-1c-.55 0-1-.45-1-1v-2.34"/>
+                <path d="M6 2h12v7a6 6 0 0 1-12 0V2Z"/>
+                <polygon points="12 5 13 7.5 15.5 7.5 13.5 9 14.5 11.5 12 10 9.5 11.5 10.5 9 8.5 7.5 11 7.5 12 5" fill="currentColor" opacity="0.35"/>
+              </svg>
+            </div>
+            <h3 class="award-card__name">Best Electrician</h3>
+            <div class="award-card__by">
+              <svg class="award-card__by-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Metro Home Awards</span>
+            </div>
+          </div>
+
+          <!-- Award 2: Excellence Award -->
+          <div class="award-card reveal reveal-delay-1">
+            <span class="award-card__year-badge">2023</span>
+            <div class="award-card__vector">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="8" r="6"/>
+                <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>
+                <path d="m11 5-2 3h4l-2 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3 class="award-card__name">Excellence Award</h3>
+            <div class="award-card__by">
+              <svg class="award-card__by-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>NECA National</span>
+            </div>
+          </div>
+
+          <!-- Award 3: Top 10 Contractors -->
+          <div class="award-card reveal reveal-delay-2">
+            <span class="award-card__year-badge">2022</span>
+            <div class="award-card__vector">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <polygon points="12 6 13.5 9.5 17 10 14.5 12.5 15 16 12 14.2 9 16 9.5 12.5 7 10 10.5 9.5 12 6" fill="currentColor" opacity="0.35"/>
+              </svg>
+            </div>
+            <h3 class="award-card__name">Top 10 Contractors</h3>
+            <div class="award-card__by">
+              <svg class="award-card__by-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>HomeAdvisor Elite</span>
+            </div>
+          </div>
+
+          <!-- Award 4: Safety Champion -->
+          <div class="award-card reveal reveal-delay-3">
+            <span class="award-card__year-badge">2021</span>
+            <div class="award-card__vector">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>
+                <path d="m13 8-4 5h4l-1 4 4-5h-4l1-4z" fill="currentColor" opacity="0.4"/>
+              </svg>
+            </div>
+            <h3 class="award-card__name">Safety Champion</h3>
+            <div class="award-card__by">
+              <svg class="award-card__by-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>OSHA Region 5</span>
+            </div>
+          </div>
+
+          <!-- Award 5: Green Contractor -->
+          <div class="award-card reveal">
+            <span class="award-card__year-badge">2020</span>
+            <div class="award-card__vector">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+                <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+                <path d="M14 6l-2 3h3l-2 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3 class="award-card__name">Green Contractor</h3>
+            <div class="award-card__by">
+              <svg class="award-card__by-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>EPA Energy Star</span>
+            </div>
+          </div>
+
+          <!-- Award 6: Customer Choice -->
+          <div class="award-card reveal reveal-delay-1">
+            <span class="award-card__year-badge">2019</span>
+            <div class="award-card__vector">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                <path d="m12 7.5.8 1.6 1.7.2-1.2 1.2.3 1.7-1.6-.9-1.6.9.3-1.7-1.2-1.2 1.7-.2z" fill="currentColor" opacity="0.35"/>
+              </svg>
+            </div>
+            <h3 class="award-card__name">Customer Choice</h3>
+            <div class="award-card__by">
+              <svg class="award-card__by-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Angie's Super Service</span>
+            </div>
+          </div>
+
+          <!-- Award 7: Innovation Award -->
+          <div class="award-card reveal reveal-delay-2">
+            <span class="award-card__year-badge">2018</span>
+            <div class="award-card__vector">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/>
+                <path d="M9 18h6"/>
+                <path d="M10 22h4"/>
+                <line x1="12" y1="2" x2="12" y2="4"/>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                <line x1="19.78" y1="4.22" x2="18.36" y2="5.64"/>
+                <polygon points="12 7 11 10 13 10 12 13 14 9 12 9 12 7" fill="currentColor" opacity="0.35"/>
+              </svg>
+            </div>
+            <h3 class="award-card__name">Innovation Award</h3>
+            <div class="award-card__by">
+              <svg class="award-card__by-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Smart Home Expo</span>
+            </div>
+          </div>
+
+          <!-- Award 8: A+ BBB Rating -->
+          <div class="award-card reveal reveal-delay-3">
+            <span class="award-card__year-badge">Ongoing</span>
+            <div class="award-card__vector">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polygon points="12 2 15 5 19 5 20 9 23 12 20 15 19 19 15 19 12 22 9 19 5 19 4 15 1 12 4 9 5 5 9 5 12 2"/>
+                <text x="12" y="15.5" text-anchor="middle" font-size="9.5" font-weight="800" fill="currentColor" stroke="none" font-family="'Space Grotesk', sans-serif">A+</text>
+              </svg>
+            </div>
+            <h3 class="award-card__name">A+ Accredited</h3>
+            <div class="award-card__by">
+              <svg class="award-card__by-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>BBB Accredited Business</span>
             </div>
           </div>
         </div>
