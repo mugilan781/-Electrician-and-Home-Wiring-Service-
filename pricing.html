@@ -55,10 +55,50 @@
     .pricing-plans-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
     @media(max-width:1024px){.pricing-plans-grid{grid-template-columns:1fr;max-width:480px;margin:0 auto;}}
 
+    .pricing-card.featured {
+      position: relative;
+      overflow: visible;
+      border-color: #E65100;
+      border-width: 2px;
+    }
+    .pricing-card.featured .pricing-card__header {
+      border-top-left-radius: calc(var(--radius-md) - 2px);
+      border-top-right-radius: calc(var(--radius-md) - 2px);
+    }
+    .pricing-card__badge {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #E65100;
+      color: #FFFFFF;
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 6px 18px;
+      border-radius: 8px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      box-shadow: 0 4px 14px rgba(230, 81, 0, 0.4);
+      z-index: 10;
+    }
+
+    .pricing-feature.excluded {
+      opacity: 1 !important;
+      color: var(--text) !important;
+    }
+    .pricing-feature.excluded svg {
+      color: #E53E3E !important;
+      stroke: #E53E3E !important;
+      stroke-width: 2.5 !important;
+    }
+
     .rate-table-wrap { overflow-x: auto; border-radius: var(--radius-md); border: 1px solid var(--border); }
     .rate-table { width: 100%; border-collapse: collapse; min-width: 600px; }
     .rate-table th { background: var(--navy); color: var(--white); padding: 16px 24px; text-align: left; font-family: var(--font-primary); font-weight: 600; font-size: 0.875rem; }
+    .rate-table th:not(:last-child) { border-right: 1px solid rgba(255, 255, 255, 0.12); }
     .rate-table td { padding: 14px 24px; border-bottom: 1px solid var(--border); background: var(--bg-card); color: var(--text-muted); font-size: 0.9rem; }
+    .rate-table td:not(:last-child) { border-right: 1px solid var(--border); }
     .rate-table tr:last-child td { border-bottom: none; }
     .rate-table tr:hover td { background: rgba(230,162,60,.03); }
     .rate-col { color: var(--amber); font-weight: 700; }
@@ -163,13 +203,13 @@
                 <li class="pricing-feature excluded"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Emergency service discount</li>
                 <li class="pricing-feature excluded"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Smart home consultation</li>
               </ul>
-              <a href="contact.html" class="btn btn-outline" style="width:100%;justify-content:center;">Get Started</a>
+              <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center;">Get Started</a>
             </div>
           </div>
 
           <!-- Pro (Featured) -->
           <div class="pricing-card featured">
-            <div class="pricing-card__badge">Most Popular</div>
+            <div class="pricing-card__badge">MOST POPULAR</div>
             <div class="pricing-card__header">
               <div class="pricing-plan">Professional</div>
               <h3 style="color:var(--white);">Home Pro</h3>
@@ -214,7 +254,7 @@
                 <li class="pricing-feature included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Free emergency call-outs</li>
                 <li class="pricing-feature included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Annual smart home consultation</li>
               </ul>
-              <a href="contact.html" class="btn btn-navy" style="width:100%;justify-content:center;border:1px solid var(--border);">Get Started</a>
+              <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center;">Get Started</a>
             </div>
           </div>
         </div>
@@ -347,7 +387,7 @@
           <h2 id="pricing-faq" class="section-title reveal">Pricing FAQs</h2>
         </div>
         <div class="accordion reveal" style="max-width:800px;margin:0 auto;">
-          <div class="accordion-item active">
+          <div class="accordion-item">
             <div class="accordion-header">
               <span class="accordion-question">How are your prices determined?</span>
               <div class="accordion-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
@@ -383,9 +423,6 @@
               <div class="accordion-content">We accept all major credit cards, check, and bank transfer. We also offer 0% financing for qualifying projects over $1,000 through our partnership with GreenSky Finance. Ask about our financing options when you receive your quote.</div>
             </div>
           </div>
-        </div>
-        <div style="text-align:center;margin-top:40px;">
-          <a href="contact.html" class="btn btn-primary reveal">Get a Free Quote</a>
         </div>
       </div>
     </section>

@@ -1225,20 +1225,31 @@ select.form-control { cursor: pointer; }
   box-shadow: var(--shadow-lg);
 }
 .pricing-card.featured {
-  border-color: var(--amber);
+  border-color: #E65100;
   border-width: 2px;
+  overflow: visible;
+  position: relative;
+}
+.pricing-card.featured .pricing-card__header {
+  border-top-left-radius: calc(var(--radius-md) - 2px);
+  border-top-right-radius: calc(var(--radius-md) - 2px);
 }
 .pricing-card__badge {
   position: absolute;
-  top: 16px; right: 16px;
-  background: var(--amber);
-  color: var(--navy);
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #E65100;
+  color: var(--white);
   font-size: 0.75rem;
-  font-weight: 700;
-  padding: 4px 12px;
-  border-radius: 100px;
-  letter-spacing: 0.05em;
+  font-weight: 800;
+  padding: 6px 18px;
+  border-radius: 8px;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(230, 81, 0, 0.4);
+  z-index: 10;
 }
 .pricing-card__header {
   padding: 36px 32px 24px;
@@ -1299,8 +1310,8 @@ select.form-control { cursor: pointer; }
   width: 18px; height: 18px;
 }
 .pricing-feature.included svg { color: var(--success); }
-.pricing-feature.excluded { opacity: .45; }
-.pricing-feature.excluded svg { color: var(--text-muted); }
+.pricing-feature.excluded { opacity: 1; color: var(--text); }
+.pricing-feature.excluded svg { color: var(--error); stroke: var(--error); stroke-width: 2.5; }
 
 /* ── ██ BLOG CARD ██ ── */
 .blog-card {
