@@ -204,6 +204,260 @@
     .compare-table .check { color: var(--success); }
     .compare-table .cross { color: var(--error); }
     .compare-table .highlight-col { background: rgba(230,162,60,.06); }
+
+    /* ══ HEALTH PULSE / BLUEPRINT SCAN — Home2 Exclusive ══ */
+    .health-scan {
+      position: relative;
+      overflow: hidden;
+      background: var(--bg);
+    }
+    .health-scan::before {
+      content:'';
+      position:absolute;
+      top:-20%; right:-10%;
+      width:680px; height:680px;
+      background: radial-gradient(circle, rgba(230,162,60,.07) 0%, transparent 70%);
+      pointer-events:none;
+    }
+    .health-scan__grid {
+      display:grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap:48px;
+      align-items:start;
+      position:relative;
+      z-index:1;
+    }
+    @media (max-width: 980px) {
+      .health-scan__grid { grid-template-columns: 1fr; gap:32px; }
+    }
+    .health-scan__intro-badge {
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:0.72rem;
+      font-weight:700;
+      letter-spacing:0.14em;
+      text-transform:uppercase;
+      color:var(--amber);
+      background:rgba(230,162,60,.1);
+      border:1px solid rgba(230,162,60,.22);
+      padding:7px 14px;
+      border-radius:100px;
+      margin-bottom:16px;
+    }
+    .health-scan__title {
+      font-family:var(--font-primary);
+      font-size:clamp(1.9rem, 3.5vw, 2.65rem);
+      line-height:1.15;
+      letter-spacing:-0.02em;
+      margin-bottom:14px;
+    }
+    .health-scan__desc {
+      font-size:1rem;
+      color:var(--text-muted);
+      line-height:1.7;
+      margin-bottom:28px;
+      max-width:560px;
+    }
+    /* Checklist */
+    .pulse-checks {
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .pulse-check {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:16px 18px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background:var(--bg-card);
+      transition:var(--transition);
+      cursor:pointer;
+      user-select:none;
+    }
+    .pulse-check:hover { border-color:rgba(230,162,60,.35); transform:translateX(3px); box-shadow:var(--shadow-sm); }
+    .pulse-check.active { border-color:var(--amber); background:rgba(230,162,60,.07); box-shadow:0 4px 18px rgba(230,162,60,.12); }
+    .pulse-check__left { display:flex; align-items:center; gap:14px; }
+    .pulse-check__icon {
+      width:42px; height:42px;
+      border-radius:10px;
+      background:rgba(230,162,60,.1);
+      display:flex; align-items:center; justify-content:center;
+      color:var(--amber);
+      flex-shrink:0;
+      transition:var(--transition);
+    }
+    .pulse-check.active .pulse-check__icon { background:var(--amber); color:var(--navy); }
+    .pulse-check__text { display:flex; flex-direction:column; gap:2px; }
+    .pulse-check__title { font-size:0.9375rem; font-weight:700; line-height:1.3; }
+    .pulse-check__sub { font-size:0.8125rem; color:var(--text-muted); line-height:1.4; }
+    .pulse-toggle {
+      width:48px; height:28px;
+      border-radius:100px;
+      background:var(--border);
+      position:relative;
+      flex-shrink:0;
+      transition:var(--transition);
+      border:1px solid transparent;
+    }
+    .pulse-toggle::after {
+      content:'';
+      position:absolute;
+      top:2px; left:2px;
+      width:22px; height:22px;
+      border-radius:50%;
+      background:var(--white);
+      box-shadow:0 2px 6px rgba(0,0,0,.2);
+      transition:var(--transition);
+    }
+    .pulse-check.active .pulse-toggle { background:var(--amber); }
+    .pulse-check.active .pulse-toggle::after { transform:translateX(20px); }
+    /* Result Card */
+    .pulse-result {
+      background:var(--bg-card);
+      border:1px solid var(--border);
+      border-radius:20px;
+      overflow:hidden;
+      box-shadow:var(--shadow-md);
+      position:sticky;
+      top:100px;
+    }
+    .pulse-result__top {
+      padding:28px 28px 24px;
+      text-align:center;
+      border-bottom:1px solid var(--border);
+      background: linear-gradient(180deg, rgba(230,162,60,.06) 0%, transparent 100%);
+    }
+    .pulse-gauge-wrap {
+      position:relative;
+      width:200px; height:120px;
+      margin:0 auto 18px;
+      overflow:hidden;
+    }
+    .pulse-gauge-bg {
+      position:absolute;
+      inset:0;
+      border-radius:200px 200px 0 0;
+      background: conic-gradient(from 180deg at 50% 100%, #38A169 0deg 60deg, #E6A23C 60deg 120deg, #E53E3E 120deg 180deg);
+      mask: radial-gradient(circle at 50% 100%, transparent 62%, black 63%);
+      -webkit-mask: radial-gradient(circle at 50% 100%, transparent 62%, black 63%);
+      opacity:.92;
+    }
+    .pulse-gauge-needle {
+      position:absolute;
+      bottom:0; left:50%;
+      width:3px; height:92px;
+      background:var(--text);
+      transform-origin:bottom center;
+      border-radius:100px;
+      transform:translateX(-50%) rotate(-90deg);
+      transition:transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index:2;
+    }
+    .pulse-gauge-needle::after {
+      content:'';
+      position:absolute;
+      bottom:-6px; left:50%;
+      transform:translateX(-50%);
+      width:14px; height:14px;
+      border-radius:50%;
+      background:var(--text);
+      border:3px solid var(--bg-card);
+      box-shadow:0 2px 8px rgba(0,0,0,.25);
+    }
+    .pulse-gauge-center {
+      position:absolute;
+      bottom:0; left:50%;
+      transform:translateX(-50%);
+      text-align:center;
+      z-index:1;
+    }
+    .pulse-score {
+      font-family:var(--font-primary);
+      font-size:2.15rem;
+      font-weight:800;
+      line-height:1;
+      letter-spacing:-0.02em;
+    }
+    .pulse-score__label { font-size:0.7rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--text-muted); margin-top:4px; }
+    .pulse-status {
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      padding:7px 14px;
+      border-radius:100px;
+      font-size:0.8125rem;
+      font-weight:700;
+      letter-spacing:0.02em;
+      margin-bottom:14px;
+      border:1px solid transparent;
+      transition:var(--transition);
+    }
+    .pulse-status--safe { background:rgba(56,161,105,.12); color:#38A169; border-color:rgba(56,161,105,.22); }
+    .pulse-status--attention { background:rgba(230,162,60,.14); color:#B7791F; border-color:rgba(230,162,60,.3); }
+    [data-theme="dark"] .pulse-status--attention { color:var(--amber); }
+    .pulse-status--critical { background:rgba(229,62,62,.1); color:#E53E3E; border-color:rgba(229,62,62,.22); }
+    .pulse-status__dot { width:8px; height:8px; border-radius:50%; background:currentColor; animation:pulse 1.8s infinite; }
+    .pulse-reco {
+      font-size:0.9375rem;
+      line-height:1.6;
+      color:var(--text-muted);
+      max-width:320px;
+      margin:0 auto;
+    }
+    .pulse-reco strong { color:var(--text); }
+    .pulse-result__body { padding:24px 28px 28px; }
+    .pulse-result__label {
+      font-size:0.7rem;
+      font-weight:700;
+      letter-spacing:0.13em;
+      text-transform:uppercase;
+      color:var(--text-muted);
+      margin-bottom:12px;
+    }
+    .pulse-reco-list {
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-bottom:22px;
+    }
+    .pulse-reco-item {
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      font-size:0.875rem;
+      line-height:1.5;
+      color:var(--text-muted);
+    }
+    .pulse-reco-item svg { flex-shrink:0; margin-top:2px; color:var(--amber); }
+    .pulse-actions { display:flex; flex-direction:column; gap:10px; }
+    .pulse-actions .btn { width:100%; justify-content:center; }
+    .pulse-footnote {
+      font-size:0.75rem;
+      color:var(--text-light);
+      text-align:center;
+      margin-top:14px;
+      line-height:1.5;
+    }
+    .pulse-footnote a { color:var(--amber); font-weight:600; }
+    .pulse-footnote a:hover { text-decoration:underline; }
+    /* Counter strip inside result */
+    .pulse-mini-stats {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+      margin-bottom:22px;
+      padding:14px;
+      background:var(--bg);
+      border:1px solid var(--border);
+      border-radius:12px;
+    }
+    .pulse-mini-stat { text-align:center; }
+    .pulse-mini-stat__num { font-family:var(--font-primary); font-size:1.05rem; font-weight:800; color:var(--amber); }
+    .pulse-mini-stat__lbl { font-size:0.68rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-muted); }
   </style>
 </head>
 <body class="page-home2">
@@ -464,21 +718,103 @@
       </div>
     </section>
 
-    <!-- ═══════════ EMERGENCY CTA ═══════════ -->
-    <section class="emergency-cta">
+    <!-- ═══════════ ELECTRICAL HEALTH PULSE — Home2 Exclusive ═══════════ -->
+    <!-- Unique interactive diagnostic: fits "Where Electrical Meets Artistry" — visualises the hidden health of the home's wiring as a living pulse. Business motive: turns curiosity into qualified inspection bookings, positioning ElectraPro as preventive experts, not just emergency responders. -->
+    <section class="section health-scan" aria-labelledby="healthscan-heading">
       <div class="container">
-        <div class="emergency-cta-inner">
-          <div class="emergency-cta__content">
-            <p class="emergency-cta__eyebrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="vertical-align:middle;margin-right:6px;display:inline-block;" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Don't Wait — Act Now</p>
-            <h2 class="emergency-cta__title">Electrical Emergency? 60-Min Response.</h2>
-            <p class="emergency-cta__desc">Our emergency response team is standing by 24/7. One call connects you to a licensed electrician.</p>
+        <div class="section-header" style="margin-bottom:48px;">
+          <div class="section-label reveal">Interactive Diagnostic — Home2 Exclusive</div>
+          <h2 id="healthscan-heading" class="section-title reveal">Is Your Home's Wiring <span style="color:var(--amber)">Quietly Asking for Help?</span></h2>
+          <p class="section-desc reveal">Most electrical failures whisper before they shout. Run a 30-second <strong style="color:var(--text)">Blueprint Pulse Scan</strong> — tap what you've noticed at home and see your real-time safety score, crafted by our master electricians.</p>
+        </div>
+
+        <div class="health-scan__grid">
+          <!-- Left: Checklist -->
+          <div class="reveal-left">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:12px;">
+              <h3 style="font-size:1.125rem;font-weight:700;">Check what applies to your home</h3>
+              <span id="pulse-count" style="font-size:0.8125rem;font-weight:700;color:var(--amber);background:rgba(230,162,60,.1);padding:6px 12px;border-radius:100px;border:1px solid rgba(230,162,60,.2);">0 of 6 selected</span>
+            </div>
+            <div class="pulse-checks" role="group" aria-label="Electrical symptoms checklist">
+              <div class="pulse-check" data-risk="18" tabindex="0" role="checkbox" aria-checked="false">
+                <div class="pulse-check__left">
+                  <div class="pulse-check__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 1 7 7c0 2.5-1.2 4.3-3 5.5V17a1 1 0 0 1-1 1h-6a1 1 0 0 1-1-1v-2.5C6.2 13.3 5 11.5 5 9a7 7 0 0 1 7-7z"/></svg></div>
+                  <div class="pulse-check__text"><span class="pulse-check__title">Lights flicker or dim</span><span class="pulse-check__sub">When AC / microwave starts</span></div>
+                </div>
+                <div class="pulse-toggle" aria-hidden="true"></div>
+              </div>
+              <div class="pulse-check" data-risk="20" tabindex="0" role="checkbox" aria-checked="false">
+                <div class="pulse-check__left">
+                  <div class="pulse-check__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="9" y1="12" x2="15" y2="12"/></svg></div>
+                  <div class="pulse-check__text"><span class="pulse-check__title">Breakers trip often</span><span class="pulse-check__sub">More than twice in 12 months</span></div>
+                </div>
+                <div class="pulse-toggle" aria-hidden="true"></div>
+              </div>
+              <div class="pulse-check" data-risk="22" tabindex="0" role="checkbox" aria-checked="false">
+                <div class="pulse-check__left">
+                  <div class="pulse-check__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg></div>
+                  <div class="pulse-check__text"><span class="pulse-check__title">Warm outlets or tingling</span><span class="pulse-check__sub">Switch plates feel hot</span></div>
+                </div>
+                <div class="pulse-toggle" aria-hidden="true"></div>
+              </div>
+              <div class="pulse-check" data-risk="25" tabindex="0" role="checkbox" aria-checked="false">
+                <div class="pulse-check__left">
+                  <div class="pulse-check__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+                  <div class="pulse-check__text"><span class="pulse-check__title">Burning smell / discolored outlet</span><span class="pulse-check__sub">Near kitchen, laundry or panel</span></div>
+                </div>
+                <div class="pulse-toggle" aria-hidden="true"></div>
+              </div>
+              <div class="pulse-check" data-risk="15" tabindex="0" role="checkbox" aria-checked="false">
+                <div class="pulse-check__left">
+                  <div class="pulse-check__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+                  <div class="pulse-check__text"><span class="pulse-check__title">Home is 20+ years old</span><span class="pulse-check__sub">No full rewiring since build</span></div>
+                </div>
+                <div class="pulse-toggle" aria-hidden="true"></div>
+              </div>
+              <div class="pulse-check" data-risk="12" tabindex="0" role="checkbox" aria-checked="false">
+                <div class="pulse-check__left">
+                  <div class="pulse-check__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+                  <div class="pulse-check__text"><span class="pulse-check__title">Extension cords everywhere</span><span class="pulse-check__sub">Power strips as permanent wiring</span></div>
+                </div>
+                <div class="pulse-toggle" aria-hidden="true"></div>
+              </div>
+            </div>
+            <button id="pulse-reset" type="button" style="margin-top:16px;font-size:0.8125rem;font-weight:600;color:var(--text-muted);background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:6px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg> Reset scan</button>
           </div>
-          <div class="emergency-cta__actions">
-            <a href="tel:+18005550199" class="emergency-phone">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72.84.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.91A16 16 0 0 0 14 15l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.5 16l.42.92z"/></svg>
-              1-800-555-0199
-            </a>
-            <a href="emergency.html" class="btn btn-white">Emergency Page</a>
+
+          <!-- Right: Live Result -->
+          <div class="reveal-right">
+            <div class="pulse-result" aria-live="polite" aria-atomic="true">
+              <div class="pulse-result__top">
+                <div class="pulse-gauge-wrap" aria-hidden="true">
+                  <div class="pulse-gauge-bg"></div>
+                  <div id="pulse-needle" class="pulse-gauge-needle"></div>
+                  <div class="pulse-gauge-center">
+                    <div id="pulse-score" class="pulse-score">12</div>
+                    <div class="pulse-score__label">Pulse Score</div>
+                  </div>
+                </div>
+                <div id="pulse-status" class="pulse-status pulse-status--safe"><span class="pulse-status__dot"></span> System Calm — Low Risk</div>
+                <p id="pulse-reco" class="pulse-reco">Your wiring looks <strong>steady</strong>. A routine <strong>preventive inspection</strong> every 12 months keeps it that way.</p>
+              </div>
+              <div class="pulse-result__body">
+                <div class="pulse-mini-stats">
+                  <div class="pulse-mini-stat"><div class="pulse-mini-stat__num" id="pulse-risk-num">12%</div><div class="pulse-mini-stat__lbl">Risk level</div></div>
+                  <div class="pulse-mini-stat"><div class="pulse-mini-stat__num">₹0</div><div class="pulse-mini-stat__lbl">Hidden loss/yr*</div></div>
+                  <div class="pulse-mini-stat"><div class="pulse-mini-stat__num" id="pulse-priority">Low</div><div class="pulse-mini-stat__lbl">Priority</div></div>
+                </div>
+                <div class="pulse-result__label">Your personalized roadmap</div>
+                <div id="pulse-list" class="pulse-reco-list">
+                  <div class="pulse-reco-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Annual Safety Check</strong> — 30-point ElectraPro inspection, same-day report.</span></div>
+                  <div class="pulse-reco-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Smart load review</strong> — we map circuits to prevent future tripping.</span></div>
+                </div>
+                <div class="pulse-actions">
+                  <a href="contact.html" id="pulse-cta-primary" class="btn btn-primary">Book Free Pulse Inspection</a>
+                  <a href="pricing.html" class="btn btn-outline" style="border-color:var(--border);color:var(--text);">See Transparent Pricing</a>
+                </div>
+                <p class="pulse-footnote">Not an emergency? Our <a href="services.html">panel & wiring artistry</a> starts at ₹1,499. <br>*Estimated energy wastage from loose / aged circuits. <span id="pulse-wastage">~ ₹0</span>/year potential saving.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -552,6 +888,121 @@
         });
       }, { threshold: 0.5 });
       bars.forEach(b => obs.observe(b));
+
+      // ── Blueprint Pulse Scan — Home2 Exclusive Logic ──
+      const checks = document.querySelectorAll('.pulse-check');
+      const scoreEl = document.getElementById('pulse-score');
+      const riskNumEl = document.getElementById('pulse-risk-num');
+      const statusEl = document.getElementById('pulse-status');
+      const recoEl = document.getElementById('pulse-reco');
+      const listEl = document.getElementById('pulse-list');
+      const needleEl = document.getElementById('pulse-needle');
+      const countEl = document.getElementById('pulse-count');
+      const priorityEl = document.getElementById('pulse-priority');
+      const wastageEl = document.getElementById('pulse-wastage');
+      const ctaPrimary = document.getElementById('pulse-cta-primary');
+      const resetBtn = document.getElementById('pulse-reset');
+
+      const states = {
+        safe: {
+          label: '<span class="pulse-status__dot"></span> System Calm — Low Risk',
+          cls: 'pulse-status--safe',
+          reco: 'Your wiring looks <strong>steady</strong>. A routine <strong>preventive inspection</strong> every 12 months keeps it that way.',
+          list: [
+            '<strong>Annual Safety Check</strong> — 30-point ElectraPro inspection, same-day report.',
+            '<strong>Smart load review</strong> — we map circuits to prevent future tripping.'
+          ],
+          priority: 'Low',
+          cta: 'Book Free Pulse Inspection',
+          wastage: '~ ₹0'
+        },
+        attention: {
+          label: '<span class="pulse-status__dot"></span> Flicker Detected — Attention Needed',
+          cls: 'pulse-status--attention',
+          reco: 'Your home shows <strong>early strain</strong>. A <strong>targeted audit</strong> within 2 weeks can prevent costlier rewiring.',
+          list: [
+            '<strong>Circuit Load Analysis</strong> — thermal scan + breaker health check.',
+            '<strong>Outlet & Panel Tune-up</strong> — fix warm spots before they escalate.',
+            '<strong>Transparent quote</strong> — flat-rate, no-surprise pricing.'
+          ],
+          priority: 'Medium',
+          cta: 'Schedule Priority Audit',
+          wastage: '~ ₹2,800'
+        },
+        critical: {
+          label: '<span class="pulse-status__dot"></span> Critical Pulse — Act This Week',
+          cls: 'pulse-status--critical',
+          reco: 'Multiple warnings suggest <strong>overloaded or aging circuits</strong>. Our artistry team recommends a <strong>same-week full inspection</strong>.',
+          list: [
+            '<strong>Emergency-grade inspection</strong> — 60-min arrival available.',
+            '<strong>Panel & rewiring roadmap</strong> — phased plan to modernize safely.',
+            '<strong>5-year warranty</strong> on all corrective wiring.'
+          ],
+          priority: 'High',
+          cta: 'Get Immediate Inspection',
+          wastage: '~ ₹7,500+'
+        }
+      };
+
+      function updatePulse() {
+        const active = document.querySelectorAll('.pulse-check.active');
+        const count = active.length;
+        let score = 12;
+        active.forEach(c => score += parseInt(c.dataset.risk, 10));
+        if (count === 0) score = 12;
+        if (score > 98) score = 98;
+        // needle: -90 deg = 0, +90 deg = 100 => -90 + score*1.8
+        const deg = -90 + (score * 1.8);
+        if (scoreEl) scoreEl.textContent = score;
+        if (riskNumEl) riskNumEl.textContent = score + '%';
+        if (countEl) countEl.textContent = count + ' of 6 selected';
+        if (needleEl) needleEl.style.transform = 'translateX(-50%) rotate(' + deg + 'deg)';
+        if (wastageEl) {
+          let w = '~ ₹0';
+          if (score > 35 && score <= 70) w = '~ ₹2,800';
+          if (score > 70) w = '~ ₹7,500+';
+          wastageEl.textContent = w;
+          const miniWastage = document.querySelector('.pulse-mini-stats .pulse-mini-stat:nth-child(2) .pulse-mini-stat__num');
+          if (miniWastage) miniWastage.textContent = w.replace('~ ','');
+        }
+
+        let tier = 'safe';
+        if (score >= 36 && score <= 70) tier = 'attention';
+        if (score > 70) tier = 'critical';
+        const s = states[tier];
+        if (statusEl) {
+          statusEl.className = 'pulse-status ' + s.cls;
+          statusEl.innerHTML = s.label;
+        }
+        if (recoEl) recoEl.innerHTML = s.reco;
+        if (priorityEl) priorityEl.textContent = s.priority;
+        if (ctaPrimary) ctaPrimary.textContent = s.cta;
+        if (listEl) {
+          listEl.innerHTML = s.list.map(item => '<div class="pulse-reco-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>' + item + '</span></div>').join('');
+        }
+      }
+
+      checks.forEach(chk => {
+        const toggle = () => {
+          chk.classList.toggle('active');
+          const isActive = chk.classList.contains('active');
+          chk.setAttribute('aria-checked', isActive ? 'true' : 'false');
+          updatePulse();
+        };
+        chk.addEventListener('click', toggle);
+        chk.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+        });
+      });
+
+      if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+          checks.forEach(c => { c.classList.remove('active'); c.setAttribute('aria-checked','false'); });
+          updatePulse();
+        });
+      }
+
+      updatePulse();
     });
   </script>
 </body>
