@@ -10,26 +10,43 @@
   <style>
     .services-filter {
       display: flex;
-      gap: 10px;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
       flex-wrap: wrap;
-      margin-bottom: 40px;
+      margin: 0 auto 48px;
+      max-width: 800px;
     }
     .filter-btn {
-      padding: 8px 20px;
+      padding: 10px 22px;
       border-radius: 100px;
       border: 1.5px solid var(--border);
-      font-size: 0.875rem;
+      font-size: 0.9rem;
       font-weight: 600;
       color: var(--text-muted);
       background: var(--bg-card);
       cursor: pointer;
       transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
-    .filter-btn:hover,
-    .filter-btn.active {
+    .filter-btn:hover {
       border-color: var(--amber);
       color: var(--amber);
       background: rgba(230,162,60,.08);
+      transform: translateY(-1px);
+    }
+    .filter-btn.active {
+      border-color: var(--amber);
+      color: var(--navy);
+      background: var(--amber);
+      box-shadow: 0 4px 16px rgba(230,162,60,.35);
+      font-weight: 700;
+    }
+    [data-theme="dark"] .filter-btn.active {
+      color: #101C2C;
+      background: var(--amber);
     }
 
     .service-detail-card {
@@ -40,16 +57,73 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       min-height: 400px;
-      transition: var(--transition);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
     }
-    .service-detail-card:nth-child(even) { direction: rtl; }
-    .service-detail-card:nth-child(even) > * { direction: ltr; }
-    .service-detail-card:hover { box-shadow: var(--shadow-lg); }
+    .service-detail-card.reverse-layout {
+      direction: rtl;
+    }
+    .service-detail-card.reverse-layout > * {
+      direction: ltr;
+    }
+    .service-detail-card:hover {
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(230,162,60,.3);
+    }
+    .service-detail-card.is-hidden {
+      display: none !important;
+    }
+    .service-detail-card.card-enter {
+      animation: cardEnter 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    @keyframes cardEnter {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
     .service-detail-card__img { width: 100%; height: 100%; object-fit: cover; display: block; min-height: 320px; }
     .service-detail-card__body { padding: 48px; display: flex; flex-direction: column; justify-content: center; }
     @media (max-width: 900px) {
-      .service-detail-card { grid-template-columns: 1fr; direction: ltr !important; }
+      .service-detail-card,
+      .service-detail-card.reverse-layout {
+        grid-template-columns: 1fr;
+        direction: ltr !important;
+      }
       .service-detail-card__img { min-height: 260px; }
+      .service-detail-card__body { padding: 28px; }
+    }
+
+    /* Price Badge - Curved Edge Rectangle matching 'Get a Quote' button */
+    .service-detail-card .badge,
+    .service-detail-card .badge-green,
+    .service-price-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 24px;
+      border-radius: var(--radius-sm) !important;
+      background: rgba(56, 161, 105, 0.15) !important;
+      color: var(--success) !important;
+      border: 1.5px solid rgba(56, 161, 105, 0.35) !important;
+      font-family: var(--font-primary);
+      font-size: 0.9375rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      box-sizing: border-box;
+      line-height: 1;
+      min-height: 48px;
+      transition: var(--transition);
+    }
+    .service-detail-card .badge-green:hover,
+    .service-price-badge:hover {
+      background: rgba(56, 161, 105, 0.22) !important;
+      border-color: rgba(56, 161, 105, 0.55) !important;
+      transform: translateY(-2px);
     }
 
     .service-includes { display: flex; flex-direction: column; gap: 10px; margin: 20px 0; }
@@ -103,18 +177,18 @@
         </div>
 
         <div class="services-filter reveal" role="group" aria-label="Filter services">
-          <button class="filter-btn active">All Services</button>
-          <button class="filter-btn">Wiring</button>
-          <button class="filter-btn">Panels & Breakers</button>
-          <button class="filter-btn">Lighting</button>
-          <button class="filter-btn">Smart Home</button>
-          <button class="filter-btn">Emergency</button>
+          <button class="filter-btn active" data-filter="all">All Services</button>
+          <button class="filter-btn" data-filter="wiring">Wiring</button>
+          <button class="filter-btn" data-filter="panels">Panels &amp; Breakers</button>
+          <button class="filter-btn" data-filter="lighting">Lighting</button>
+          <button class="filter-btn" data-filter="smart-home">Smart Home</button>
+          <button class="filter-btn" data-filter="emergency">Emergency</button>
         </div>
 
-        <div style="display:flex;flex-direction:column;gap:32px;">
+        <div id="services-list" style="display:flex;flex-direction:column;gap:32px;">
 
-          <!-- Home Wiring -->
-          <article class="service-detail-card reveal">
+          <!-- 1. Home Wiring -->
+          <article class="service-detail-card reveal" data-category="wiring">
             <img src="assets/images/home-wiring.jpg" alt="Home wiring installation service" class="service-detail-card__img" loading="lazy">
             <div class="service-detail-card__body">
               <div class="section-label" style="margin-bottom:16px;">Residential Wiring</div>
@@ -123,18 +197,18 @@
               <div class="service-includes">
                 <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>New construction full wiring</div>
                 <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Whole-home rewiring (aluminum → copper)</div>
-                <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Room additions & extensions</div>
+                <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Room additions &amp; extensions</div>
                 <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Ground fault circuit installation</div>
               </div>
-              <div class="flex gap-12">
+              <div class="flex gap-12" style="align-items:center;">
                 <a href="contact.html" class="btn btn-primary">Get a Quote</a>
-                <span class="badge badge-green">From $499</span>
+                <span class="badge badge-green service-price-badge">From $499</span>
               </div>
             </div>
           </article>
 
-          <!-- Circuit Breaker -->
-          <article class="service-detail-card reveal">
+          <!-- 2. Circuit Breaker -->
+          <article class="service-detail-card reverse-layout reveal" data-category="panels">
             <img src="assets/images/circuit-breaker.jpg" alt="Circuit breaker installation" class="service-detail-card__img" loading="lazy">
             <div class="service-detail-card__body">
               <div class="section-label" style="margin-bottom:16px;">Protection Systems</div>
@@ -142,39 +216,39 @@
               <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px;">Modern circuit breakers are your home's first line of protection against electrical faults. We install, replace, and upgrade breaker panels to handle today's power demands safely.</p>
               <div class="service-includes">
                 <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Single breaker replacement</div>
-                <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>AFCI & GFCI breaker installation</div>
+                <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>AFCI &amp; GFCI breaker installation</div>
                 <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Full panel breaker replacement</div>
-                <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Load balancing & circuit mapping</div>
+                <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Load balancing &amp; circuit mapping</div>
               </div>
-              <div class="flex gap-12">
+              <div class="flex gap-12" style="align-items:center;">
                 <a href="contact.html" class="btn btn-primary">Get a Quote</a>
-                <span class="badge badge-green">From $199</span>
+                <span class="badge badge-green service-price-badge">From $199</span>
               </div>
             </div>
           </article>
 
-          <!-- Lighting -->
-          <article class="service-detail-card reveal">
+          <!-- 3. Lighting -->
+          <article class="service-detail-card reveal" data-category="lighting">
             <img src="assets/images/lighting-install.jpg" alt="Lighting fitting installation" class="service-detail-card__img" loading="lazy">
             <div class="service-detail-card__body">
               <div class="section-label" style="margin-bottom:16px;">Illumination</div>
-              <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:16px;">Lighting Fitting & Design</h2>
+              <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:16px;">Lighting Fitting &amp; Design</h2>
               <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px;">Transform every room with precision LED lighting installation. From recessed downlights to chandelier fitting, we create lighting environments that enhance your home's beauty and functionality.</p>
               <div class="service-includes">
                 <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Recessed LED downlight installation</div>
-                <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Chandelier & pendant fitting</div>
-                <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Outdoor & landscape lighting</div>
+                <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Chandelier &amp; pendant fitting</div>
+                <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Outdoor &amp; landscape lighting</div>
                 <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Dimmer switch installation</div>
               </div>
-              <div class="flex gap-12">
+              <div class="flex gap-12" style="align-items:center;">
                 <a href="contact.html" class="btn btn-primary">Get a Quote</a>
-                <span class="badge badge-green">From $149</span>
+                <span class="badge badge-green service-price-badge">From $149</span>
               </div>
             </div>
           </article>
 
-          <!-- Fan Install -->
-          <article class="service-detail-card reveal">
+          <!-- 4. Fan Install -->
+          <article class="service-detail-card reverse-layout reveal" data-category="lighting">
             <img src="assets/images/fan-install.jpg" alt="Ceiling fan installation" class="service-detail-card__img" loading="lazy">
             <div class="service-detail-card__body">
               <div class="section-label" style="margin-bottom:16px;">Comfort Systems</div>
@@ -182,58 +256,107 @@
               <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px;">A properly installed ceiling fan can reduce your energy bills by up to 40%. We handle complete installation including wiring, mounting, blade balancing, and remote setup for whisper-quiet operation.</p>
               <div class="service-includes">
                 <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>New fan installation (all sizes)</div>
-                <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Fan replacement & upgrading</div>
-                <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Smart fan wiring & remote setup</div>
-                <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Junction box upgrade & balancing</div>
+                <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Fan replacement &amp; upgrading</div>
+                <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Smart fan wiring &amp; remote setup</div>
+                <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Junction box upgrade &amp; balancing</div>
               </div>
-              <div class="flex gap-12">
+              <div class="flex gap-12" style="align-items:center;">
                 <a href="contact.html" class="btn btn-primary">Get a Quote</a>
-                <span class="badge badge-green">From $179</span>
+                <span class="badge badge-green service-price-badge">From $179</span>
               </div>
             </div>
           </article>
 
-          <!-- Panel Upgrade -->
-          <article class="service-detail-card reveal">
+          <!-- 5. Panel Upgrade -->
+          <article class="service-detail-card reveal" data-category="panels">
             <img src="assets/images/electrician-panel.jpg" alt="Electrical panel upgrade" class="service-detail-card__img" loading="lazy">
             <div class="service-detail-card__body">
               <div class="section-label" style="margin-bottom:16px;">Power Infrastructure</div>
               <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:16px;">Electrical Panel Upgrades</h2>
               <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px;">An outdated electrical panel is a safety hazard and a bottleneck for modern electrical demands. We upgrade panels from 60A to 400A service — fully permitted and inspected.</p>
               <div class="service-includes">
-                <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>100A, 200A & 400A service upgrades</div>
-                <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Full permit handling & inspection</div>
+                <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>100A, 200A &amp; 400A service upgrades</div>
+                <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Full permit handling &amp; inspection</div>
                 <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Sub-panel installation</div>
-                <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Solar & EV-ready panel preparation</div>
+                <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Solar &amp; EV-ready panel preparation</div>
               </div>
-              <div class="flex gap-12">
+              <div class="flex gap-12" style="align-items:center;">
                 <a href="contact.html" class="btn btn-primary">Get a Quote</a>
-                <span class="badge badge-green">From $1,899</span>
+                <span class="badge badge-green service-price-badge">From $1,899</span>
               </div>
             </div>
           </article>
 
-          <!-- Switchboard -->
-          <article class="service-detail-card reveal">
+          <!-- 6. Switchboard -->
+          <article class="service-detail-card reverse-layout reveal" data-category="panels">
             <img src="assets/images/switchboard-repair.jpg" alt="Switchboard repair service" class="service-detail-card__img" loading="lazy">
             <div class="service-detail-card__body">
               <div class="section-label" style="margin-bottom:16px;">Distribution</div>
-              <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:16px;">Switchboard Repair & Upgrade</h2>
+              <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:16px;">Switchboard Repair &amp; Upgrade</h2>
               <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px;">Faulty switchboards cause tripping breakers, power fluctuations, and fire risks. Our technicians diagnose and repair any switchboard issue, then upgrade to modern, safer systems.</p>
               <div class="service-includes">
-                <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Fault diagnosis & repair</div>
+                <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Fault diagnosis &amp; repair</div>
                 <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Full switchboard replacement</div>
-                <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>RCD & safety switch installation</div>
+                <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>RCD &amp; safety switch installation</div>
                 <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Surge protection installation</div>
               </div>
-              <div class="flex gap-12">
+              <div class="flex gap-12" style="align-items:center;">
                 <a href="contact.html" class="btn btn-primary">Get a Quote</a>
-                <span class="badge badge-green">From $349</span>
+                <span class="badge badge-green service-price-badge">From $349</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 7. Smart Home -->
+          <article class="service-detail-card reveal" data-category="smart-home">
+            <img src="assets/images/smart-home.jpg" alt="Smart home automation installation" class="service-detail-card__img" loading="lazy">
+            <div class="service-detail-card__body">
+              <div class="section-label" style="margin-bottom:16px;">Home Automation</div>
+              <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:16px;">Smart Home Automation &amp; Integration</h2>
+              <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px;">Modernize your living space with intelligent lighting, automated climate controls, smart switches, and whole-home hub integration designed for effortless convenience and energy savings.</p>
+              <div class="service-includes">
+                <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Smart lighting &amp; automated scene configuration</div>
+                <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Smart switches, dimmers &amp; motorized outlets</div>
+                <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Video doorbells &amp; smart security power setup</div>
+                <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Alexa, Google Assistant &amp; Apple HomeKit setup</div>
+              </div>
+              <div class="flex gap-12" style="align-items:center;">
+                <a href="contact.html" class="btn btn-primary">Get a Quote</a>
+                <span class="badge badge-green service-price-badge">From $249</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 8. Emergency Service -->
+          <article class="service-detail-card reverse-layout reveal" data-category="emergency">
+            <img src="assets/images/emergency-service.jpg" alt="24/7 Emergency electrical repair service" class="service-detail-card__img" loading="lazy">
+            <div class="service-detail-card__body">
+              <div class="section-label" style="margin-bottom:16px;">Rapid Response</div>
+              <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:16px;">24/7 Emergency Electrical Repair</h2>
+              <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px;">Electrical emergencies demand swift, certified intervention. Whether facing sudden power cuts, alarming sparks, or burning smells, our emergency master electricians respond 24/7 with 60-minute dispatch.</p>
+              <div class="service-includes">
+                <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>60-minute emergency rapid response dispatch</div>
+                <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Complete blackout &amp; power failure diagnostics</div>
+                <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Burning odor, sparking outlet &amp; hazard isolation</div>
+                <div class="service-include-item"><div class="service-include-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Storm damage repairs &amp; urgent breaker trips</div>
+              </div>
+              <div class="flex gap-12" style="align-items:center;">
+                <a href="emergency.html" class="btn btn-primary">Get a Quote</a>
+                <span class="badge badge-green service-price-badge">From $199</span>
               </div>
             </div>
           </article>
 
         </div>
+
+        <!-- Empty State (Fallback if filter returns 0) -->
+        <div id="services-empty-state" style="display:none;text-align:center;padding:60px 20px;" class="reveal">
+          <div style="font-size:2.5rem;margin-bottom:16px;" aria-hidden="true">⚡</div>
+          <h3 style="font-size:1.5rem;font-weight:700;margin-bottom:8px;">No Services Found</h3>
+          <p style="color:var(--text-muted);margin-bottom:24px;">No services currently matched this filter category.</p>
+          <button class="btn btn-primary" onclick="document.querySelector('.filter-btn[data-filter=\'all\']').click()">Show All Services</button>
+        </div>
+
       </div>
     </section>
 
@@ -284,15 +407,69 @@
   <script src="assets/js/components.js"></script>
   <script src="assets/js/main.js"></script>
   <script>
-    // Filter buttons
+    // Interactive Services Filter System
     document.addEventListener('DOMContentLoaded', () => {
       const filterBtns = document.querySelectorAll('.filter-btn');
+      const cards = document.querySelectorAll('.service-detail-card');
+      const emptyState = document.getElementById('services-empty-state');
+
+      function updateAlternatingLayout() {
+        const visibleCards = Array.from(cards).filter(card => !card.classList.contains('is-hidden'));
+        visibleCards.forEach((card, index) => {
+          if (index % 2 === 1) {
+            card.classList.add('reverse-layout');
+          } else {
+            card.classList.remove('reverse-layout');
+          }
+        });
+        if (emptyState) {
+          emptyState.style.display = visibleCards.length === 0 ? 'block' : 'none';
+        }
+      }
+
+      function applyFilter(filter) {
+        cards.forEach(card => {
+          const category = (card.getAttribute('data-category') || '').toLowerCase();
+          const categories = category.split(' ');
+          const matches = filter === 'all' || categories.includes(filter.toLowerCase());
+
+          if (matches) {
+            card.classList.remove('is-hidden');
+            card.classList.remove('card-enter');
+            // Trigger reflow to restart CSS enter animation smoothly
+            void card.offsetWidth;
+            card.classList.add('card-enter');
+          } else {
+            card.classList.add('is-hidden');
+            card.classList.remove('card-enter');
+          }
+        });
+
+        updateAlternatingLayout();
+      }
+
       filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
           filterBtns.forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
+          const filter = btn.getAttribute('data-filter') || 'all';
+          applyFilter(filter);
         });
       });
+
+      // Support direct linking via ?filter=... or #...
+      const urlParams = new URLSearchParams(window.location.search);
+      const initialFilter = urlParams.get('filter') || window.location.hash.replace('#', '');
+      if (initialFilter) {
+        const matchingBtn = document.querySelector(`.filter-btn[data-filter="${initialFilter.toLowerCase()}"]`);
+        if (matchingBtn) {
+          matchingBtn.click();
+          return;
+        }
+      }
+
+      // Initial alternation setup
+      updateAlternatingLayout();
     });
   </script>
 </body>

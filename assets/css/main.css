@@ -269,6 +269,32 @@ h1,h2,h3,h4,h5,h6 {
 .badge-green { background: rgba(56,161,105,.15); color: var(--success); }
 .badge-red   { background: rgba(229,62,62,.15); color: var(--error); }
 
+/* Service Price Badge — Curved edge rectangle matching .btn */
+.service-price-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 24px;
+  border-radius: var(--radius-sm);
+  background: rgba(56, 161, 105, 0.15);
+  color: var(--success);
+  border: 1.5px solid rgba(56, 161, 105, 0.35);
+  font-family: var(--font-primary);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  min-height: 48px;
+  box-sizing: border-box;
+  white-space: nowrap;
+  transition: var(--transition);
+}
+.service-price-badge:hover {
+  background: rgba(56, 161, 105, 0.22);
+  border-color: rgba(56, 161, 105, 0.55);
+  transform: translateY(-2px);
+}
+
 /* ── Cards ── */
 .card {
   background: var(--bg-card);
