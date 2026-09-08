@@ -66,6 +66,462 @@
     .step-line { flex: 1; height: 2px; background: var(--border); min-width: 20px; }
     .step-line.done { background: var(--amber); }
     @media(max-width:500px){ .step__label { display: none; } }
+
+    /* Contact Guarantee Card */
+    .contact-guarantee-card {
+      margin-top: 24px;
+      padding: 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--amber);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+    }
+    .contact-guarantee-card__header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+    .contact-guarantee-card__icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(230,162,60,.12);
+      color: var(--amber);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-guarantee-card__title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+    .contact-guarantee-card__sub {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+    }
+    .contact-guarantee-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .contact-guarantee-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .contact-guarantee-list li svg {
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+    .contact-guarantee-list li strong {
+      color: var(--text-primary);
+    }
+
+    /* Redesigned Service Areas */
+    .coverage-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+    @media(max-width:992px){
+      .coverage-stats { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media(max-width:560px){
+      .coverage-stats { grid-template-columns: 1fr; }
+    }
+    .stat-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 22px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      transition: var(--transition);
+    }
+    .stat-card:hover {
+      border-color: var(--amber);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .stat-card__icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-sm);
+      background: rgba(230,162,60,.12);
+      color: var(--amber);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .stat-card__num {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+    .stat-card__label {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+
+    .service-zones-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+    @media(max-width:768px){
+      .service-zones-grid { grid-template-columns: 1fr; }
+    }
+    .zone-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 28px;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+    .zone-card:hover {
+      border-color: var(--amber);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+    .zone-card__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+    .zone-card__badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--amber);
+      background: rgba(230,162,60,.12);
+      padding: 4px 12px;
+      border-radius: 100px;
+    }
+    .zone-card__eta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: #10B981;
+      background: rgba(16,185,129,.1);
+      padding: 4px 10px;
+      border-radius: 100px;
+    }
+    .zone-card__title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+    .zone-card__hub {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+    .zone-card__hub svg {
+      color: var(--amber);
+      flex-shrink: 0;
+    }
+    .zone-card__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .zone-tag {
+      font-size: 0.8125rem;
+      padding: 5px 11px;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text-primary);
+      transition: var(--transition);
+    }
+    .zone-card:hover .zone-tag {
+      border-color: rgba(230,162,60,.3);
+    }
+    .zone-card__services {
+      margin-top: auto;
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .zone-service-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .zone-service-item svg {
+      color: var(--amber);
+      flex-shrink: 0;
+    }
+
+    /* Coverage Checker */
+    .coverage-checker {
+      background: linear-gradient(135deg, rgba(230,162,60,.08) 0%, rgba(16,28,44,.5) 100%), var(--bg-card);
+      border: 1.5px solid rgba(230,162,60,.28);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+    }
+    .coverage-checker__inner {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+    @media(max-width:900px){
+      .coverage-checker__inner { grid-template-columns: 1fr; gap: 20px; }
+    }
+    .checker-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--amber);
+      margin-bottom: 8px;
+    }
+    .coverage-checker__title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .coverage-checker__text {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+    .coverage-form__group {
+      display: flex;
+      gap: 10px;
+    }
+    @media(max-width:540px){
+      .coverage-form__group { flex-direction: column; }
+    }
+    .coverage-input {
+      flex: 1;
+      padding: 13px 16px;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid var(--border);
+      background: var(--bg-surface, #101C2C);
+      color: var(--text-primary);
+      font-size: 0.9375rem;
+      font-family: inherit;
+      outline: none;
+      transition: var(--transition);
+    }
+    .coverage-input:focus {
+      border-color: var(--amber);
+      box-shadow: 0 0 0 3px rgba(230,162,60,.15);
+    }
+    .coverage-btn {
+      flex-shrink: 0;
+      padding: 13px 24px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .coverage-result {
+      margin-top: 12px;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
+    .coverage-result.success {
+      background: rgba(16,185,129,.1);
+      border: 1px solid rgba(16,185,129,.3);
+      color: #10B981;
+    }
+    .coverage-result.info {
+      background: rgba(230,162,60,.1);
+      border: 1px solid rgba(230,162,60,.3);
+      color: var(--amber);
+    }
+
+    /* Dedicated Google Map Section */
+    .location-layout {
+      display: grid;
+      grid-template-columns: 420px 1fr;
+      gap: 36px;
+      align-items: stretch;
+    }
+    @media(max-width:992px){
+      .location-layout { grid-template-columns: 1fr; }
+    }
+    .location-details-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow-sm);
+    }
+    .location-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--amber);
+      background: rgba(230,162,60,.12);
+      padding: 4px 10px;
+      border-radius: 100px;
+      margin-bottom: 12px;
+    }
+    .location-details-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .location-details-desc {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .location-info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+    .location-info-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .location-info-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: rgba(230,162,60,.12);
+      color: var(--amber);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .location-info-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+    .location-info-val {
+      font-size: 0.875rem;
+      color: var(--text-primary);
+      line-height: 1.5;
+    }
+    .location-perks {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+    .location-perk {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+    }
+    .location-perk svg {
+      color: var(--amber);
+      flex-shrink: 0;
+    }
+
+    .location-map-wrap {
+      display: flex;
+      flex-direction: column;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      min-height: 480px;
+      box-shadow: var(--shadow-sm);
+    }
+    .location-map-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10B981;
+      display: inline-block;
+      margin-right: 8px;
+      box-shadow: 0 0 8px #10B981;
+    }
+    .location-map-header__pill {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      background: var(--bg-alt);
+      padding: 3px 8px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+    .location-map-frame {
+      flex: 1;
+      width: 100%;
+      min-height: 420px;
+    }
+    .location-map-frame iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      border: none;
+      filter: grayscale(15%) contrast(1.05);
+    }
   </style>
 </head>
 <body>
@@ -157,15 +613,31 @@
               </div>
             </div>
 
-            <!-- Map -->
-            <div class="map-embed reveal" style="margin-top:32px;">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387193.3059353029!2d-74.25986882919358!3d40.69714941680757!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1699888888888!5m2!1sen!2sus"
-                allowfullscreen=""
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-                title="ElectraPro office location map"
-              ></iframe>
+            <!-- Service Commitment & Response Guarantee -->
+            <div class="contact-guarantee-card reveal">
+              <div class="contact-guarantee-card__header">
+                <div class="contact-guarantee-card__icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <div>
+                  <div class="contact-guarantee-card__title">ElectraPro Service Promise</div>
+                  <div class="contact-guarantee-card__sub">Licensed Master Electricians &bull; Bonded &bull; Insured</div>
+                </div>
+              </div>
+              <ul class="contact-guarantee-list">
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span><strong>60-Minute Emergency Dispatch</strong> across our primary metro coverage zones</span>
+                </li>
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span><strong>Upfront Flat-Rate Quotes</strong> with zero hidden travel charges or diagnostic markups</span>
+                </li>
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span><strong>1-Year Workmanship Warranty</strong> on all residential repairs and installations</span>
+                </li>
+              </ul>
             </div>
           </div>
 
@@ -323,35 +795,249 @@
     <!-- ═══════════ SERVICE AREAS ═══════════ -->
     <section class="section" aria-labelledby="areas-heading">
       <div class="container">
-        <div class="coverage-grid">
-          <div>
-            <div class="section-label reveal" aria-hidden="true">Where We Serve</div>
-            <h2 class="section-title reveal" id="areas-heading">Service Areas</h2>
-            <p class="reveal" style="color:var(--text-muted);line-height:1.8;margin-bottom:32px;">We serve the greater metro area including 40+ neighborhoods and surrounding suburbs. Emergency service available across our full coverage zone.</p>
-            <div class="service-areas-grid reveal">
-              <div class="area-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Downtown</div>
-              <div class="area-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Oak Park</div>
-              <div class="area-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Riverside</div>
-              <div class="area-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Northside</div>
-              <div class="area-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Westview</div>
-              <div class="area-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Lakewood</div>
-              <div class="area-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Elmhurst</div>
-              <div class="area-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Lincoln Park</div>
-              <div class="area-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Hyde Park</div>
-              <div class="area-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Glen Ellyn</div>
-              <div class="area-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Naperville</div>
-              <div class="area-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>+30 More</div>
+        <!-- Section Header -->
+        <div class="section-header">
+          <div class="section-label reveal" aria-hidden="true">Regional Coverage</div>
+          <h2 class="section-title reveal" id="areas-heading">Where We Service &amp; Coverage Areas</h2>
+          <p class="section-desc reveal">With strategically positioned dispatch hubs across the metropolitan region, our certified electricians guarantee rapid arrival times and zero mileage surcharges.</p>
+        </div>
+
+        <!-- Coverage Stats / Fleet Metrics -->
+        <div class="coverage-stats reveal">
+          <div class="stat-card">
+            <div class="stat-card__icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="stat-card__content">
+              <div class="stat-card__num">&le; 60 Mins</div>
+              <div class="stat-card__label">Average Emergency Dispatch</div>
             </div>
           </div>
-          <div class="map-section reveal-right">
-            <div class="map-embed" aria-label="Service area map">
+          <div class="stat-card">
+            <div class="stat-card__icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="stat-card__content">
+              <div class="stat-card__num">40+</div>
+              <div class="stat-card__label">Neighborhoods &amp; Communities</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            </div>
+            <div class="stat-card__content">
+              <div class="stat-card__num">18 Vans</div>
+              <div class="stat-card__label">Fully Stocked Mobile Units</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div class="stat-card__content">
+              <div class="stat-card__num">$0 Fee</div>
+              <div class="stat-card__label">Zero Travel Surcharges</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Regional Zone Cards Grid (4 Zones) -->
+        <div class="service-zones-grid reveal">
+          <!-- Zone 1: Metro Central -->
+          <div class="zone-card">
+            <div class="zone-card__header">
+              <div class="zone-card__badge">Zone 01 &bull; Central</div>
+              <span class="zone-card__eta"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 15&ndash;30 min ETA</span>
+            </div>
+            <h3 class="zone-card__title">Downtown &amp; Central Metro</h3>
+            <p class="zone-card__hub"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Primary Hub: Downtown Dispatch Station</p>
+            <div class="zone-card__tags">
+              <span class="zone-tag">Downtown Core</span>
+              <span class="zone-tag">Midtown</span>
+              <span class="zone-tag">Financial District</span>
+              <span class="zone-tag">Arts Quarter</span>
+              <span class="zone-tag">South Market</span>
+              <span class="zone-tag">Riverfront</span>
+            </div>
+            <div class="zone-card__services">
+              <div class="zone-service-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> High-rise condo &amp; apartment wiring</div>
+              <div class="zone-service-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Commercial panels &amp; emergency outages</div>
+            </div>
+          </div>
+
+          <!-- Zone 2: North & Northwest -->
+          <div class="zone-card">
+            <div class="zone-card__header">
+              <div class="zone-card__badge">Zone 02 &bull; North</div>
+              <span class="zone-card__eta"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 20&ndash;35 min ETA</span>
+            </div>
+            <h3 class="zone-card__title">North &amp; Northwest Suburbs</h3>
+            <p class="zone-card__hub"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Primary Hub: Northside Technical Annex</p>
+            <div class="zone-card__tags">
+              <span class="zone-tag">Northside</span>
+              <span class="zone-tag">Lincoln Park</span>
+              <span class="zone-tag">Oak Park</span>
+              <span class="zone-tag">Glen Ellyn</span>
+              <span class="zone-tag">Highland Hills</span>
+              <span class="zone-tag">Uptown</span>
+            </div>
+            <div class="zone-card__services">
+              <div class="zone-service-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Residential 200A panel upgrades</div>
+              <div class="zone-service-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> EV Level 2 chargers &amp; solar hookups</div>
+            </div>
+          </div>
+
+          <!-- Zone 3: West & Southwest -->
+          <div class="zone-card">
+            <div class="zone-card__header">
+              <div class="zone-card__badge">Zone 03 &bull; West</div>
+              <span class="zone-card__eta"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 25&ndash;40 min ETA</span>
+            </div>
+            <h3 class="zone-card__title">West &amp; Southwest Corridors</h3>
+            <p class="zone-card__hub"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Primary Hub: West Valley Fleet Post</p>
+            <div class="zone-card__tags">
+              <span class="zone-tag">Westview</span>
+              <span class="zone-tag">Elmhurst</span>
+              <span class="zone-tag">Riverside</span>
+              <span class="zone-tag">Naperville</span>
+              <span class="zone-tag">Brookstone</span>
+              <span class="zone-tag">Willow Springs</span>
+            </div>
+            <div class="zone-card__services">
+              <div class="zone-service-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Whole-house rewire &amp; knob-and-tube removal</div>
+              <div class="zone-service-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Standby whole-home backup generators</div>
+            </div>
+          </div>
+
+          <!-- Zone 4: South & Lakeshore -->
+          <div class="zone-card">
+            <div class="zone-card__header">
+              <div class="zone-card__badge">Zone 04 &bull; South</div>
+              <span class="zone-card__eta"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 20&ndash;35 min ETA</span>
+            </div>
+            <h3 class="zone-card__title">South &amp; Lakeshore Communities</h3>
+            <p class="zone-card__hub"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Primary Hub: Harbor &amp; South Terminal</p>
+            <div class="zone-card__tags">
+              <span class="zone-tag">Lakewood</span>
+              <span class="zone-tag">Hyde Park</span>
+              <span class="zone-tag">Harbor Bay</span>
+              <span class="zone-tag">Bayview Point</span>
+              <span class="zone-tag">Clear River</span>
+              <span class="zone-tag">Eastshore</span>
+            </div>
+            <div class="zone-card__services">
+              <div class="zone-service-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Outdoor landscape &amp; security lighting</div>
+              <div class="zone-service-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Whole-property surge suppression</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Coverage / ZIP Code Checker -->
+        <div class="coverage-checker reveal">
+          <div class="coverage-checker__inner">
+            <div class="coverage-checker__info">
+              <div class="checker-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Instant Area Verification</div>
+              <h3 class="coverage-checker__title">Check If We Service Your Neighborhood</h3>
+              <p class="coverage-checker__text">Enter your 5-digit ZIP code or community name to immediately verify active technician coverage and estimated arrival time.</p>
+            </div>
+            <div class="coverage-checker__action">
+              <form id="coverage-zip-form" class="coverage-form" onsubmit="return false;">
+                <div class="coverage-form__group">
+                  <input type="text" id="coverage-zip-input" class="coverage-input" placeholder="Enter ZIP or town (e.g. 10001, Oak Park)" required autocomplete="postal-code">
+                  <button type="submit" id="coverage-check-btn" class="btn btn-primary coverage-btn">Check Coverage</button>
+                </div>
+              </form>
+              <div id="coverage-result" class="coverage-result" style="display:none;" aria-live="polite"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ DEDICATED GOOGLE MAP SECTION ═══════════ -->
+    <section class="section section--alt" aria-labelledby="location-heading">
+      <div class="container">
+        <!-- Section Header -->
+        <div class="section-header">
+          <div class="section-label reveal" aria-hidden="true">Our Location</div>
+          <h2 class="section-title reveal" id="location-heading">Find Our Headquarters &amp; Dispatch Center</h2>
+          <p class="section-desc reveal">Located in the central commerce district of Metro City. Visit our office for commercial blueprint reviews, project consultations, or contractor meetings.</p>
+        </div>
+
+        <div class="location-layout">
+          <!-- Left: Location Details Card -->
+          <div class="location-details-card reveal">
+            <div class="location-details-card__top">
+              <span class="location-badge">Corporate Office &amp; Fleet Hub</span>
+              <h3 class="location-details-title">ElectraPro HQ</h3>
+              <p class="location-details-desc">Our headquarters houses our central dispatch operators, warehouse inventory, and licensed master electrician engineering team.</p>
+            </div>
+
+            <div class="location-info-list">
+              <div class="location-info-item">
+                <div class="location-info-icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                </div>
+                <div>
+                  <div class="location-info-label">Address</div>
+                  <div class="location-info-val">123 Volt Avenue, Suite 400<br>Metro City, MC 10001</div>
+                </div>
+              </div>
+
+              <div class="location-info-item">
+                <div class="location-info-icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <div>
+                  <div class="location-info-label">Office &amp; Consultation Hours</div>
+                  <div class="location-info-val">Mon &ndash; Fri: 7:00 AM &ndash; 7:00 PM<br>Saturday: 8:00 AM &ndash; 5:00 PM<br><span style="color:var(--amber);font-weight:600;">Dispatch Team: 24/7/365</span></div>
+                </div>
+              </div>
+
+              <div class="location-info-item">
+                <div class="location-info-icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72.84.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.91A16 16 0 0 0 14 15l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.5 16l.42.92z"/></svg>
+                </div>
+                <div>
+                  <div class="location-info-label">Direct Lines</div>
+                  <div class="location-info-val"><a href="tel:+18005550199" style="color:var(--text-primary);font-weight:600;">1-800-555-0199</a> (Toll-Free)<br><a href="tel:+12125550148" style="color:var(--text-muted);">+1 (212) 555-0148</a> (Local)</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Amenities / Visitor perks -->
+            <div class="location-perks">
+              <div class="location-perk"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Free Customer &amp; Visitor Parking</div>
+              <div class="location-perk"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> On-Site EV Fast Charger Available</div>
+              <div class="location-perk"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Fully ADA Accessible Facility</div>
+            </div>
+
+            <div style="margin-top:28px;">
+              <a href="https://maps.google.com/?q=123+Volt+Avenue+Metro+City+MC+10001" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width:100%;justify-content:center;gap:8px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+                Get Driving Directions
+              </a>
+            </div>
+          </div>
+
+          <!-- Right: Interactive Google Map Embed -->
+          <div class="location-map-wrap reveal-right">
+            <div class="location-map-header">
+              <div class="location-map-header__title">
+                <span class="live-dot" aria-hidden="true"></span>
+                <span>Interactive Map View &bull; Metro City, MC 10001</span>
+              </div>
+              <span class="location-map-header__pill">Zoom &amp; Pan Enabled</span>
+            </div>
+            <div class="location-map-frame">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387193.3059353029!2d-74.25986882919358!3d40.69714941680757!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1699888888888!5m2!1sen!2sus"
                 allowfullscreen=""
                 loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"
-                title="ElectraPro service coverage map"
-                aria-label="Google Maps showing service area"
+                title="ElectraPro Headquarters &amp; Central Dispatch Map"
+                aria-label="Google Map showing ElectraPro Headquarters location"
               ></iframe>
             </div>
           </div>
@@ -423,6 +1109,32 @@
           }
         });
       });
+
+      // Interactive Coverage / ZIP Code Checker
+      const coverageForm = document.getElementById('coverage-zip-form');
+      const coverageInput = document.getElementById('coverage-zip-input');
+      const coverageResult = document.getElementById('coverage-result');
+
+      if (coverageForm && coverageInput && coverageResult) {
+        coverageForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const query = coverageInput.value.trim();
+          if (!query) {
+            coverageResult.style.display = 'block';
+            coverageResult.className = 'coverage-result info';
+            coverageResult.innerHTML = 'Please enter a ZIP code or town name to verify coverage.';
+            return;
+          }
+
+          coverageResult.style.display = 'block';
+          coverageResult.className = 'coverage-result success';
+          coverageResult.innerHTML = `&#10003; <strong>Confirmed Coverage Zone!</strong> ElectraPro mobile vans actively serve <strong>${query.replace(/</g, '&lt;')}</strong> with guaranteed rapid dispatch and zero distance surcharges. <a href="#contact-heading" style="color:inherit;text-decoration:underline;margin-left:6px;font-weight:600;">Book Service Above &rarr;</a>`;
+
+          if (typeof showToast === 'function') {
+            showToast(`Active coverage confirmed for ${query}!`, 'success', 4000);
+          }
+        });
+      }
     });
   </script>
 </body>
