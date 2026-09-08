@@ -90,7 +90,7 @@
       <div class="container">
         <div class="page-hero-content">
           <div class="page-hero-label">Blog Article</div>
-          <p class="page-hero-desc">Electrical Panel Upgrade Guide — Expert insights from our master electricians</p>
+          <p class="page-hero-desc" id="hero-desc">Electrical Panel Upgrade Guide — Expert insights from our master electricians</p>
         </div>
       </div>
     </div>
@@ -104,33 +104,33 @@
           <article aria-labelledby="article-title">
             <div class="article-header">
               <div class="flex gap-12 mb-16" style="flex-wrap:wrap;">
-                <span class="badge badge-amber">Panel Upgrades</span>
-                <span class="badge badge-navy">Technical Guide</span>
+                <span class="badge badge-amber" id="badge-cat">Panel Upgrades</span>
+                <span class="badge badge-navy" id="badge-sub">Technical Guide</span>
               </div>
               <h1 id="article-title" style="font-size:clamp(1.75rem,4vw,2.5rem);font-weight:700;line-height:1.2;margin-bottom:20px;">The Complete Guide to Electrical Panel Upgrades: Signs, Costs & What to Expect</h1>
               <div class="article-meta">
                 <div class="article-meta-item">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                  James Hartwell — Master Electrician
+                  <span id="meta-author-text">James Hartwell — Master Electrician</span>
                 </div>
                 <div class="article-meta-item">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                  August 28, 2026
+                  <span id="meta-date-text">August 28, 2026</span>
                 </div>
                 <div class="article-meta-item">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                  9 minute read
+                  <span id="meta-read-text">9 minute read</span>
                 </div>
                 <div class="article-meta-item">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                  4,218 views
+                  <span id="meta-views-text">4,218 views</span>
                 </div>
               </div>
             </div>
 
-            <img src="assets/images/blog-featured-panel.jpg" alt="Master electrician performing an electrical panel upgrade in a residential home" class="article-hero-img reveal" loading="lazy">
+            <img id="article-hero-img" src="assets/images/blog-featured-panel.jpg" alt="Master electrician performing an electrical panel upgrade in a residential home" class="article-hero-img reveal" loading="lazy">
 
-            <div class="article-body reveal">
+            <div id="article-body" class="article-body reveal">
               <p>Your home's electrical panel is the heart of its electrical system — the central hub that receives power from the utility company and distributes it throughout your home. Like any critical system, panels age, wear out, and can become insufficient for modern electrical demands.</p>
 
               <p>In this comprehensive guide, we cover everything you need to know about electrical panel upgrades: when you need one, what the process involves, realistic costs, and what to expect before, during, and after the upgrade.</p>
@@ -194,11 +194,13 @@
             <!-- Tags -->
             <div class="article-tags reveal">
               <span class="article-tags__label">Tags:</span>
-              <span class="tag">Panel Upgrade</span>
-              <span class="tag">Electrical Safety</span>
-              <span class="tag">Circuit Breaker</span>
-              <span class="tag">Home Wiring</span>
-              <span class="tag">Cost Guide</span>
+              <div id="article-tags-list" style="display:inline-flex;flex-wrap:wrap;gap:8px;">
+                <span class="tag">Panel Upgrade</span>
+                <span class="tag">Electrical Safety</span>
+                <span class="tag">Circuit Breaker</span>
+                <span class="tag">Home Wiring</span>
+                <span class="tag">Cost Guide</span>
+              </div>
             </div>
 
             <!-- Share -->
@@ -223,38 +225,38 @@
             </div>
 
             <!-- Author Card -->
-            <div class="author-card reveal">
-              <div class="author-card__avatar" aria-hidden="true">JH</div>
+            <div id="author-card" class="author-card reveal">
+              <div id="author-avatar" class="author-card__avatar" aria-hidden="true">JH</div>
               <div>
-                <div class="author-card__name">James Hartwell</div>
-                <div class="author-card__role">Master Electrician & Founder, ElectraPro</div>
-                <p class="author-card__bio">James has 24 years of experience as a licensed master electrician. He founded ElectraPro in 2009 with a mission to bring commercial-grade electrical quality to residential homeowners. James holds state master electrician license #ME-0042891 and NECA certification.</p>
+                <div id="author-name" class="author-card__name">James Hartwell</div>
+                <div id="author-role" class="author-card__role">Master Electrician & Founder, ElectraPro</div>
+                <p id="author-bio" class="author-card__bio">James has 24 years of experience as a licensed master electrician. He founded ElectraPro in 2009 with a mission to bring commercial-grade electrical quality to residential homeowners. James holds state master electrician license #ME-0042891 and NECA certification.</p>
               </div>
             </div>
 
             <!-- Related Posts -->
             <div class="reveal" style="margin-top:60px;">
               <h2 style="font-size:1.5rem;font-weight:700;margin-bottom:28px;">Related Articles</h2>
-              <div class="related-grid">
+              <div id="related-posts-grid" class="related-grid">
                 <article class="blog-card">
-                  <div class="blog-card__img-wrap"><img src="assets/images/circuit-breaker.jpg" alt="AFCI vs GFCI guide" class="blog-card__img" loading="lazy"></div>
+                  <div class="blog-card__img-wrap"><a href="blog-details.html?id=afci-vs-gfci"><img src="assets/images/circuit-breaker.jpg" alt="AFCI vs GFCI guide" class="blog-card__img" loading="lazy"></a></div>
                   <div class="blog-card__body">
                     <div class="blog-card__meta"><span class="blog-card__cat">Safety</span></div>
-                    <h3 class="blog-card__title" style="font-size:1rem;"><a href="blog-details.html">AFCI vs GFCI: Know the Difference</a></h3>
+                    <h3 class="blog-card__title" style="font-size:1rem;"><a href="blog-details.html?id=afci-vs-gfci">AFCI vs GFCI: Know the Difference</a></h3>
                   </div>
                 </article>
                 <article class="blog-card">
-                  <div class="blog-card__img-wrap"><img src="assets/images/home-wiring.jpg" alt="Home wiring guide" class="blog-card__img" loading="lazy"></div>
+                  <div class="blog-card__img-wrap"><a href="blog-details.html?id=safety-tips"><img src="assets/images/home-wiring.jpg" alt="Home wiring guide" class="blog-card__img" loading="lazy"></a></div>
                   <div class="blog-card__body">
                     <div class="blog-card__meta"><span class="blog-card__cat">Guides</span></div>
-                    <h3 class="blog-card__title" style="font-size:1rem;"><a href="blog-details.html">10 Electrical Safety Tips for Homeowners</a></h3>
+                    <h3 class="blog-card__title" style="font-size:1rem;"><a href="blog-details.html?id=safety-tips">10 Electrical Safety Tips for Homeowners</a></h3>
                   </div>
                 </article>
                 <article class="blog-card">
-                  <div class="blog-card__img-wrap"><img src="assets/images/switchboard-repair.jpg" alt="Switchboard repair" class="blog-card__img" loading="lazy"></div>
+                  <div class="blog-card__img-wrap"><a href="blog-details.html?id=switchboard-repair"><img src="assets/images/switchboard-repair.jpg" alt="Switchboard repair" class="blog-card__img" loading="lazy"></a></div>
                   <div class="blog-card__body">
                     <div class="blog-card__meta"><span class="blog-card__cat">Repair</span></div>
-                    <h3 class="blog-card__title" style="font-size:1rem;"><a href="blog-details.html">Signs Your Switchboard Needs Repair</a></h3>
+                    <h3 class="blog-card__title" style="font-size:1rem;"><a href="blog-details.html?id=switchboard-repair">Signs Your Switchboard Needs Repair</a></h3>
                   </div>
                 </article>
               </div>
@@ -266,7 +268,7 @@
             <!-- Table of Contents -->
             <div class="sidebar-widget reveal">
               <h3 class="sidebar-widget__title">Table of Contents</h3>
-              <nav class="toc-list" aria-label="Article table of contents">
+              <nav id="toc-list" class="toc-list" aria-label="Article table of contents">
                 <a href="#signs" class="toc-link">Signs You Need a Panel Upgrade</a>
                 <a href="#process" class="toc-link">What the Upgrade Involves</a>
                 <a href="#costs" class="toc-link">Realistic Cost Breakdown</a>
@@ -304,25 +306,27 @@
             <!-- Recent posts -->
             <div class="sidebar-widget reveal">
               <h3 class="sidebar-widget__title">Recent Posts</h3>
-              <div class="recent-post-item">
-                <img src="assets/images/lighting-install.jpg" alt="" class="recent-post-thumb" loading="lazy">
-                <div>
-                  <div class="recent-post-title"><a href="blog-details.html">LED Recessed Lighting Guide</a></div>
-                  <div class="recent-post-date">Aug 8, 2026</div>
+              <div id="sidebar-recent-posts">
+                <div class="recent-post-item">
+                  <img src="assets/images/lighting-install.jpg" alt="" class="recent-post-thumb" loading="lazy">
+                  <div>
+                    <div class="recent-post-title"><a href="blog-details.html?id=recessed-lighting">LED Recessed Lighting Guide</a></div>
+                    <div class="recent-post-date">Aug 8, 2026</div>
+                  </div>
                 </div>
-              </div>
-              <div class="recent-post-item">
-                <img src="assets/images/fan-install.jpg" alt="" class="recent-post-thumb" loading="lazy">
-                <div>
-                  <div class="recent-post-title"><a href="blog-details.html">Ceiling Fan Buying Guide 2026</a></div>
-                  <div class="recent-post-date">Aug 5, 2026</div>
+                <div class="recent-post-item">
+                  <img src="assets/images/fan-install.jpg" alt="" class="recent-post-thumb" loading="lazy">
+                  <div>
+                    <div class="recent-post-title"><a href="blog-details.html?id=ceiling-fan-guide">Ceiling Fan Buying Guide 2026</a></div>
+                    <div class="recent-post-date">Aug 5, 2026</div>
+                  </div>
                 </div>
-              </div>
-              <div class="recent-post-item">
-                <img src="assets/images/smart-home.jpg" alt="" class="recent-post-thumb" loading="lazy">
-                <div>
-                  <div class="recent-post-title"><a href="blog-details.html">Smart Home System Planning</a></div>
-                  <div class="recent-post-date">Jul 22, 2026</div>
+                <div class="recent-post-item">
+                  <img src="assets/images/smart-home.jpg" alt="" class="recent-post-thumb" loading="lazy">
+                  <div>
+                    <div class="recent-post-title"><a href="blog-details.html?id=smart-home">Smart Home System Planning</a></div>
+                    <div class="recent-post-date">Jul 22, 2026</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -335,5 +339,7 @@
   <div id="footer-mount"></div>
   <script src="assets/js/components.js"></script>
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/blog-data.js"></script>
+  <script src="assets/js/blog-details.js"></script>
 </body>
 </html>
