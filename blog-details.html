@@ -61,6 +61,36 @@
     .recent-post-title { font-size: 0.875rem; font-weight: 600; line-height: 1.4; }
     .recent-post-title a:hover { color: var(--amber); }
     .recent-post-date { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; }
+
+    @media (max-width: 480px) {
+      .article-hero-img { height: 220px; border-radius: var(--radius-md); margin-bottom: 24px; }
+      .article-meta { gap: 10px; margin: 14px 0; }
+      .article-meta-item { font-size: 0.8125rem; }
+      .article-share { flex-direction: column; align-items: stretch; gap: 10px; padding: 18px 16px; }
+      .share-btn { width: 100%; justify-content: center; }
+      .author-card { padding: 20px 16px; gap: 14px; text-align: center; align-items: center; }
+      .sidebar-widget { padding: 20px 16px; }
+    }
+
+    @media (max-width: 360px) {
+      .article-hero-img { height: 190px; }
+      .article-share { padding: 14px 12px; }
+      .author-card { padding: 16px 12px; }
+      .author-card__avatar { width: 60px; height: 60px; }
+      .sidebar-widget { padding: 16px 14px; }
+    }
+
+    @media (max-width: 320px) {
+      .article-hero-img { height: 165px; }
+      .article-share { padding: 12px 10px; }
+      .author-card { padding: 14px 10px; }
+      .author-card__avatar { width: 52px; height: 52px; }
+      .author-card__name { font-size: 1rem; }
+      .author-card__bio { font-size: 0.8125rem; }
+      .sidebar-widget { padding: 14px 10px; }
+      .recent-post-thumb { width: 48px; height: 48px; }
+      .recent-post-title { font-size: 0.8125rem; }
+    }
   </style>
 </head>
 <body>

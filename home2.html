@@ -465,6 +465,47 @@
     .pulse-mini-stat { text-align:center; }
     .pulse-mini-stat__num { font-family:var(--font-primary); font-size:1.05rem; font-weight:800; color:var(--amber); }
     .pulse-mini-stat__lbl { font-size:0.68rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-muted); }
+
+    /* ── Responsive Refinements (1024px, 760px, 480px, 360px, 320px) ── */
+    @media (max-width: 1024px) {
+      .health-scan__grid { grid-template-columns: 1fr; gap: 32px; }
+    }
+    @media (max-width: 760px) {
+      .hero2 { grid-template-columns: 1fr; min-height: auto; }
+      .hero2__right { height: 320px; }
+      .hero2__left { padding: 120px 20px 48px; }
+      .hero2__left .hero-actions { gap: 12px; }
+      .hero2__left .hero-actions .btn { min-width: 100%; width: 100%; }
+      .skill-bar-label { min-width: 130px; font-size: 0.8125rem; }
+      .compare-table { min-width: 500px; }
+      .compare-table th, .compare-table td { padding: 12px 16px; font-size: 0.875rem; }
+    }
+    @media (max-width: 480px) {
+      .hero2__left { padding: 110px 16px 36px; }
+      .hero2__right { height: 260px; }
+      .hero2__left .hero-title { font-size: 1.85rem; }
+      .skill-bar-item { flex-direction: column; align-items: flex-start; gap: 6px; }
+      .skill-bar-wrap { width: 100%; }
+      .health-scan-widget { padding: 20px 16px; }
+      .pulse-mini-stats { grid-template-columns: 1fr; gap: 8px; }
+      .compare-table { min-width: 420px; }
+    }
+    @media (max-width: 360px) {
+      .hero2__left { padding: 95px 14px 28px; }
+      .hero2__right { height: 220px; }
+      .hero2__left .hero-title { font-size: 1.6rem; }
+      .hero2__left .hero-desc { font-size: 0.875rem; }
+      .hero2__left .hero-actions .btn { padding: 12px 18px; font-size: 0.875rem; }
+      .health-scan__title { font-size: 1.5rem; }
+      .compare-table th, .compare-table td { padding: 10px 12px; font-size: 0.8125rem; }
+      .gallery-item img { height: 220px; }
+    }
+    @media (max-width: 320px) {
+      .hero2__left { padding: 85px 10px 24px; }
+      .hero2__right { height: 180px; }
+      .hero2__left .hero-title { font-size: 1.4rem; }
+      .health-scan-widget { padding: 16px 10px; }
+    }
   </style>
 </head>
 <body class="page-home2">

@@ -57,6 +57,27 @@
     .hero-slider-prev { left: 24px; }
     .hero-slider-next { right: 24px; }
     @media (max-width: 768px) { .hero-slider-arrow { width: 40px; height: 40px; } .hero-slider-prev { left: 12px; } .hero-slider-next { right: 12px; } }
+    @media (max-width: 480px) {
+      .hero-slide__content { padding-top: 40px; padding-bottom: 30px; }
+      .hero-slider-arrow { width: 34px; height: 34px; }
+      .hero-slider-arrow svg { width: 16px; height: 16px; }
+      .hero-slider-prev { left: 8px; }
+      .hero-slider-next { right: 8px; }
+      .tab-btn { padding: 9px 14px; font-size: 0.8125rem; }
+    }
+    @media (max-width: 360px) {
+      .hero-slide__content { padding-top: 24px; padding-bottom: 24px; }
+      .hero-slider-arrow { width: 28px; height: 28px; }
+      .hero-slider-arrow svg { width: 14px; height: 14px; }
+      .hero-slider-prev { left: 4px; }
+      .hero-slider-next { right: 4px; }
+      .tab-btn { padding: 8px 10px; font-size: 0.78rem; }
+    }
+    @media (max-width: 320px) {
+      .hero-slide__content { padding-top: 16px; padding-bottom: 16px; }
+      .hero-slider-arrow { display: none; }
+      .tab-btn { padding: 7px 8px; font-size: 0.72rem; }
+    }
 
     /* Process line */
     @media (max-width: 1024px) {

@@ -175,6 +175,34 @@
     /* Responders grid */
     .responders-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
     @media(max-width:768px){ .responders-grid { grid-template-columns: 1fr; } }
+
+    /* ── Responsive Refinements (760px, 480px, 360px, 320px) ── */
+    @media (max-width: 760px) {
+      .responders-grid { grid-template-columns: 1fr; }
+      .emergency-hero { min-height: 420px; padding: 110px 0 60px; }
+      .emergency-phone-card { padding: 32px 24px; }
+    }
+    @media (max-width: 480px) {
+      .emergency-hero { min-height: 380px; padding: 100px 0 50px; }
+      .pulse-ring { width: 90px; height: 90px; margin-bottom: 20px; }
+      .pulse-ring__inner { width: 56px; height: 56px; }
+      .pulse-ring__inner svg { width: 28px; height: 28px; }
+      .emergency-phone-card { padding: 24px 18px; }
+      .emergency-phone-num { font-size: 1.85rem; }
+      .scenario-card { padding: 18px 14px; gap: 12px; }
+      .scenario-icon { width: 40px; height: 40px; }
+    }
+    @media (max-width: 360px) {
+      .emergency-phone-card { padding: 20px 14px; }
+      .emergency-phone-num { font-size: 1.45rem; word-break: break-word; }
+      .emergency-hero h1 { font-size: 1.65rem; }
+    }
+    @media (max-width: 320px) {
+      .emergency-phone-card { padding: 16px 10px; }
+      .emergency-phone-num { font-size: 1.3rem; }
+      .emergency-hero { padding: 90px 0 40px; }
+      .scenario-card { padding: 14px 10px; }
+    }
   </style>
 </head>
 <body>

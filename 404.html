@@ -149,6 +149,35 @@
       0%, 100% { transform: translateY(0) rotate(0deg); }
       50% { transform: translateY(-30px) rotate(180deg); }
     }
+
+    @media (max-width: 480px) {
+      .error-icon { width: 72px; height: 72px; margin-bottom: 20px; }
+      .error-code { font-size: 5rem; }
+      .error-title { font-size: 1.35rem; }
+      .error-desc { font-size: 0.9375rem; margin-bottom: 28px; }
+      .error-search { flex-direction: column; width: 100%; gap: 8px; margin-bottom: 28px; }
+      .error-search .btn { width: 100%; justify-content: center; }
+      .error-emergency { padding: 18px 16px; width: 100%; }
+      .error-emergency p { font-size: 0.8125rem; }
+    }
+
+    @media (max-width: 360px) {
+      .error-code { font-size: 4.25rem; }
+      .error-title { font-size: 1.2rem; }
+      .error-link-btn { padding: 8px 12px; font-size: 0.8125rem; }
+      .error-emergency { padding: 14px 12px; }
+      .error-emergency a { font-size: 0.95rem; }
+    }
+
+    @media (max-width: 320px) {
+      .error-code { font-size: 3.6rem; }
+      .error-title { font-size: 1.1rem; }
+      .error-desc { font-size: 0.85rem; }
+      .error-link-btn { width: 100%; justify-content: center; font-size: 0.75rem; padding: 7px 10px; }
+      .error-links { flex-direction: column; width: 100%; gap: 6px; }
+      .error-emergency { padding: 12px 10px; }
+      .error-emergency a { font-size: 0.875rem; }
+    }
   </style>
 </head>
 <body>
