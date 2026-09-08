@@ -97,7 +97,7 @@
     .contact-guarantee-card__title {
       font-size: 1rem;
       font-weight: 700;
-      color: var(--text-primary);
+      color: var(--text);
       margin-bottom: 2px;
     }
     .contact-guarantee-card__sub {
@@ -125,7 +125,7 @@
       margin-top: 3px;
     }
     .contact-guarantee-list li strong {
-      color: var(--text-primary);
+      color: var(--text);
     }
 
     /* Redesigned Service Areas */
@@ -170,7 +170,7 @@
     .stat-card__num {
       font-size: 1.35rem;
       font-weight: 800;
-      color: var(--text-primary);
+      color: var(--text);
       line-height: 1.2;
     }
     .stat-card__label {
@@ -215,10 +215,16 @@
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--amber);
-      background: rgba(230,162,60,.12);
+      color: #92400E;
+      background: rgba(230,162,60,.16);
+      border: 1px solid rgba(230,162,60,.25);
       padding: 4px 12px;
       border-radius: 100px;
+    }
+    [data-theme="dark"] .zone-card__badge {
+      color: var(--amber);
+      background: rgba(230,162,60,.12);
+      border-color: transparent;
     }
     .zone-card__eta {
       display: inline-flex;
@@ -226,15 +232,19 @@
       gap: 6px;
       font-size: 0.8125rem;
       font-weight: 600;
-      color: #10B981;
-      background: rgba(16,185,129,.1);
+      color: #047857;
+      background: rgba(16,185,129,.12);
       padding: 4px 10px;
       border-radius: 100px;
+    }
+    [data-theme="dark"] .zone-card__eta {
+      color: #34D399;
+      background: rgba(16,185,129,.1);
     }
     .zone-card__title {
       font-size: 1.25rem;
       font-weight: 700;
-      color: var(--text-primary);
+      color: var(--text);
       margin-bottom: 6px;
     }
     .zone-card__hub {
@@ -258,10 +268,10 @@
     .zone-tag {
       font-size: 0.8125rem;
       padding: 5px 11px;
-      background: var(--bg-alt);
+      background: var(--bg);
       border: 1px solid var(--border);
       border-radius: 6px;
-      color: var(--text-primary);
+      color: var(--text);
       transition: var(--transition);
     }
     .zone-card:hover .zone-tag {
@@ -289,10 +299,26 @@
 
     /* Coverage Checker */
     .coverage-checker {
-      background: linear-gradient(135deg, rgba(230,162,60,.08) 0%, rgba(16,28,44,.5) 100%), var(--bg-card);
-      border: 1.5px solid rgba(230,162,60,.28);
+      background: #FFFFFF;
+      border: 1.5px solid rgba(230,162,60,.35);
       border-radius: var(--radius-lg);
       padding: 32px;
+      box-shadow: 0 4px 20px rgba(0,0,0,.06);
+      position: relative;
+      overflow: hidden;
+    }
+    .coverage-checker::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--amber), #F59E0B);
+    }
+    [data-theme="dark"] .coverage-checker {
+      background: linear-gradient(135deg, rgba(230,162,60,.06) 0%, rgba(21,34,54,.95) 100%), var(--bg-card);
+      border-color: rgba(230,162,60,.28);
       box-shadow: var(--shadow-sm);
     }
     .coverage-checker__inner {
@@ -311,21 +337,34 @@
       font-size: 0.75rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
+      color: #92400E;
+      background: rgba(230,162,60,.16);
+      border: 1px solid rgba(230,162,60,.3);
+      padding: 4px 12px;
+      border-radius: 100px;
+      margin-bottom: 12px;
+    }
+    [data-theme="dark"] .checker-badge {
       color: var(--amber);
-      margin-bottom: 8px;
+      background: rgba(230,162,60,.12);
+      border-color: rgba(230,162,60,.25);
     }
     .coverage-checker__title {
-      font-size: 1.3rem;
+      font-size: 1.35rem;
       font-weight: 700;
-      color: var(--text-primary);
+      color: var(--text);
       margin-bottom: 8px;
+      letter-spacing: -0.01em;
     }
     .coverage-checker__text {
-      font-size: 0.9rem;
-      color: var(--text-muted);
+      font-size: 0.9375rem;
+      color: #4B5563;
       line-height: 1.6;
       margin: 0;
+    }
+    [data-theme="dark"] .coverage-checker__text {
+      color: var(--text-muted);
     }
     .coverage-form__group {
       display: flex;
@@ -336,42 +375,70 @@
     }
     .coverage-input {
       flex: 1;
-      padding: 13px 16px;
+      padding: 14px 18px;
       border-radius: var(--radius-sm);
-      border: 1.5px solid var(--border);
-      background: var(--bg-surface, #101C2C);
-      color: var(--text-primary);
+      border: 1.5px solid #CBD5E1;
+      background: #F8FAFC;
+      color: #0F172A;
       font-size: 0.9375rem;
       font-family: inherit;
       outline: none;
       transition: var(--transition);
     }
+    .coverage-input::placeholder {
+      color: #64748B;
+    }
     .coverage-input:focus {
+      border-color: var(--amber);
+      background: #FFFFFF;
+      box-shadow: 0 0 0 3px rgba(230,162,60,.2);
+    }
+    [data-theme="dark"] .coverage-input {
+      border-color: var(--border);
+      background: var(--bg-alt);
+      color: var(--text);
+    }
+    [data-theme="dark"] .coverage-input::placeholder {
+      color: var(--text-light);
+    }
+    [data-theme="dark"] .coverage-input:focus {
+      background: var(--bg-card);
       border-color: var(--amber);
       box-shadow: 0 0 0 3px rgba(230,162,60,.15);
     }
     .coverage-btn {
       flex-shrink: 0;
-      padding: 13px 24px;
+      padding: 14px 26px;
       font-weight: 700;
+      font-size: 0.9375rem;
       white-space: nowrap;
     }
     .coverage-result {
-      margin-top: 12px;
-      padding: 12px 16px;
+      margin-top: 14px;
+      padding: 13px 16px;
       border-radius: var(--radius-sm);
       font-size: 0.875rem;
       line-height: 1.5;
     }
     .coverage-result.success {
-      background: rgba(16,185,129,.1);
-      border: 1px solid rgba(16,185,129,.3);
-      color: #10B981;
+      background: rgba(16,185,129,.12);
+      border: 1px solid rgba(16,185,129,.35);
+      color: #065F46;
+    }
+    [data-theme="dark"] .coverage-result.success {
+      background: rgba(16,185,129,.12);
+      border-color: rgba(16,185,129,.3);
+      color: #34D399;
     }
     .coverage-result.info {
-      background: rgba(230,162,60,.1);
-      border: 1px solid rgba(230,162,60,.3);
-      color: var(--amber);
+      background: rgba(230,162,60,.12);
+      border: 1px solid rgba(230,162,60,.35);
+      color: #92400E;
+    }
+    [data-theme="dark"] .coverage-result.info {
+      background: rgba(230,162,60,.12);
+      border-color: rgba(230,162,60,.3);
+      color: var(--amber-light);
     }
 
     /* Dedicated Google Map Section */
@@ -399,17 +466,23 @@
       font-size: 0.75rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--amber);
-      background: rgba(230,162,60,.12);
+      letter-spacing: 0.08em;
+      color: #92400E;
+      background: rgba(230,162,60,.16);
+      border: 1px solid rgba(230,162,60,.25);
       padding: 4px 10px;
       border-radius: 100px;
       margin-bottom: 12px;
     }
+    [data-theme="dark"] .location-badge {
+      color: var(--amber);
+      background: rgba(230,162,60,.12);
+      border-color: transparent;
+    }
     .location-details-title {
       font-size: 1.5rem;
       font-weight: 700;
-      color: var(--text-primary);
+      color: var(--text);
       margin-bottom: 8px;
     }
     .location-details-desc {
@@ -450,7 +523,7 @@
     }
     .location-info-val {
       font-size: 0.875rem;
-      color: var(--text-primary);
+      color: var(--text);
       line-height: 1.5;
     }
     .location-perks {
@@ -491,7 +564,7 @@
       border-bottom: 1px solid var(--border);
       font-size: 0.875rem;
       font-weight: 600;
-      color: var(--text-primary);
+      color: var(--text);
     }
     .live-dot {
       width: 8px;
@@ -1001,7 +1074,7 @@
                 </div>
                 <div>
                   <div class="location-info-label">Direct Lines</div>
-                  <div class="location-info-val"><a href="tel:+18005550199" style="color:var(--text-primary);font-weight:600;">1-800-555-0199</a> (Toll-Free)<br><a href="tel:+12125550148" style="color:var(--text-muted);">+1 (212) 555-0148</a> (Local)</div>
+                  <div class="location-info-val"><a href="tel:+18005550199" style="color:var(--text);font-weight:600;">1-800-555-0199</a> (Toll-Free)<br><a href="tel:+12125550148" style="color:var(--text-muted);">+1 (212) 555-0148</a> (Local)</div>
                 </div>
               </div>
             </div>
