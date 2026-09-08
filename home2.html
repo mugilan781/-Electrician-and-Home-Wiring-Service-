@@ -201,7 +201,8 @@
     .gallery-item img { width: 100%; height: 280px; object-fit: cover; display: block; transition: var(--transition-slow); }
     .gallery-item:hover img { transform: scale(1.05); }
     .gallery-item__label { position: absolute; bottom: 16px; left: 16px; background: rgba(16,28,44,.85); backdrop-filter: blur(8px); color: var(--white); font-size: 0.875rem; font-weight: 600; padding: 6px 14px; border-radius: 100px; }
-    @media (max-width: 768px) { .gallery-scroll { grid-template-columns: 1fr; } }
+    @media (max-width: 1024px) { .gallery-scroll { grid-template-columns: repeat(2, 1fr); gap: 20px; } }
+    @media (max-width: 767px) { .gallery-scroll { grid-template-columns: 1fr; gap: 16px; } }
 
     /* Comparison table */
     .compare-table { width: 100%; border-collapse: collapse; }

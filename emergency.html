@@ -174,11 +174,11 @@
 
     /* Responders grid */
     .responders-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
-    @media(max-width:768px){ .responders-grid { grid-template-columns: 1fr; } }
+    @media(max-width:1024px){ .responders-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; } }
+    @media(max-width:767px){ .responders-grid { grid-template-columns: 1fr; gap: 16px; } }
 
     /* ── Responsive Refinements (760px, 480px, 360px, 320px) ── */
     @media (max-width: 760px) {
-      .responders-grid { grid-template-columns: 1fr; }
       .emergency-hero { min-height: 420px; padding: 110px 0 60px; }
       .emergency-phone-card { padding: 32px 24px; }
     }

@@ -46,7 +46,8 @@
     @media(max-width:600px){ .author-card { flex-direction: column; } }
 
     .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    @media(max-width:768px){ .related-grid { grid-template-columns: 1fr; } }
+    @media(max-width:1024px){ .related-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media(max-width:767px){ .related-grid { grid-template-columns: 1fr; } }
 
     /* Sidebar */
     .sidebar-widget { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 28px; margin-bottom: 24px; }

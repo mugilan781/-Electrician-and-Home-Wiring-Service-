@@ -94,16 +94,6 @@
     }
     .service-detail-card__img { width: 100%; height: 100%; object-fit: cover; display: block; min-height: 320px; }
     .service-detail-card__body { padding: 48px; display: flex; flex-direction: column; justify-content: center; }
-    @media (max-width: 900px) {
-      .service-detail-card,
-      .service-detail-card.reverse-layout {
-        grid-template-columns: 1fr;
-        direction: ltr !important;
-      }
-      .service-detail-card__img { min-height: 260px; }
-      .service-detail-card__body { padding: 28px; }
-    }
-
     /* Price Badge - Curved Edge Rectangle matching 'Get a Quote' button */
     .service-detail-card .badge,
     .service-detail-card .badge-green,
@@ -141,15 +131,22 @@
     .tools-img-wrap { position: relative; border-radius: var(--radius-lg); overflow: hidden; }
     .tools-img-wrap img { width: 100%; height: 480px; object-fit: cover; display: block; }
 
-    /* ── Responsive Refinements (760px, 480px, 360px, 320px) ── */
-    @media (max-width: 760px) {
+    @media (min-width: 768px) and (max-width: 1024px) {
+      .service-detail-card {
+        grid-template-columns: 1fr 1fr !important;
+      }
+      .service-detail-card__body { padding: 32px; }
+      .service-detail-card__img { min-height: 280px; }
+    }
+
+    @media (max-width: 767px) {
       .service-detail-card,
       .service-detail-card.reverse-layout {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
         direction: ltr !important;
       }
-      .service-detail-card__body { padding: 24px; }
       .service-detail-card__img { min-height: 240px; }
+      .service-detail-card__body { padding: 24px; }
     }
     @media (max-width: 480px) {
       .service-detail-card__body { padding: 20px 16px; }
