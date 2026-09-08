@@ -39,7 +39,7 @@
     .article-tags__label { font-size: 0.875rem; font-weight: 600; }
 
     .author-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 28px; margin-top: 40px; display: flex; gap: 20px; }
-    .author-card__avatar { width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, var(--amber), var(--steel)); display: flex; align-items: center; justify-content: center; font-family: var(--font-primary); font-weight: 700; font-size: 1.5rem; color: var(--white); flex-shrink: 0; }
+    .author-card__avatar { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; object-position: center; display: block; flex-shrink: 0; border: 3px solid rgba(230,162,60,0.25); box-shadow: 0 4px 12px rgba(0,0,0,0.12); background: var(--bg-card); }
     .author-card__name { font-size: 1.125rem; font-weight: 700; margin-bottom: 4px; }
     .author-card__role { font-size: 0.875rem; color: var(--amber); margin-bottom: 8px; font-weight: 600; }
     .author-card__bio { font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; }
@@ -226,7 +226,7 @@
 
             <!-- Author Card -->
             <div id="author-card" class="author-card reveal">
-              <div id="author-avatar" class="author-card__avatar" aria-hidden="true">JH</div>
+              <img id="author-avatar" class="author-card__avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&h=200&auto=format&fit=crop&crop=face" alt="James Hartwell" width="72" height="72" loading="lazy">
               <div>
                 <div id="author-name" class="author-card__name">James Hartwell</div>
                 <div id="author-role" class="author-card__role">Master Electrician & Founder, ElectraPro</div>

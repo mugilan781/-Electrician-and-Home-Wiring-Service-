@@ -21,7 +21,7 @@ window.BLOG_POSTS = {
       name: 'James Hartwell',
       role: 'Master Electrician & Founder, ElectraPro',
       initials: 'JH',
-      avatarImg: 'assets/images/team-james-hartwell.jpg',
+      avatarImg: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&h=200&auto=format&fit=crop&crop=face',
       bio: 'James has 24 years of experience as a licensed master electrician. He founded ElectraPro in 2009 with a mission to bring commercial-grade electrical quality to residential homeowners. James holds state master electrician license #ME-0042891 and NECA certification.'
     },
     tags: ['Panel Upgrade', 'Electrical Safety', 'Circuit Breaker', 'Home Wiring', 'Cost Guide'],
@@ -111,7 +111,7 @@ window.BLOG_POSTS = {
       name: 'Maria Santos',
       role: 'Operations Director & Master Electrician, ElectraPro',
       initials: 'MS',
-      avatarImg: 'assets/images/team-maria-santos.jpg',
+      avatarImg: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&h=200&auto=format&fit=crop&crop=face',
       bio: 'Maria brings 16 years of hands-on electrical expertise and NECA certification. She directs ElectraPro field operations, technical safety standards, and residential hazard prevention programs.'
     },
     tags: ['Electrical Safety', 'Home Wiring', 'Prevention', 'Childproofing', 'Inspection'],
@@ -184,7 +184,7 @@ window.BLOG_POSTS = {
       name: 'David Chen',
       role: 'Smart Systems Lead & Senior Electrician',
       initials: 'DC',
-      avatarImg: 'assets/images/team-david-chen.jpg',
+      avatarImg: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=200&h=200&auto=format&fit=crop&crop=face',
       bio: 'David brings 12 years of specialized experience in residential electrical systems, home automation architecture, and advanced circuit protection. He holds CEDIA certification and advanced code credentials.'
     },
     tags: ['Circuit Breaker', 'AFCI', 'GFCI', 'NEC Code', 'Home Safety'],
@@ -256,7 +256,7 @@ window.BLOG_POSTS = {
       name: 'David Chen',
       role: 'Smart Systems Lead, ElectraPro',
       initials: 'DC',
-      avatarImg: 'assets/images/team-david-chen.jpg',
+      avatarImg: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=200&h=200&auto=format&fit=crop&crop=face',
       bio: 'David specializes in integrated home automation, smart load distribution, and low-voltage control architecture. He has engineered connected infrastructure for over 450 luxury residences.'
     },
     tags: ['Smart Home', 'Home Automation', 'Neutral Wire', 'Surge Protection', 'Energy Monitoring'],
@@ -328,7 +328,7 @@ window.BLOG_POSTS = {
       name: 'Sarah Kim',
       role: 'Master Lighting Designer & Safety Manager',
       initials: 'SK',
-      avatarImg: 'assets/images/team-sarah-kim.jpg',
+      avatarImg: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=200&h=200&auto=format&fit=crop&crop=face',
       bio: 'Sarah combines OSHA-30 safety mastery with over a decade of architectural lighting design. She specializes in glare-free illumination, layered residential aesthetics, and energy-efficient LED retrofitting.'
     },
     tags: ['LED Lighting', 'Recessed Downlights', 'Kelvin Temperature', 'Dimmer Switches', 'Lighting Layout'],
@@ -398,7 +398,7 @@ window.BLOG_POSTS = {
       name: 'James Hartwell',
       role: 'Founder & Master Electrician, ElectraPro',
       initials: 'JH',
-      avatarImg: 'assets/images/team-james-hartwell.jpg',
+      avatarImg: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&h=200&auto=format&fit=crop&crop=face',
       bio: 'James has spent over two decades troubleshooting dangerous DIY electrical mistakes. He serves on regional code advisory committees and champions safety awareness for homeowners.'
     },
     tags: ['DIY Electrical', 'Permits', 'NEC Code', 'Home Insurance', 'Licensed Electrician'],
@@ -469,7 +469,7 @@ window.BLOG_POSTS = {
       name: 'Maria Santos',
       role: 'Operations Director, ElectraPro',
       initials: 'MS',
-      avatarImg: 'assets/images/team-maria-santos.jpg',
+      avatarImg: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&h=200&auto=format&fit=crop&crop=face',
       bio: 'Maria oversees ElectraPro 24/7 rapid emergency dispatch. She has coordinated emergency crisis response for storm blackouts, commercial outages, and residential electrical emergencies for over 16 years.'
     },
     tags: ['Emergency', 'Blackout', 'Power Outage', 'Electrical Fire', 'Rapid Response'],
@@ -545,7 +545,7 @@ window.BLOG_POSTS = {
       name: 'James Hartwell',
       role: 'Founder & Master Electrician, ElectraPro',
       initials: 'JH',
-      avatarImg: 'assets/images/team-james-hartwell.jpg',
+      avatarImg: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&h=200&auto=format&fit=crop&crop=face',
       bio: 'James has inspected and retrofitted over 3,000 residential switchboards and load centers. He specializes in thermal diagnostic analysis and safety switch integrations.'
     },
     tags: ['Switchboard Repair', 'Circuit Breakers', 'Electrical Maintenance', 'RCD Switches', 'Wiring'],
@@ -600,7 +600,7 @@ window.BLOG_POSTS = {
       name: 'Sarah Kim',
       role: 'Master Lighting Designer & Safety Manager, ElectraPro',
       initials: 'SK',
-      avatarImg: 'assets/images/team-sarah-kim.jpg',
+      avatarImg: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=200&h=200&auto=format&fit=crop&crop=face',
       bio: 'Sarah has specified and supervised residential fan and architectural fixture installations for over a decade. She ensures every fixture meets aerodynamic balance and strict structural mounting codes.'
     },
     tags: ['Ceiling Fan', 'Fan Installation', 'DC Motors', 'Energy Saving', 'Smart Controls'],

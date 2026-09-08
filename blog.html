@@ -156,12 +156,13 @@
     .blog-card__author-avatar {
       width: 32px; height: 32px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--amber), var(--steel));
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--white);
+      object-fit: cover;
+      object-position: center;
+      display: block;
       flex-shrink: 0;
+      border: 2px solid rgba(255,255,255,0.12);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+      background: var(--bg-card);
     }
     .blog-card__author-name {
       font-size: 0.8125rem;
@@ -308,7 +309,7 @@
             <p style="color:var(--text-muted);line-height:1.8;margin-bottom:28px;">Is your home's electrical panel keeping up with modern demands? Learn the warning signs of an overloaded panel, what an upgrade involves, how long it takes, and what you'll realistically pay — with expert insight from our master electricians.</p>
             <div class="flex gap-16" style="align-items:center;margin-bottom:28px;flex-wrap:wrap;">
               <div class="testimonial-card__author">
-                <div class="testimonial-card__avatar-placeholder" aria-hidden="true">JH</div>
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&h=200&auto=format&fit=crop&crop=face" alt="James Hartwell — Master Electrician" class="testimonial-card__avatar" width="48" height="48" loading="lazy">
                 <div>
                   <div class="testimonial-card__name">James Hartwell</div>
                   <div class="testimonial-card__role">Master Electrician</div>
@@ -351,7 +352,7 @@
                   <p class="blog-card__excerpt">Protect your family with these essential electrical safety practices that licensed electricians recommend for every household.</p>
                   <div class="blog-card__footer">
                     <div class="blog-card__author">
-                      <div class="blog-card__author-avatar" aria-hidden="true">MS</div>
+                      <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&h=200&auto=format&fit=crop&crop=face" alt="Maria Santos" class="blog-card__author-avatar" width="32" height="32" loading="lazy">
                       <span class="blog-card__author-name">Maria Santos</span>
                     </div>
                     <a href="blog-details.html?id=safety-tips" class="blog-card__read-btn" aria-label="Read 10 Electrical Safety Tips Every Homeowner Must Know">Read <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
@@ -376,7 +377,7 @@
                   <p class="blog-card__excerpt">Understanding the difference between arc-fault and ground-fault protection can save your life and your home from electrical fires.</p>
                   <div class="blog-card__footer">
                     <div class="blog-card__author">
-                      <div class="blog-card__author-avatar" aria-hidden="true">DC</div>
+                      <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=200&h=200&auto=format&fit=crop&crop=face" alt="David Chen" class="blog-card__author-avatar" width="32" height="32" loading="lazy">
                       <span class="blog-card__author-name">David Chen</span>
                     </div>
                     <a href="blog-details.html?id=afci-vs-gfci" class="blog-card__read-btn" aria-label="Read AFCI vs GFCI Breakers guide">Read <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
@@ -401,7 +402,7 @@
                   <p class="blog-card__excerpt">Planning a smart home requires careful electrical infrastructure design. Here's how our experts plan smart home systems that scale with technology.</p>
                   <div class="blog-card__footer">
                     <div class="blog-card__author">
-                      <div class="blog-card__author-avatar" aria-hidden="true">DC</div>
+                      <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=200&h=200&auto=format&fit=crop&crop=face" alt="David Chen" class="blog-card__author-avatar" width="32" height="32" loading="lazy">
                       <span class="blog-card__author-name">David Chen</span>
                     </div>
                     <a href="blog-details.html?id=smart-home" class="blog-card__read-btn" aria-label="Read How to Plan Your Smart Home Electrical System from Scratch">Read <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
@@ -426,7 +427,7 @@
                   <p class="blog-card__excerpt">From choosing the right trim and kelvin temperature to planning your layout and dimmer compatibility — the complete pre-installation guide.</p>
                   <div class="blog-card__footer">
                     <div class="blog-card__author">
-                      <div class="blog-card__author-avatar" aria-hidden="true">SK</div>
+                      <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=200&h=200&auto=format&fit=crop&crop=face" alt="Sarah Kim" class="blog-card__author-avatar" width="32" height="32" loading="lazy">
                       <span class="blog-card__author-name">Sarah Kim</span>
                     </div>
                     <a href="blog-details.html?id=recessed-lighting" class="blog-card__read-btn" aria-label="Read LED Recessed Lighting guide">Read <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
@@ -451,7 +452,7 @@
                   <p class="blog-card__excerpt">Some electrical tasks are safe for homeowners — others are dangerous and illegal without a license. Know the difference before you pick up a screwdriver.</p>
                   <div class="blog-card__footer">
                     <div class="blog-card__author">
-                      <div class="blog-card__author-avatar" aria-hidden="true">JH</div>
+                      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&h=200&auto=format&fit=crop&crop=face" alt="James Hartwell" class="blog-card__author-avatar" width="32" height="32" loading="lazy">
                       <span class="blog-card__author-name">James Hartwell</span>
                     </div>
                     <a href="blog-details.html?id=diy-vs-pro" class="blog-card__read-btn" aria-label="Read DIY Electrical Work article">Read <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
@@ -476,7 +477,7 @@
                   <p class="blog-card__excerpt">Sparking outlets, burning smell, power outage — knowing how to respond to electrical emergencies correctly can save lives. Here's what to do.</p>
                   <div class="blog-card__footer">
                     <div class="blog-card__author">
-                      <div class="blog-card__author-avatar" aria-hidden="true">MS</div>
+                      <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&h=200&auto=format&fit=crop&crop=face" alt="Maria Santos" class="blog-card__author-avatar" width="32" height="32" loading="lazy">
                       <span class="blog-card__author-name">Maria Santos</span>
                     </div>
                     <a href="blog-details.html?id=emergency-guide" class="blog-card__read-btn" aria-label="Read What to Do During an Electrical Emergency">Read <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>

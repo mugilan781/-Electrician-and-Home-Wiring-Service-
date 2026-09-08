@@ -83,13 +83,49 @@
       copyBtn.setAttribute('data-copy', window.location.href);
     }
 
-    // 10. Author Card
+    // 10. Author Card — now uses Unsplash image with correct gender
     var authorAvatar = document.getElementById('author-avatar');
     var authorName = document.getElementById('author-name');
     var authorRole = document.getElementById('author-role');
     var authorBio = document.getElementById('author-bio');
 
-    if (authorAvatar) authorAvatar.textContent = post.author.initials || 'EP';
+    if (authorAvatar) {
+      var avatarUrl = post.author.avatarImg || '';
+      var avatarAlt = post.author.name || 'Author';
+      // Support both <img> and legacy <div> avatar elements
+      if (authorAvatar.tagName.toLowerCase() === 'img') {
+        if (avatarUrl) {
+          authorAvatar.src = avatarUrl;
+          authorAvatar.alt = avatarAlt;
+        } else if (post.author.initials) {
+          // Fallback: if no image, show initials inside a generated div (edge case)
+          authorAvatar.alt = avatarAlt + ' — ' + post.author.initials;
+        }
+        // Ensure proper styling for image avatar
+        authorAvatar.style.display = 'block';
+      } else {
+        authorAvatar.textContent = post.author.initials || 'EP';
+        // If div but avatarImg exists, replace div content with image
+        if (avatarUrl) {
+          authorAvatar.innerHTML = '';
+          authorAvatar.style.background = 'none';
+          authorAvatar.style.padding = '0';
+          var img = document.createElement('img');
+          img.src = avatarUrl;
+          img.alt = avatarAlt;
+          img.loading = 'lazy';
+          img.width = 72;
+          img.height = 72;
+          img.style.width = '100%';
+          img.style.height = '100%';
+          img.style.objectFit = 'cover';
+          img.style.borderRadius = '50%';
+          img.style.display = 'block';
+          authorAvatar.appendChild(img);
+          authorAvatar.style.overflow = 'hidden';
+        }
+      }
+    }
     if (authorName) authorName.textContent = post.author.name;
     if (authorRole) authorRole.textContent = post.author.role;
     if (authorBio) authorBio.textContent = post.author.bio;

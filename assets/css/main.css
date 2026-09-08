@@ -1385,11 +1385,13 @@ select.form-control { cursor: pointer; }
 .blog-card__author-avatar {
   width: 32px; height: 32px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--amber), var(--steel));
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--white);
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  flex-shrink: 0;
+  border: 2px solid rgba(255,255,255,0.12);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+  background: var(--bg-card);
 }
 .blog-card__author-name {
   font-size: 0.8125rem;
