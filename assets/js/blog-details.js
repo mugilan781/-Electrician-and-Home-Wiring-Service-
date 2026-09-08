@@ -77,10 +77,32 @@
       }).join('');
     }
 
-    // 9. Share Link
+    // 9. Share Links
     var copyBtn = document.querySelector('.share-copy');
     if (copyBtn) {
       copyBtn.setAttribute('data-copy', window.location.href);
+    }
+    var twBtn = document.querySelector('.share-tw');
+    if (twBtn) {
+      twBtn.onclick = function () {
+        var url = encodeURIComponent(window.location.href);
+        var text = encodeURIComponent(post.title);
+        window.open('https://x.com/intent/post?text=' + text + '&url=' + url, '_blank', 'noopener,noreferrer,width=600,height=450');
+      };
+    }
+    var fbBtn = document.querySelector('.share-fb');
+    if (fbBtn) {
+      fbBtn.onclick = function () {
+        var url = encodeURIComponent(window.location.href);
+        window.open('https://www.facebook.com/sharer/sharer.php?u=' + url, '_blank', 'noopener,noreferrer,width=600,height=450');
+      };
+    }
+    var liBtn = document.querySelector('.share-li');
+    if (liBtn) {
+      liBtn.onclick = function () {
+        var url = encodeURIComponent(window.location.href);
+        window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + url, '_blank', 'noopener,noreferrer,width=600,height=450');
+      };
     }
 
     // 10. Author Card — now uses Unsplash image with correct gender
