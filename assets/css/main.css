@@ -2549,6 +2549,7 @@ img, iframe, video {
   }
   .nav-links { display: none !important; }
   .hamburger { display: flex !important; }
+  .navbar-actions .btn-sm { display: none !important; }
   .about-split { grid-template-columns: 1fr; gap: 40px; }
   .about-img-wrap { order: -1; }
   .about-img-wrap img { height: 380px; }
@@ -2644,10 +2645,9 @@ img, iframe, video {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 20px !important;
   }
+  /* Tablet view: hide Book Now button from header */
   .navbar-actions .btn-sm {
-    display: inline-flex !important;
-    padding: 8px 14px;
-    font-size: 0.8125rem;
+    display: none !important;
   }
 }
 
