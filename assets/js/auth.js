@@ -226,14 +226,6 @@
     });
   }
 
-  /* ── Social buttons (frontend UI only — no real OAuth) ── */
-  $all('[data-social]').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var provider = btn.getAttribute('data-social') || 'Social';
-      showAuthToast(provider + ' sign-in is not connected yet. Please use email instead.', 'info');
-    });
-  });
-
   /* ── Forgot password placeholder ── */
   $all('[data-forgot]').forEach(function (link) {
     link.addEventListener('click', function (e) {

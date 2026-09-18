@@ -313,7 +313,7 @@
 /* ── Social ── */
 .auth-social {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 12px;
   margin-bottom: 26px;
 }
@@ -372,34 +372,6 @@
   border-radius: 4px;
 }
 
-/* Back-home link (minimal, below card — not a navbar) */
-.auth-back {
-  display: flex;
-  justify-content: center;
-  margin-top: 22px;
-}
-.auth-back a {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--text-muted);
-  text-decoration: none;
-  transition: var(--transition);
-}
-.auth-back a:hover {
-  color: var(--amber);
-}
-.auth-back a:focus-visible {
-  outline: 2px solid var(--amber);
-  outline-offset: 2px;
-  border-radius: 4px;
-}
-[dir="rtl"] .auth-back svg {
-  transform: scaleX(-1);
-}
-
 /* ── Responsive ── */
 @media (max-width: 600px) {
   .auth-page {
@@ -423,10 +395,13 @@
   }
 }
 
-@media (max-width: 425px) {
+@media (max-width: 600px) {
   .auth-social {
     grid-template-columns: 1fr;
   }
+}
+
+@media (max-width: 425px) {
   .auth-meta-row {
     gap: 10px;
   }
