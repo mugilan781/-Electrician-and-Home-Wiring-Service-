@@ -93,8 +93,6 @@ const NAV_HTML = `
     <a href="pricing.html">Pricing</a>
     <a href="blog.html">Blog</a>
     <a href="contact.html">Contact</a>
-    <a href="login.html">Login</a>
-    <a href="signup.html">Signup</a>
   </nav>
   <div class="mobile-nav-actions">
     <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center;">Book Now</a>

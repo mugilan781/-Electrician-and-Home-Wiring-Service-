@@ -2980,7 +2980,8 @@ img, iframe, video {
   .pricing-card__body, .pricing-card__header { padding: 22px 18px; }
   .testimonial-card { padding: 20px 16px; }
   .feature-card { flex-direction: column; padding: 20px 16px; gap: 14px; }
-  .feature-card__icon { width: 48px; height: 48px; }
+  .btn { white-space: normal; text-align: center; }
+  .btn-lg { padding: 14px 18px; font-size: 0.9375rem; }
   .coverage-form__group { flex-direction: column; }
   .coverage-btn { width: 100%; justify-content: center; }
   .coverage-checker { padding: 24px 18px; }
