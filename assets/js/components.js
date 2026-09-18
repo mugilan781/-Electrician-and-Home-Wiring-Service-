@@ -50,6 +50,22 @@ const NAV_HTML = `
       <div class="navbar-actions">
         <button class="navbar-toggle-btn" data-theme-toggle aria-label="Toggle theme" title="Toggle dark/light mode"></button>
         <button class="navbar-toggle-btn" data-rtl-toggle aria-label="Toggle RTL" style="font-size:0.6875rem;font-weight:700;letter-spacing:0.05em;">LTR</button>
+        <div class="nav-profile">
+          <button class="nav-profile-btn" id="nav-profile-btn" aria-label="Account" aria-expanded="false" aria-haspopup="menu" aria-controls="nav-profile-menu" title="Account">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </button>
+          <div class="nav-profile-menu" id="nav-profile-menu" role="menu" aria-label="Account">
+            <div class="nav-profile-head" aria-hidden="true">My Account</div>
+            <a href="login.html" role="menuitem">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+              Login
+            </a>
+            <a href="signup.html" role="menuitem">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+              Signup
+            </a>
+          </div>
+        </div>
         <a href="contact.html" class="btn btn-primary btn-sm" aria-label="Book a service">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:4px;" aria-hidden="true">
             <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
@@ -77,6 +93,8 @@ const NAV_HTML = `
     <a href="pricing.html">Pricing</a>
     <a href="blog.html">Blog</a>
     <a href="contact.html">Contact</a>
+    <a href="login.html">Login</a>
+    <a href="signup.html">Signup</a>
   </nav>
   <div class="mobile-nav-actions">
     <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center;">Book Now</a>
@@ -236,5 +254,45 @@ document.addEventListener('DOMContentLoaded', () => {
   const footerMount = document.getElementById('footer-mount');
   if (navMount) navMount.outerHTML = NAV_HTML;
   if (footerMount) footerMount.outerHTML = FOOTER_HTML;
+  initProfileDropdown();
 });
+
+// Profile dropdown (Login / Signup) — keyboard + outside-click + Escape aware
+function initProfileDropdown() {
+  const btn = document.getElementById('nav-profile-btn');
+  const menu = document.getElementById('nav-profile-menu');
+  if (!btn || !menu) return;
+
+  const close = () => {
+    menu.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+  };
+  const open = () => {
+    menu.classList.add('open');
+    btn.setAttribute('aria-expanded', 'true');
+  };
+
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (menu.classList.contains('open')) close();
+    else open();
+  });
+  // Close when selecting an item
+  menu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', close);
+  });
+  // Close on outside click
+  document.addEventListener('click', (e) => {
+    if (menu.classList.contains('open') && !menu.contains(e.target) && !btn.contains(e.target)) {
+      close();
+    }
+  });
+  // Close on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menu.classList.contains('open')) {
+      close();
+      btn.focus();
+    }
+  });
+}
 

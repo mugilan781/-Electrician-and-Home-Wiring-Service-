@@ -3083,6 +3083,91 @@ img, iframe, video {
   .about-img-wrap img { height: 220px; }
 }
 
+/* ── ██ NAV PROFILE DROPDOWN (Login / Signup) ██ ── */
+.nav-profile {
+  position: relative;
+  flex-shrink: 0;
+}
+.nav-profile-btn {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  background: rgba(255,255,255,.08);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--white);
+  transition: var(--transition);
+}
+.nav-profile-btn:hover {
+  background: rgba(230,162,60,.15);
+  color: var(--amber);
+}
+.nav-profile-btn:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+}
+.nav-profile-btn svg { display: block; }
+.nav-profile-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  inset-inline-end: 0;
+  min-width: 200px;
+  max-width: calc(100vw - 32px);
+  background: var(--navy);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: 8px;
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: var(--transition);
+}
+.nav-profile-menu.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.nav-profile-head {
+  font-family: var(--font-primary);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.45);
+  padding: 8px 14px 6px;
+}
+.nav-profile-menu a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  font-family: var(--font-primary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: rgba(255,255,255,.8);
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+  white-space: nowrap;
+}
+.nav-profile-menu a:hover,
+.nav-profile-menu a:focus-visible {
+  color: var(--amber);
+  background: rgba(230,162,60,.08);
+  outline: none;
+}
+.nav-profile-menu a svg { flex-shrink: 0; }
+@media (max-width: 767px) {
+  .nav-profile-btn { width: 34px; height: 34px; }
+}
+@media (max-width: 360px) {
+  .nav-profile-btn { width: 32px; height: 32px; }
+  .nav-profile-btn svg { width: 16px; height: 16px; }
+}
+@media (max-width: 320px) {
+  .nav-profile-btn { width: 28px; height: 28px; }
+  .nav-profile-btn svg { width: 14px; height: 14px; }
+}
+
 /* ── Print ── */
 @media print {
   .navbar, .footer, #back-to-top, .mobile-nav { display: none; }
