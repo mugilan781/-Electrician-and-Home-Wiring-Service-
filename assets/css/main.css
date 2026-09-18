@@ -182,8 +182,10 @@ h1,h2,h3,h4,h5,h6 {
 .btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   padding: 14px 32px;
+  border: 2px solid transparent;
   border-radius: var(--radius-sm);
   font-family: var(--font-primary);
   font-size: 0.9375rem;
@@ -193,6 +195,11 @@ h1,h2,h3,h4,h5,h6 {
   position: relative;
   overflow: hidden;
   white-space: nowrap;
+}
+.btn svg {
+  flex-shrink: 0;
+  display: inline-block;
+  vertical-align: middle;
 }
 .btn::after {
   content: '';
@@ -994,8 +1001,49 @@ select.form-control { cursor: pointer; }
 #hero-slider .hero-slide__content { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; }
 #hero-slider .hero-title, #hero-slider .hero-desc { text-align: center; }
 #hero-slider .hero-desc { margin-left: auto; margin-right: auto; }
-#hero-slider .hero-actions { justify-content: center; }
-#hero-slider .hero-eyebrow { justify-content: center; }
+#hero-slider .hero-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 48px;
+  width: 100%;
+}
+#hero-slider .hero-actions .btn {
+  width: 230px;
+  height: 54px;
+  padding: 0 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  border: 2px solid transparent;
+  box-sizing: border-box;
+  white-space: nowrap;
+  border-radius: var(--radius-sm);
+  line-height: 1;
+}
+#hero-slider .hero-actions .btn-outline {
+  background: transparent;
+  border-color: var(--amber);
+  color: var(--amber);
+}
+#hero-slider .hero-actions .btn-outline:hover {
+  background: var(--amber);
+  border-color: var(--amber);
+  color: var(--navy);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(230,162,60,.3);
+}
+#hero-slider .hero-eyebrow {
+  align-self: center;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  display: inline-flex;
+}
 
 /* ── ██ TRUST BAR ██ ── */
 .trust-bar {
@@ -2767,13 +2815,16 @@ img, iframe, video {
     grid-template-columns: 1fr !important;
     gap: 12px;
   }
-  .hero-actions {
+  .hero-actions,
+  #hero-slider .hero-actions {
     flex-direction: column;
     width: 100%;
-    gap: 10px;
+    gap: 12px;
   }
-  .hero-actions .btn {
+  .hero-actions .btn,
+  #hero-slider .hero-actions .btn {
     width: 100%;
+    max-width: 320px;
     justify-content: center;
   }
   .values-grid {
